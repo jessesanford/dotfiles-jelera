@@ -14,9 +14,11 @@ Even though I have all these plugins installed in my `.vim` directory, if you li
 *These plugins are installed in the `.vim\plugin`*
 
 * [Align.vim](http://www.vim.org/script.php?script_id=294) : Align text, eqns, declarations, tables, etc.
+* [autoclose](http://www.vim.org/scripts/script.php?script_id=1849) : Inserts matching bracket, paren, brace or quote.
 * [Vim Color Picker for GTK](http://www.vim.org/scripts/script.php?script_id=3224) : A simple color picker for VIM, based on GTK color chooser dialog.
 * [Command-t.vim](http://www.vim.org/scripts/script.php?script_id=3025) : Fast file navigation for VIM *Ruby Interp Required*.
 * [ctags.vim](http://www.vim.org/scripts/script.php?script_id=610) : Display function name in the title bar and/or the status line.
+* [Endwise](http://www.vim.org/scripts/script.php?script_id=2386) : Wisely add "end" in ruby, endfunction/endif/more in vim script, etc.
 * [hexHighlight.vim](http://www.vim.org/scripts/script.php?script_id=2937) : Highlight hex codes in graphical Vim.
 * [hgrev.vim](http://www.vim.org/scripts/script.php?script_id=3144) : Display Mercurial revision info in the Vim statusline.
 * [jsbeautify.vim](http://www.vim.org/scripts/script.php?script_id=2727) : a javascript source code formatter.
@@ -32,7 +34,6 @@ Even though I have all these plugins installed in my `.vim` directory, if you li
 
 * [ack.vim](http://www.vim.org/scripts/script.php?script_id=2572) : Plugin for the Perl module / CLI script 'ack' replacement for grep
 * [auto_mkdir](http://www.vim.org/scripts/script.php?script_id=3352) : Allows you to save files into directories that do not exist yet.
-* [autoclose](http://www.vim.org/scripts/script.php?script_id=1849) : Inserts matching bracket, paren, brace or quote.
 * [gundo](http://sjl.bitbucket.org/gundo.vim/) : Graph your Vim undo tree in style.
 * [jslint.vim](http://www.vim.org/scripts/script.php?script_id=2729) : Check JavaScript files for errors with JSLint.
 * [neocomplcache](http://www.vim.org/scripts/script.php?script_id=2620) : Ultimate auto completion system for Vim.
@@ -40,14 +41,12 @@ Even though I have all these plugins installed in my `.vim` directory, if you li
 * [NERDtree](http://www.vim.org/scripts/script.php?script_id=1658) : A tree explorer plugin for navigating the filesystem.
 * [rvm](http://www.vim.org/scripts/script.php?script_id=3134) : Adds RVM integration to Vim. Which active Ruby is being used shown in the status line.
 * [syntastic](http://www.vim.org/scripts/script.php?script_id=2736) : Automatic syntax checking.
-* [Endwise](http://www.vim.org/scripts/script.php?script_id=2386) : Wisely add "end" in ruby, endfunction/endif/more in vim script, etc.
 * [Fugitive](http://www.vim.org/scripts/script.php?script_id=2975) : A Git wrapper so awesome, it should be illegal.
 * [Vim-Git](http://www.vim.org/scripts/script.php?script_id=1654) : Git runtime files .
 * [Indent-guides](http://www.vim.org/scripts/script.php?script_id=3361) : A plugin for visually displaying indent levels in Vim.
 * [ragtag](http://www.vim.org/scripts/script.php?script_id=1896) : A set of mappings for HTML, XML, PHP, ASP, eRuby, JSP, and more (formerly allml).
 * [rails.vim](http://www.vim.org/scripts/script.php?script_id=1567) : Ruby on Rails: easy file navigation, enhanced syntax highlighting, and more.
 * [vim-rdoc](http://www.vim.org/scripts/script.php?script_id=2878) ; Syntax highlight for Ruby Documentation.
-* [vim-ruby](http://vim-ruby.rubyforge.org/) : Vim/Ruby Configuration Files.
 * [Surround](http://www.vim.org/scripts/script.php?script_id=1697) : Delete/change/add parentheses/quotes/XML-tags/much more with ease.
 * [xmledit](http://www.vim.org/scripts/script.php?script_id=301)  : A filetype plugin to help edit XML, HTML, and SGML documents.
 * [zencoding](http://www.vim.org/scripts/script.php?script_id=2981) : vim plugins for HTML and CSS hi-speed coding.
