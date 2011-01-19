@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#######################
-# CREATING THE SYMLINKS
-#######################
+#-----------------------#
+#  Create the symlinks  #
+#-----------------------#
 
 # Vim
 ln -s $HOME/dotfiles/vim  $HOME/.vim
@@ -25,7 +25,22 @@ ln -s $HOME/dotfiles/gnu-screen/screenrc  $HOME/.screenrc
 ln -s $HOME/dotfiles/git/gitconfig  $HOME/.gitconfig
 
 # mutt
-ln -s $HOME/dotfiles/mutt/muttrc  $HOME/.muttrc
+# ln -s $HOME/dotfiles/mutt/muttrc  $HOME/.muttrc
 
 # Mercurial
 ln -s $HOME/dotfiles/hg/hgrc $HOME/.hgrc
+
+
+#------------------------------------#
+#  Update Vim plugin git submodules  #
+#------------------------------------#
+
+cd dotfiles
+git submodule init
+git submodule update
+
+echo ""
+echo "If you get an error with git, install it and run again"
+echo ""
+echo "git submodule init"
+echo "git submodule update"

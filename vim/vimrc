@@ -273,7 +273,7 @@ inoremap []     []
 """"""""""""""""""""""""""
 autocmd FileType vim map <leader>comm I"<DEL>  <ESC>A  "<DEL><ESC>yyp0lv$hhr"yykPjj
 autocmd FileType javascript,php,c map <leader>comm I//  <ESC>A  //<ESC>yyp0llv$hhhr-yykPjj
-autocmd FileType python,ruby map <leader>comm I#  <ESC>A  #<ESC>yyp0lv$hhr-yykPjj
+autocmd FileType python,ruby,sh,zsh map <leader>comm I#  <ESC>A  #<ESC>yyp0lv$hhr-yykPjj
 autocmd FileType html,xhtml map <leader>comm I<!--  <DEL><ESC>A  --><ESC>yyp0llllv$r-$hhc$--><ESC>yykPjj
 autocmd FileType css map <leader>comm I/*  <ESC>A  */<ESC>yyp0llv$r-$hc$*/<ESC>yykPjj
 

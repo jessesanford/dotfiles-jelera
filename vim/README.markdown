@@ -52,3 +52,10 @@ Even though I have all these plugins installed in my `.vim` directory, if you li
 * [Tabular.vim](http://www.vim.org/scripts/script.php?script_id=1697) : Vim script for text filtering and alignment
 * [xmledit](http://www.vim.org/scripts/script.php?script_id=301)  : A filetype plugin to help edit XML, HTML, and SGML documents.
 * [zencoding](http://www.vim.org/scripts/script.php?script_id=2981) : vim plugins for HTML and CSS hi-speed coding.
+
+#### Post-Installation
+
+Run these commands in your terminal :
+
+		$ git submodule init
+		$ git submodule update
