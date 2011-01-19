@@ -12,7 +12,7 @@
 "    $ ln -s $HOME/dotfiles/vim/vimrc $HOME/.vimrc
 "
 " Git_Repository_in_Github:
-"     
+"    https://github.com/jelera/dotfiles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -104,9 +104,6 @@ set undolevels=999
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the curors - when moving vertical..
-"set so=7
-
 set number
 set showcmd " show typed commands
 set wildmenu "Turn on WiLd menu
@@ -127,8 +124,6 @@ set ignorecase "Ignore case when searching
 set smartcase   " but case-sensitive if expression contains a capital letter.
 
 set hlsearch "Highlight search things
-
-" set gdefault
 
 set incsearch "Make search act like search in modern browsers
 
@@ -162,7 +157,6 @@ set tags+=../tags,../../tags,../../../tags,../../../../tags " Look for all the t
 syntax enable "Enable syntax hl
 
 set shell=$SHELL
-"set shell=/bin/bash
 set cursorline
 
 if has("gui_running")
@@ -218,7 +212,7 @@ set tabstop=4
 set smarttab
 
 set linebreak " This will not break whole words while wrap is enabled
-" "set textwidth=79
+"set textwidth=79
 
 set wrap "Wrap lines
 
@@ -252,7 +246,6 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
-
 " Auto complete {} indent and position the cursor in the middle line
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
@@ -269,6 +262,7 @@ inoremap [<CR>  [<CR>]<Esc>O
 inoremap [[     [
 inoremap []     []
 
+""""""""""""""""""""""""""
 "  Code Comment Banners  "
 """"""""""""""""""""""""""
 autocmd FileType vim map <leader>comm I"<DEL>  <ESC>A  "<DEL><ESC>yyp0lv$hhr"yykPjj
@@ -315,22 +309,9 @@ function! VisualSearch(direction) range
 	let @" = l:saved_reg
 endfunction
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Smart mappings on the command line
-"cno $h e ~/
-"cno $d e ~/Desktop/
-"cno $j e ./
-"cno $c e <C-\>eCurrentFileDir("e")<cr>
-
-"" $q is super useful when browsing on the command line
-"cno $q <C-\>eDeleteTillSlash()<cr>
-
-"cnoremap <C-P> <Up>
-"cnoremap <C-N> <Down>
-
 " Move around matching bracket pairs
 nnoremap <tab> %
 vnoremap <tab> %
@@ -353,13 +334,10 @@ func! CurrentFileDir(cmd)
 	return a:cmd . " " . expand("%:p:h") . "/"
 endfunc
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map space to / (search) and c-space to ? (backwards search) with Very Magic
-""map <space> /\v
-""map <c-space> ?\v
+" Remove the highlighted search
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move btw. windows
@@ -437,9 +415,6 @@ iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Remap VIM 0
-"map 0 ^
-
 "Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
@@ -449,7 +424,6 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 " Indent visual selected code without unselecting and going back to normal mode
 vmap > >gv
 vmap < <gv
-
 
 "Strip all trailing whitespace in the current file"
 nnoremap <leader>nw :%s/\s\+$//e<cr>:let @/=''<CR>
@@ -475,10 +449,6 @@ vnoremap <C-X> "+x
 
 "CTRL-C is copy
 vnoremap <C-C> "+y
-
-"CTRL-V is paste from the system's clipboard
-"map <C-V> "+gP
-"cmap <C-V> <C-R>+
 
 " Smart Paste CTRL-V from the system's clipboard and indents code automatically
 nnoremap <C-V> "+P=']
@@ -512,10 +482,13 @@ map <leader>cope :botright cope<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
-
 """"""""""""""""""""""""""""""
 " => NeoComplCache plugin
 """"""""""""""""""""""""""""""
+
+" TODO: Still need to tweak behavior with <TAB> to expand
+"       snippets, change throughout the autocompletion list
+
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 
@@ -577,12 +550,6 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 au BufNewFile,BufRead *.snip set syntax=snippet ft=snippet foldmethod=indent
 
 """"""""""""""""""""""""""""""
-" => bufExplorer plugin
-""""""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
-
-""""""""""""""""""""""""""""""
 " => Autoclose plugin
 """"""""""""""""""""""""""""""
 nmap <Leader>tac <Plug>ToggleAutoCloseMappings
@@ -614,11 +581,14 @@ nnoremap <leader>gun :GundoToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " for CSS, also have things in braces indented:
 autocmd FileType css set smartindent foldmethod=indent
+
 " for HTML, generally format text, but if a long line has been created
 " leave it alone when editing:
 autocmd FileType html,xhtml set formatoptions+=tl
+
 " folding HTML
 autocmd FileType html,xhtml set foldmethod=indent smartindent
+
 " for both CSS and HTML, use genuine tab characters for
 " indentation, to make files a few bytes smaller:
 autocmd FileType html,xhtml set noexpandtab tabstop=3 shiftwidth=3
@@ -639,7 +609,7 @@ nnoremap <leader>sort ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+map <leader>spell :setlocal spell!<cr>
 
 " languages for the spelling checker
 set spelllang=en,es
@@ -748,11 +718,6 @@ func! PreviewInBrowser()
 endfunc
 
 """"""""""""""""""""""""""""""
-" => Fuzzy finder
-""""""""""""""""""""""""""""""
-" map <C-t> :FuzzyFinderTextMate<CR>
-
-""""""""""""""""""""""""""""""
 " => Taglist
 """"""""""""""""""""""""""""""
 " TagList options
@@ -769,11 +734,10 @@ let Tlist_Display_Prototype = 1 "display full prototype instead of just function
 nnoremap <F5> :TlistToggle<CR>
 nnoremap <F6> :TlistShowPrototype<CR>
 
-
 """"""""""""""""""""""""""""""
 " => NerdTree
 """"""""""""""""""""""""""""""
-map <leader>p :NERDTreeToggle<CR>
+map <leader>3 NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""
 " => SuperTab
@@ -785,9 +749,8 @@ let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc
 """"""""""""""""""""""""""""""
 " => Vim grep and Ack
 """"""""""""""""""""""""""""""
+" Using Ack instead of grep.
 set grepprg=ack
-" let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-" set grepprg=/bin/grep\ -nH
 
 nnoremap <leader>a :Ack
 

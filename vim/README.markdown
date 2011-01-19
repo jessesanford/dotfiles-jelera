@@ -6,7 +6,7 @@ based on the .vimrc shared by [Amix.dk](http://amix.dk/blog/post/19486#The-ultim
 I've modified the following :
 
 * Yi Zhao's Javascript syntax file to make the highlighting more appealing and easier to read to me.
-* A customized version of "ir_black" color scheme, I've named it "nazca" (in honor to a [**very nice place in Peru**](http://en.wikipedia.org/wiki/Nazca)). It has a nice contrast.
+* A customized version of "irblack" color scheme, I've named it "nazca" (in honor to a [**very nice place in Peru**](http://en.wikipedia.org/wiki/Nazca)). It has a nice contrast.
 
 ## Requirements
 
