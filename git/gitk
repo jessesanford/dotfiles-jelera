@@ -1,0 +1,19 @@
+set mainfont {"Deja Vu Mono" 12}
+set textfont {"Deja Vu Mono" 14}
+set uifont {"Monaco Bold" 12}
+set tabstop 4
+set findmergefiles 0
+set maxgraphpct 50
+set maxwidth 16
+set cmitmode patch
+set wrapcomment none
+set showneartags 1
+set showlocalchanges 1
+set datetimeformat {%Y-%m_%d %H:%M:%S}
+set bgcolor white
+set fgcolor black
+set colors {green red blue magenta drakgrey brown orange}
+set diffcolors {red "#00a000" blue}
+set diffcontext 3
+set selectbgcolor gray85
+set permviews {}

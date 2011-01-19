@@ -1,0 +1,299 @@
+" From:
+" http://dotfiles.org/~gregf/.vimrc
+"
+" For the status line warnings
+" }}}
+
+" {{{ Functions
+
+function UseRubyIndent ()
+    setlocal tabstop=2
+    setlocal softtabstop=2
+    setlocal shiftwidth=2
+    setlocal expandtab
+    setlocal autoindent
+
+    imap   =PMADE_RubyEndToken()
+endfunction
+
+" Shift-Enter inserts 'end' for ruby scripts
+" Copyright (C) 2005-2007 pmade inc. (Peter Jones pjones@pmade.com)
+function PMADE_RubyEndToken ()
+    let current_line = getline('.')
+    let braces_at_end = '{\s*\(|\(,\|\s\|\w\)*|\s*\)\?\(\s*#.*\)\?$'
+    let stuff_without_do = '^\s*\<\(class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def\)\>'
+        let with_do = '\\s*\(|\(,\|\s\|\w\)*|\s*\)\?\(\s*#.*\)\?$'
+
+        if getpos('.')[2] < len(current_line)
+            return "\"
+        elseif match(current_line, braces_at_end) >= 0
+            return "\}\O"
+        elseif match(current_line, stuff_without_do) >= 0
+            return "\end\O"
+        elseif match(current_line, with_do) >= 0
+            return "\end\O"
+        else
+            return "\"
+        endif
+    endfunction
+
+    "return the syntax highlight group under the cursor ''
+    function! StatuslineCurrentHighlight()
+        let name = synIDattr(synID(line('.'),col('.'),1),'name')
+        if name == ''
+            return ''
+        else
+            return '[' . name . ']'
+        endif
+    endfunction
+
+    "recalculate the trailing whitespace warning when idle, and after saving
+    autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+
+    "return '[\s]' if trailing white space is detected
+    "return '' otherwise
+    function! StatuslineTrailingSpaceWarning()
+        if !exists("b:statusline_trailing_space_warning")
+            if search('\s\+$', 'nw') != 0
+                let b:statusline_trailing_space_warning = '[\s]'
+            else
+                let b:statusline_trailing_space_warning = ''
+            endif
+        endif
+        return b:statusline_trailing_space_warning
+    endfunction
+
+    "return '[&et]' if &et is set wrong
+    "return '[mixed-indenting]' if spaces and tabs are used to indent
+    "return an empty string if everything is fine
+    function! StatuslineTabWarning()
+        if !exists("b:statusline_tab_warning")
+            let tabs = search('^\t', 'nw') != 0
+            let spaces = search('^ ', 'nw') != 0
+
+            if tabs && spaces
+                let b:statusline_tab_warning =  '[mixed-indenting]'
+            elseif (spaces && !&et) || (tabs && &et)
+                let b:statusline_tab_warning = '[&et]'
+            else
+                let b:statusline_tab_warning = ''
+            endif
+        endif
+        return b:statusline_tab_warning
+    endfunction
+
+    "return a warning for "long lines" where "long" is either &textwidth or 80 (if
+    "no &textwidth is set)
+    "
+    "return '' if no long lines
+    "return '[#x,my,$z] if long lines are found, were x is the number of long
+    "lines, y is the median length of the long lines and z is the length of the
+    "longest line
+    function! StatuslineLongLineWarning()
+        if !exists("b:statusline_long_line_warning")
+            let long_line_lens = s:LongLines()
+
+            if len(long_line_lens) > 0
+                let b:statusline_long_line_warning = "[" .
+                            \ '#' . len(long_line_lens) . "," .
+                            \ 'm' . s:Median(long_line_lens) . "," .
+                            \ '$' . max(long_line_lens) . "]"
+            else
+                let b:statusline_long_line_warning = ""
+            endif
+        endif
+        return b:statusline_long_line_warning
+    endfunction
+
+    "return a list containing the lengths of the long lines in this buffer
+    function! s:LongLines()
+        let threshold = (&tw ? &tw : 80)
+        let spaces = repeat(" ", &ts)
+
+        let long_line_lens = []
+
+        let i = 1
+        while i <= line("$")
+            let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
+            if len > threshold
+                call add(long_line_lens, len)
+            endif
+            let i += 1
+        endwhile
+
+        return long_line_lens
+    endfunction
+
+    "find the median of the given array of numbers
+    function! s:Median(nums)
+        let nums = sort(a:nums)
+        let l = len(nums)
+
+        if l % 2 == 1
+            let i = (l-1) / 2
+            return nums[i]
+        else
+            return (nums[l/2] + nums[(l/2)-1]) / 2
+        endif
+    endfunction
+
+    command! -nargs=0 RDocPreview call RDocRenderBufferToPreview()
+
+    function! RDocRenderBufferToPreview()
+        let rdocoutput = "/tmp/vimrdoc/"
+        call system("rdoc " . bufname("%") . " --op " . rdocoutput)
+        call system("firefox ". rdocoutput . "index.html")
+    endfunction
+
+    "If possible, try to use a narrow number column.
+    if v:version >= 700
+        try
+            setlocal numberwidth=2
+        catch
+        endtry
+    endif
+
+    if (version >= 700)
+        set completeopt=menu,longest,preview
+        "map :bn :tabn
+        "map :bp :tabp
+        set showtabline=2
+        set tabline=%!MyTabLine()
+
+        function MyTabLabel(n)
+            let buflist = tabpagebuflist(a:n)
+            let winnr = tabpagewinnr(a:n)
+            let bufname = bufname(buflist[winnr - 1])
+
+            if !strlen(bufname)
+                let bufname = '(nil)'
+            endif
+
+            let label = ''
+            " Add '+' if one of the buffers in the tab page is modified
+            let bufnr = 0
+            while bufnr < len(buflist)
+                if getbufvar(buflist[bufnr], "&modified")
+                    let label = '+'
+                    break
+                endif
+                let bufnr = bufnr + 1
+            endwhile
+            if !strlen(label)
+                let label = ' '
+            endif
+            let label .= bufname
+            return label
+        endfunction
+
+        function MyTabLine()
+            let s = ''
+            let i = 1
+            while i <= tabpagenr('$')
+                " select the highlighting
+                if i == tabpagenr()
+                    let s .= '%#TabLineSel#'
+                else
+                    let s .= '%#TabLine#'
+                endif
+                " set the tab page number (for mouse clicks)
+                let s .= '%' . i . 'T'
+                " the label is made by MyTabLabel()
+                let s .= ' %{MyTabLabel(' . i . ')} '
+                let i = i + 1
+            endwhile
+            " after the last tab fill with TabLineFill and reset tab page nr
+            let s .= '%#TabLineFill#%T'
+            return s
+        endfunction
+    endif
+
+    " Update header
+    function UpdateRcHeader()
+        let l:c=col(".")
+        let l:l=line(".")
+        silent 1,10 s/\(Modified:\).*/\="Modified: ".strftime("%c")/
+        call cursor(l:l, l:c)
+    endfunction
+
+    if has("eval")
+        " If we're in a wide window, enable line numbers.
+        fun! WindowWidth()
+            if winwidth(0) > 90
+                setlocal foldcolumn=0
+                setlocal number
+                if v:version >= 703
+                    setlocal rnu
+                endif
+            else
+                setlocal nonumber
+                setlocal foldcolumn=0
+            endif
+        endfun
+    endif
+
+    "function Athenry()
+        "chdir /home/gregf/work/projects/active/athenry/
+        "open TODO.mkd
+        "NERDTreeFromBookmark athenry
+    "endfunction
+
+    "function Swindle()
+        "chdir /home/gregf/work/projects/active/swindle/
+        "open TODO.mkd
+        "NERDTreeFromBookmark swindle
+    "endfunction
+
+    "function Mideo()
+        "chdir /home/gregf/work/projects/active/mideo/
+        "open TODO.mkd
+        "NERDTreeFromBookmark mideo
+    "endfunction
+
+    "function OSnap()
+        "chdir /home/gregf/work/projects/active/osnap/
+        "open TODO
+        "NERDTreeFromBookmark osnap 
+    "endfunction
+
+    function ClearCache()
+        !rm -rf public/cache/*
+    endfunction
+
+    function Restart()
+        !touch $PWD/tmp/restart.txt
+    endfunction
+
+    " Removes unnecessary whitespace
+    function StripTrailingWhitespace()
+        %s/[ \t]\+$//ge
+        %s!^\( \+\)\t!\=StrRepeat("\t", 1 + strlen(submatch(1)) / 8)!ge
+    endfunction
+
+    function RemoveBlankLines()
+        %s/^[\ \t]*\n//g
+    endfunction
+
+    function! VBlockquote(...) range
+        " Author: Ralf Arens
+        " put `| ' at beginning of line
+        exe a:firstline.",".a:lastline."s/^/| /"
+        " remove trailing whitespaces
+        exe a:firstline.",".a:lastline.'s/^| $/|/e'
+        " generate tail
+        exe a:lastline."put ='`----'"
+        " set mark
+        normal m'
+        " generate title
+        let @z = ',----'
+        if (a:0 != 0)
+            " -> extra argument a:1
+            let @z = @z."[ ".a:1." ]"
+        endif
+        exe a:firstline."put! z"
+        " jump back to mark
+        normal ''
+    endfunction
+
+    " vim: set ft=vim:
+

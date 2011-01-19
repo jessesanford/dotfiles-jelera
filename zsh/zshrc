@@ -1,0 +1,39 @@
+# Path to your oh-my-zsh configuration.
+export ZSH=$HOME/dotfiles/zsh/oh-my-zsh
+
+# Set to the name theme to load.
+# Look in ~/.oh-my-zsh/themes/
+export ZSH_THEME="prose"
+
+# Set to this to use case-sensitive completion
+# export CASE_SENSITIVE="true"
+
+# Comment this out to disable weekly auto-update checks
+# export DISABLE_AUTO_UPDATE="true"
+
+# Uncomment following line if you want to disable colors in ls
+# export DISABLE_LS_COLORS="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# Customize to your needs...
+
+source ~/dotfiles/bash/env
+source ~/dotfiles/bash/config
+source ~/dotfiles/bash/aliases
+# source /usr/local/Cellar/coreutils/8.5/aliases # The aliases for the coreutils installed by brew for OSX
+source ~/dotfiles/bash/shellscripts
+
+# Set Vi-like binding
+bindkey -v
+
+echo  "${bldred}Today is:\t\t${txtcyn}" `date`; echo ""
+echo  "${bldred}Kernel Information: \t${txtcyn}" `uname -smr`
+echo  "${bldcyn}"`upinfo`;echo ""
+
+# RVM integration
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm

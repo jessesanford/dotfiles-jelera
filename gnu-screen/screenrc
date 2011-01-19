@@ -1,0 +1,24 @@
+startup_message	off
+# vbell		off
+defscrollback	512
+# shell		-$SHELL
+# shelltitle '$ --'
+autodetach on
+# startup sessions
+# screen -t sh	0 
+# screen -t sh	1
+# select 0
+
+# status
+hardstatus alwayslastline '%{= WW}%s%{-}%{= M} %H%{= G} %l %= %{= w}%-w%{+b r}%n*%t%{-b r}%{w}%+w %= %{c}%d %D %{B}%c '
+
+# add CPU idle/sustem/user/interrupt stats
+backtick 100 5 5 tail -1 /var/tmp/mprem.stats.top
+caption always '%{= wk} %200` %= %100` %='
+
+# it sets the PWD to the current directory
+bind ^x stuff "screen -X chdir \$PWD;screen^M"
+
+# For split windows
+escape ""
+bindkey ^ad detach
