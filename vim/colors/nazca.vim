@@ -76,7 +76,7 @@ hi Cursor           guifg=#000000 ctermfg=0       guibg=#f0f000 ctermbg=11      
 hi LineNr           guifg=#3D3D3D ctermfg=237     guibg=#000000 ctermbg=0       gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
 
 hi VertSplit        guifg=#202020 ctermfg=234     guibg=#202020 ctermbg=234     gui=NONE      ctermfg=darkgray    ctermbg=darkgray    cterm=NONE
-hi StatusLine       guifg=#CCCCCC ctermfg=252     guibg=#202020 ctermbg=234     gui=NONE    ctermfg=white       ctermbg=darkgray    cterm=NONE
+hi StatusLine       guifg= #9cffd3 ctermfg=252     guibg=#202020 ctermbg=234     gui=NONE    ctermfg=white       ctermbg=darkgray    cterm=NONE
 hi StatusLineNC     guifg=#000000 ctermfg=0       guibg=#202020 ctermbg=234     gui=bold      ctermfg=blue        ctermbg=darkgray    cterm=NONE  
 
 hi FoldColumn       guifg=#a0a8b0 ctermfg=248     guibg=#384048 ctermbg=238     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
