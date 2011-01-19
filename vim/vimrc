@@ -218,7 +218,7 @@ set tabstop=4
 set smarttab
 
 set linebreak " This will not break whole words while wrap is enabled
-set textwidth=79
+" "set textwidth=79
 
 set wrap "Wrap lines
 
@@ -287,7 +287,7 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+map <leader>grp :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 function! CmdLine(str)
 	exe "menu Foo.Bar :" . a:str
@@ -554,10 +554,10 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 "let g:neocomplcache_enable_auto_select = 1
 
 " snippets expand key
-imap  <silent><expr><TAB>  neocomplcache#plugin#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<C-e>" : "\<TAB>")
+"imap  <silent><expr><TAB>  neocomplcache#plugin#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<C-e>" : "\<TAB>")
 "imap  <silent><expr><TAB>  neocomplcache#plugin#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-e>"
-smap  <TAB>  <RIGHT><Plug>(neocomplcache_snippets_jump)
-inoremap <expr><C-e>     neocomplcache#complete_common_string()
+"smap  <TAB>  <RIGHT><Plug>(neocomplcache_snippets_jump)
+"inoremap <expr><C-e>     neocomplcache#complete_common_string()
 
 " Enable omni completion. 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS 
@@ -573,7 +573,6 @@ endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::' 
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete 
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-
 
 au BufNewFile,BufRead *.snip set syntax=snippet ft=snippet foldmethod=indent
 
@@ -627,10 +626,10 @@ autocmd FileType css set noexpandtab tabstop=2 shiftwidth=2
 
 " Color picker for CSS
 if has("mac")
-	map <leader>pick :PickHEX<CR>
+	map <leader>pik :PickHEX<CR>
 else
-	map <leader>pick <Esc>:ColorPicker<Cr>a
-	vmap <leader>pick <Del><Esc>h:ColorPicker<Cr>a
+	map <leader>pik <Esc>:ColorPicker<Cr>a
+	vmap <leader>pik <Del><Esc>h:ColorPicker<Cr>a
 endif
 
 " Sort CSS properties
@@ -679,33 +678,16 @@ au FileType python map <buffer> <leader>D ?def
 "  Markdown Section  "
 """"""""""""""""""""""
 au FileType markdown set linespace=5 ai formatoptions=tcroqn2 comments=n:&gt;
-"au FileType markdown syn region myMkdHeaderFold
-			"\ start="\v^\s*\z(\#{1,6})"
-			"\ skip="\v(\n\s*\z1\#)\@="
-			"\ end="\v\n(\s*\#)\@="ms=s-1,me=s-1
-			"\ fold contains=myMkdHeaderFold
 
-"au FileType markdown syn sync fromstart
-"au FileType markdown set foldmethod=syntax
-
-"function! PreviewMKD()
-	"ruby << EOF
-	"require 'rubygems'
-	"require 'bluecloth'
-	"t = ""
-	"VIM::Buffer.current.count.times {|i| t += "#{VIM::Buffer.current[i + 1]}\n"}
-	"html_file = VIM::Buffer.current.name.gsub(/.(md|mkd)$/, '.html')
-	"if html_file == VIM::Buffer.current.name
-		"print "Error! - This file extension is not supported for Markdown previews"
-	"end
-	"File.open(html_file, 'w') do |f|
-	"f.write(BlueCloth.new(t).to_html)
-"end
-"system("open #{html_file}")
-"EOF
-"endfunction
-
-"map <Leader>prev :call PreviewMKD()<CR>
+" Preview Markdown text
+au Filetype markdown nmap <leader>pv : call MarkdownPreview()<CR>
+func! MarkdownPreview()
+	if has("mac")
+		exec "!markdown % > /tmp/previewmkd.html && open /tmp/previewmkd.html"
+	else
+		exec "!markdown % > /tmp/previewmkd.html && firefox /tmp/previewmkd.html"
+	endif
+endfunc
 
 """"""""""""""""""""""""""""""
 " => JavaScript section
@@ -949,9 +931,3 @@ function! FileSize()
 	endif
 endfunction
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => MISC
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm

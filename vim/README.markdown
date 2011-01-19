@@ -3,7 +3,8 @@
 This is my Vim setup for Web Development with HTML, CSS and Javascript. It is
 based on the .vimrc shared by [Amix.dk](http://amix.dk/blog/post/19486#The-ultimate-Vim-configuration-vimrc)
 
-I've modified the following
+I've modified the following :
+
 * Yi Zhao's Javascript syntax file to make the highlighting more appealing and easier to read to me.
 * A customized version of "ir_black" color scheme, I've named it "nazca" (in honor to a [**very nice place in Peru**](http://en.wikipedia.org/wiki/Nazca)). It has a nice contrast.
 
@@ -48,5 +49,6 @@ Even though I have all these plugins installed in my `.vim` directory, if you li
 * [rails.vim](http://www.vim.org/scripts/script.php?script_id=1567) : Ruby on Rails: easy file navigation, enhanced syntax highlighting, and more.
 * [vim-rdoc](http://www.vim.org/scripts/script.php?script_id=2878) ; Syntax highlight for Ruby Documentation.
 * [Surround](http://www.vim.org/scripts/script.php?script_id=1697) : Delete/change/add parentheses/quotes/XML-tags/much more with ease.
+* [Tabular.vim](http://www.vim.org/scripts/script.php?script_id=1697) : Vim script for text filtering and alignment
 * [xmledit](http://www.vim.org/scripts/script.php?script_id=301)  : A filetype plugin to help edit XML, HTML, and SGML documents.
 * [zencoding](http://www.vim.org/scripts/script.php?script_id=2981) : vim plugins for HTML and CSS hi-speed coding.
