@@ -8,11 +8,17 @@ I've modified the following :
 * Yi Zhao's Javascript syntax file to make the highlighting more appealing and easier to read to me.
 * A customized version of "ir_black" color scheme, I've named it "nazca" (in honor to a [**very nice place in Peru**](http://en.wikipedia.org/wiki/Nazca)). It has a nice contrast.
 
+## Requirements
+
+* [Deja Vu Mono Font](http://dejavu-fonts.org/wiki/Main_Page) : Well, not really a requirement, but it is a great monospace font. You can change your font with changing in the `.vimrc` the following `set gfn=To\ your\ font\`
+* [Git](http://git-scm.com/).
+* [Vim 7.3](http://www.vim.org/download.php) : Make sure Vim is compiled with **Ruby**, **Python** and **Perl** Interp. 
+
 ## Plugins Included
 
-Even though I have all these plugins installed in my `.vim` directory, if you like any of them, please go to the vim script site, dowload it and vote for it.
+Even though I have all these plugins installed in my `.vim` directory, if you like any of them, please go to the vim script site, download it and vote for it.
 
-*These plugins are installed in the `.vim\plugin`*
+*These plugins are installed in the `.vim\plugin`*.
 
 * [Align.vim](http://www.vim.org/script.php?script_id=294) : Align text, eqns, declarations, tables, etc.
 * [autoclose](http://www.vim.org/scripts/script.php?script_id=1849) : Inserts matching bracket, paren, brace or quote.
@@ -53,7 +59,7 @@ Even though I have all these plugins installed in my `.vim` directory, if you li
 * [xmledit](http://www.vim.org/scripts/script.php?script_id=301)  : A filetype plugin to help edit XML, HTML, and SGML documents.
 * [zencoding](http://www.vim.org/scripts/script.php?script_id=2981) : vim plugins for HTML and CSS hi-speed coding.
 
-#### Post-Installation
+## Post-Installation
 
 Run these commands in your terminal :
 
