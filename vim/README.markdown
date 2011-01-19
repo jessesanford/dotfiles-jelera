@@ -6,13 +6,14 @@ based on the .vimrc shared by [Amix.dk](http://amix.dk/blog/post/19486#The-ultim
 I've modified the following :
 
 * Yi Zhao's Javascript syntax file to make the highlighting more appealing and easier to read to me.
-* A customized version of "irblack" color scheme, I've named it "nazca" (in honor to a [**very nice place in Peru**](http://en.wikipedia.org/wiki/Nazca)). It has a nice contrast.
+* A customized version of `ir_black` color scheme, I've named it "nazca" (in honor to a [**very nice place in Peru**](http://en.wikipedia.org/wiki/Nazca)). It has a nice contrast.
 
 ## Requirements
 
 * [Deja Vu Mono Font](http://dejavu-fonts.org/wiki/Main_Page) : Well, not really a requirement, but it is a great monospace font. You can change your font with changing in the `.vimrc` the following `set gfn=To\ your\ font\`
-* [Git](http://git-scm.com/).
+* [Git](http://git-scm.com/) : Of Course! :-D.
 * [Vim 7.3](http://www.vim.org/download.php) : Make sure Vim is compiled with **Ruby**, **Python** and **Perl** Interp. 
+* [Exhuberant Ctags](http://ctags.sourceforge.net/) : For OSX Users, upgrade it using Homebrew, Macports or Fink.
 
 ## Plugins Included
 
