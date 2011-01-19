@@ -161,7 +161,7 @@ set tags+=../tags,../../tags,../../../tags,../../../../tags " Look for all the t
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable "Enable syntax hl
 
-set shell=/usr/local/bin/zsh
+set shell=$SHELL
 "set shell=/bin/bash
 set cursorline
 
@@ -736,11 +736,12 @@ au FileType html,xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
 au FileType html,xhtml setlocal makeprg=tidy\ -config\ $HOME/.vim/tidy.conf\ -quiet\ -errors\ %
 au FileType html,xhtml setlocal errorformat=line\ %l\ column\ %v\ -\ %m
 
-" Load the current buffer in Firefox
-au Filetype html,xhtml map <leader>fire : call OpenFirefox()<CR>
-func! OpenFirefox()
+" Load the current buffer in Default Web Browser or Firefox
+au Filetype html,xhtml nmap <leader>pv : call PreviewInBrowser()<CR>
+func! PreviewInBrowser()
 	if has("mac")
-		exec "!open -a firefox.app %:p"
+		exec "!open %"
+		"exec "!open -a firefox.app %:p"
 	else
 		exec "!firefox %"
 	endif
