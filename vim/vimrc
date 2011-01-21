@@ -768,7 +768,7 @@ nnoremap <F6> :TlistShowPrototype<CR>
 """"""""""""""""""""""""""""""
 " => NerdTree
 """"""""""""""""""""""""""""""
-map <leader>3 NERDTreeToggle<CR>
+map <leader>ndt NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""
 " => SuperTab
