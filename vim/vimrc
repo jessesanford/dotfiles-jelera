@@ -5,7 +5,7 @@
 " Version: 1.1 - 19/01/11 16:13:10
 "
 " Based_on:
-"       http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
+"    http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
 "
 " How_to_Install_in_Unix_or_OSX:
 "    $ ln -s $HOME/dotfiles/vim $HOME/.vim
@@ -14,24 +14,19 @@
 " Git_Repository_in_Github:
 "    https://github.com/jelera/dotfiles
 "
-"License: MIT license  {{{
-    "Permission is hereby granted, free of charge, to any person obtaining
-    "a copy of this software and associated documentation files (the
-    ""Software"), to deal in the Software without restriction, including
-    "without limitation the rights to use, copy, modify, merge, publish,
-    "distribute, sublicense, and/or sell copies of the Software, and to
-    "permit persons to whom the Software is furnished to do so, subject to
-    "the following conditions:
-    "The above copyright notice and this permission notice shall be included
-    "in all copies or substantial portions of the Software.
+" License: GPL v3
+"   This program is free software: you can redistribute it and/or modify
+"   it under the terms of the GNU General Public License as published by
+"   the Free Software Foundation, either version 3 of the License, or
+"   (at your option) any later version.
 
-    "THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-    "OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-    "MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-    "IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-    "CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-    "TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-    "SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+"   This program is distributed in the hope that it will be useful,
+"   but WITHOUT ANY WARRANTY; without even the implied warranty of
+"   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+"   GNU General Public License for more details.
+
+"   You should have received a copy of the GNU General Public License
+"   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 "}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -499,11 +494,11 @@ map <leader>h2 yypVr-o
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Do :help cope if you are unsure what cope is. It's super useful!
 map <leader>cope :botright cope<cr>
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+map <leader>cn :cn<cr>
+map <leader>cp :cp<cr>
 
 """"""""""""""""""""""""""""""
-" => NeoComplCache plugin
+" => neocomplcache plugin
 """"""""""""""""""""""""""""""
 " TODO: Still need to tweak behavior with <TAB> to expand
 "       snippets, change throughout the autocompletion list
@@ -586,6 +581,13 @@ au BufNewFile,BufRead *.snip set syntax=snippet ft=snippet foldmethod=indent
 nmap <Leader>tac <Plug>ToggleAutoCloseMappings
 
 """"""""""""""""""""""""""""""
+" => Syntastc Plugin
+""""""""""""""""""""""""""""""
+au FileType c,coffee,cpp,cucumber,docbk,eruby,haml,haskell,html,javascript,lua,perl,php,python,ruby,sass,sh,tex,xhtml nmap <Leader>val :Errors<CR><C-W>j
+
+let g:syntastic_enable_signs=1
+let g:syntastic_quiet_warnings=1
+""""""""""""""""""""""""""""""
 " => Minibuffer plugin
 """"""""""""""""""""""""""""""
 let g:miniBufExplModSelTarget = 1
@@ -606,6 +608,42 @@ map <leader>u :TMiniBufExplorer<cr>
 " => Gundo plugin
 """"""""""""""""""""""""""""""
 nnoremap <leader>gun :GundoToggle<CR>
+""""""""""""""""""""""""""""""
+" => Taglist
+""""""""""""""""""""""""""""""
+" TagList options
+let Tlist_Close_On_Select = 1 "close taglist window once we selected something
+let Tlist_Exit_OnlyWindow = 1 "if taglist window is the only window left, exit vim
+let Tlist_Show_Menu = 1 "show Tags menu in gvim
+let Tlist_Show_One_File = 1 "show tags of only one file
+let Tlist_GainFocus_On_ToggleOpen = 1 "automatically switch to taglist window
+let Tlist_Highlight_Tag_On_BufEnter = 1 "highlight current tag in taglist window
+let Tlist_Process_File_Always = 1 "taglist window on the right
+let Tlist_Display_Prototype = 1 "display full prototype instead of just function name
+" "let Tlist_Ctags_Cmd = /usr/local/bin/ctags
+
+nnoremap <F5> :TlistToggle<CR>
+nnoremap <F6> :TlistShowPrototype<CR>
+
+""""""""""""""""""""""""""""""
+" => NerdTree
+""""""""""""""""""""""""""""""
+map <leader>ndt NERDTreeToggle<CR>
+
+""""""""""""""""""""""""""""""
+" => SuperTab
+""""""""""""""""""""""""""""""
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
+
+""""""""""""""""""""""""""""""
+" => Vim grep and Ack
+""""""""""""""""""""""""""""""
+" Using Ack instead of grep.
+set grepprg=ack
+
+nnoremap <leader>a :Ack
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Web Development formatting
@@ -709,9 +747,6 @@ au FileType javascript imap <c-a> alert();<esc>hi
 au FileType javascript inoremap <buffer> $r return
 au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
 
-" Javascript Lint for the inline scripts in HTML files
-au BufWritePost,FileWritePost *.js,*.html call JavascriptLint()
-
 " jQuery syntax
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
@@ -726,11 +761,12 @@ function! JavaScriptFold()
 	setl foldtext=FoldText()
 endfunction
 
-" Expand compressed (minified) Javascript with JSBeautify
+" Expand compressed (minified) Javascript with JSBeautify.vim
 au FileType javascript nmap <leader>jsb : call g:Jsbeautify()<CR>
 
-" Javascript Lint
-au FileType javascript map <leader>jsl : call JavaScriptLint()<CR>
+" Javascript Lint for the inline scripts in HTML files
+au BufWritePost,FileWritePost *.html call JavaScriptLint()
+
 func! JavaScriptLint()
 	exec "w"
 	exec "!jsl -conf ~/.vim/jsl.conf -process % "
@@ -742,8 +778,8 @@ endfunc
 au FileType html,xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
 
 " HTML Tidy
-au FileType html,xhtml setlocal makeprg=tidy\ -config\ $HOME/.vim/tidy.conf\ -quiet\ -errors\ %
-au FileType html,xhtml setlocal errorformat=line\ %l\ column\ %v\ -\ %m
+"au FileType html,xhtml setlocal makeprg=tidy\ -quiet\ -errors\ %
+"au FileType html,xhtml setlocal errorformat=line\ %l\ column\ %v\ -\ %m
 
 " Expand compressed HTML with Tidy
 map <leader>tidy :%!tidy -q -config ~/.vim/tidy.conf --tidy-mark 0 2>/dev/null<CR><ESC>gg=G
@@ -759,42 +795,6 @@ func! PreviewInBrowser()
 	endif
 endfunc
 
-""""""""""""""""""""""""""""""
-" => Taglist
-""""""""""""""""""""""""""""""
-" TagList options
-let Tlist_Close_On_Select = 1 "close taglist window once we selected something
-let Tlist_Exit_OnlyWindow = 1 "if taglist window is the only window left, exit vim
-let Tlist_Show_Menu = 1 "show Tags menu in gvim
-let Tlist_Show_One_File = 1 "show tags of only one file
-let Tlist_GainFocus_On_ToggleOpen = 1 "automatically switch to taglist window
-let Tlist_Highlight_Tag_On_BufEnter = 1 "highlight current tag in taglist window
-let Tlist_Process_File_Always = 1 "taglist window on the right
-let Tlist_Display_Prototype = 1 "display full prototype instead of just function name
-" "let Tlist_Ctags_Cmd = /usr/local/bin/ctags
-
-nnoremap <F5> :TlistToggle<CR>
-nnoremap <F6> :TlistShowPrototype<CR>
-
-""""""""""""""""""""""""""""""
-" => NerdTree
-""""""""""""""""""""""""""""""
-map <leader>ndt NERDTreeToggle<CR>
-
-""""""""""""""""""""""""""""""
-" => SuperTab
-""""""""""""""""""""""""""""""
-let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
-
-""""""""""""""""""""""""""""""
-" => Vim grep and Ack
-""""""""""""""""""""""""""""""
-" Using Ack instead of grep.
-set grepprg=ack
-
-nnoremap <leader>a :Ack
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  => Statusline (This is a VERY BIG SECTION, and THE LAST ONE)  "
@@ -848,6 +848,7 @@ set statusline+=%*
 
 set statusline+=%{StatuslineTrailingSpaceWarning()}
 
+" Display a warning with Syntastic, of validation errors and syntax checkers
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -874,10 +875,10 @@ set laststatus=2        " Always show status line
 """"""""""""""""""""""
 if has('title') && (has('gui_running') || &title)
 	set titlestring=
+	set titlestring+=%{substitute(getcwd(),\ $HOME,\ '~',\ '')}/  " working directory
 	set titlestring+=%f\                                              " file name
 	set titlestring+=%h%m%r%w                                         " flags
 	set titlestring+=\ -\ %{v:progname}                               " program name
-	set titlestring+=\ -\ %{substitute(getcwd(),\ $HOME,\ '~',\ '')}  " working directory
 endif
 
 " If we have a BOM, always honour that rather than trying to guess.
