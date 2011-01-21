@@ -99,8 +99,8 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'
 " Swap directory to store temporary files
 set directory=$HOME/.vim/swapfiles,/var/tmp,/tmp,.
 
-" Toggle between 'Relative' and 'Absolute' line numbers
-map <leader>nn :call g:ToggleNuMode()<cr>
+" Toggle between 'Relative' and 'Absolute' line numbers by aj3423
+map <leader>ln :call g:ToggleNuMode()<cr>
 function! g:ToggleNuMode()
 	if(&rnu == 1)
 		set nu
@@ -280,10 +280,11 @@ inoremap []     []
 """"""""""""""""""""""""""
 "  Code Comment Banners  "
 """"""""""""""""""""""""""
+" TODO: Fix or delete it for html and xhtml
 autocmd FileType vim map <leader>comm I"<DEL>  <ESC>A  "<DEL><ESC>yyp0lv$hhr"yykPjj
 autocmd FileType javascript,php,c map <leader>comm I//  <ESC>A  //<ESC>yyp0llv$hhhr-yykPjj
 autocmd FileType python,ruby,sh,zsh map <leader>comm I#  <ESC>A  #<ESC>yyp0lv$hhr-yykPjj
-autocmd FileType html,xhtml map <leader>comm I<!--  <DEL><ESC>A  --><ESC>yyp0llllv$r-$hhc$--><ESC>yykPjj
+"autocmd FileType html,xhtml map <leader>comm I<!--  <DEL><ESC>A  --><ESC>yyp0llllv$r-$hhc$--><ESC>yykPjj
 autocmd FileType css map <leader>comm I/*  <ESC>A  */<ESC>yyp0llv$r-$hc$*/<ESC>yykPjj
 
 """"""""""""""""""""""""""""""
@@ -352,9 +353,6 @@ endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the highlighted search
-map <silent> <leader><cr> :noh<cr>
-
 " Smart way to move btw. windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -628,7 +626,7 @@ nnoremap <F6> :TlistShowPrototype<CR>
 """"""""""""""""""""""""""""""
 " => NerdTree
 """"""""""""""""""""""""""""""
-map <leader>ndt NERDTreeToggle<CR>
+map <leader>nt NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""
 " => SuperTab
@@ -675,10 +673,33 @@ endif
 nnoremap <leader>sort ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => SQL Section
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" http://stepanoff.org/wordpress/archives/1536
+
+" Select Database
+map <C-d> :call SwitchDB()<CR>
+function SwitchDB()
+ let g:current_db = input("Database > ")
+endfunction
+
+" Run SQL Query
+map <C-m> :call Doquery()<CR>
+function Doquery()
+ if !exists("g:current_db")
+ call SwitchDB()
+ endif
+ let query_string = input(g:current_db . " > " )
+ if query_string != ""
+ exe "!mysql " . g:current_db . " -e \"" . escape(query_string, '"') . "\""
+ endif
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Pressing ,ss will toggle and untoggle spell checking
-map <leader>spell :setlocal spell!<cr>
+"toggle spell checking
+map <leader>spl :setlocal spell!<cr>
 
 " languages for the spelling checker
 set spelllang=en,es
@@ -703,15 +724,6 @@ au FileType python syn keyword pythonDecorator True None False self
 
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
-
-au FileType python inoremap <buffer> $r return
-au FileType python inoremap <buffer> $i import
-au FileType python inoremap <buffer> $p print
-au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
-au FileType python map <buffer> <leader>1 /class
-au FileType python map <buffer> <leader>2 /def
-au FileType python map <buffer> <leader>C ?class
-au FileType python map <buffer> <leader>D ?def
 
 """"""""""""""""""""""
 "  Markdown Section  "
@@ -740,12 +752,6 @@ au FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au FileType javascript setl nocindent
-
-au FileType javascript imap <c-t> AJS.log();<esc>hi
-au FileType javascript imap <c-a> alert();<esc>hi
-
-au FileType javascript inoremap <buffer> $r return
-au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
 
 " jQuery syntax
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
