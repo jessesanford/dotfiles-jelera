@@ -680,9 +680,14 @@ au FileType python map <buffer> <leader>D ?def
 """"""""""""""""""""""
 au FileType markdown set linespace=5 ai formatoptions=tcroqn2 comments=n:&gt;
 
+" Markdown to HTML
+au FileType markdown nmap <leader>html :%!markdown 2>/dev/null<CR>
+
 " Preview Markdown text
+" TODO: Find a way to Preview without Saving First 
 au Filetype markdown nmap <leader>pv : call MarkdownPreview()<CR>
 func! MarkdownPreview()
+	exec "w"
 	if has("mac")
 		exec "!markdown % > /tmp/previewmkd.html && open /tmp/previewmkd.html"
 	else
@@ -721,7 +726,10 @@ function! JavaScriptFold()
 	setl foldtext=FoldText()
 endfunction
 
-" Javascript Lint integrated to Vim
+" Expand compressed (minified) Javascript with JSBeautify
+au FileType javascript nmap <leader>jsb : call g:Jsbeautify()<CR>
+
+" Javascript Lint
 au FileType javascript map <leader>jsl : call JavaScriptLint()<CR>
 func! JavaScriptLint()
 	exec "w"
@@ -736,6 +744,9 @@ au FileType html,xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
 " HTML Tidy
 au FileType html,xhtml setlocal makeprg=tidy\ -config\ $HOME/.vim/tidy.conf\ -quiet\ -errors\ %
 au FileType html,xhtml setlocal errorformat=line\ %l\ column\ %v\ -\ %m
+
+" Expand compressed HTML with Tidy
+map <leader>tidy :%!tidy -q -config ~/.vim/tidy.conf --tidy-mark 0 2>/dev/null<CR><ESC>gg=G
 
 " Load the current buffer in Default Web Browser or Firefox
 au Filetype html,xhtml nmap <leader>pv : call PreviewInBrowser()<CR>
