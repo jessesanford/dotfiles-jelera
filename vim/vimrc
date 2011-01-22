@@ -678,13 +678,13 @@ nnoremap <leader>sort ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " http://stepanoff.org/wordpress/archives/1536
 
 " Select Database
-map <C-d> :call SwitchDB()<CR>
+map <leader>db :call SwitchDB()<CR>
 function SwitchDB()
  let g:current_db = input("Database > ")
 endfunction
 
 " Run SQL Query
-map <C-m> :call Doquery()<CR>
+map <leader>sql :call Doquery()<CR>
 function Doquery()
  if !exists("g:current_db")
  call SwitchDB()

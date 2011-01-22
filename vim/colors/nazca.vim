@@ -204,6 +204,15 @@ hi link htmlH2 htmlH1
 hi link htmlH3 htmlH1
 hi link htmlH4 htmlH1
 
+" Special for CSS
+hi cssTagName guifg=#70a8dd gui=BOLD
+hi cssBoxProp guifg=#d0af76 gui=NONE
+hi link cssColorProp cssBoxProp
+hi link cssFontProp cssBoxProp
+hi link cssTextProp cssBoxProp
+hi cssPseudoClassId guifg=#9ccfdd gui=italic
+hi cssIdentifier guifg=#a2ddb8 gui=italic
+
 " Special for Markdown
 hi markdownUrl guifg=#e48944
 hi markdownCode guifg=#a7bee4 gui=BOLD
