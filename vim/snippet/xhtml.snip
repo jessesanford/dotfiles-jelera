@@ -1,22 +1,29 @@
 snippet doctypetransitional
-    <!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 snippet doctypeframeset
-    <!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
 
 snippet doctypestrict
-    <!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+snippet doctypexhtml11
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
 
 snippet xhtml
     <html xmlns="http://www.w3.org/1999/xhtml">
         ${1}
     </html>
+
+
 snippet head
     <head>
         <meta http-equiv="content-type" content="text/html; charset=${1:utf-8}">
@@ -26,6 +33,7 @@ snippet head
     </style>
         ${4}
     </head>${5}
+
 
 snippet metaauthor
     <meta name="author" content="${1}">${2}
@@ -38,6 +46,7 @@ snippet metagenerator
 snippet metadescription
     <meta name="description" content="${1}">${2}
 
+
 snippet scriptcharset
     <script type="text/javascript" charset="${1:UTF-8}">
     ${2}
@@ -47,10 +56,12 @@ snippet script
     ${1}
     </script>${2}
 
+
 snippet body
     <body>
        ${1} 
     </body>
+
 
 snippet h
     <h${1:1}>${2}</h$1>${3}
@@ -98,6 +109,7 @@ snippet link
 abbr    link stylesheet css
     <link rel="${1:stylesheet}" href="${2}.css" type="text/css" media="${3:screen}" charset="utf-8">${4}
 
+
 snippet alignl
     text-align="left"
 snippet alignr
@@ -105,8 +117,10 @@ snippet alignr
 snippet alignc
     text-align="center"
 
+
 snippet bgcolor
     bgcolor="${1}"${2}
+
 
 snippet ahref
     <a href="${1}">${2}</a>${3}
@@ -119,6 +133,7 @@ snippet ahref_top
 snippet aname
     <a name="${1}">${2}</a>${3}
 
+
 snippet framesetcols
     <frameset cols="${1}">
     ${2}
@@ -128,12 +143,14 @@ snippet framesetrows
     ${2}
     </frameset>${3}
 
+
 snippet iframe
     <iframe src="${1}"></iframe>${2}
 snippet table
     <table border="${1}">
     ${2}
     </table>${3}
+
 
 snippet th
     <th>${1}</th>${2}
@@ -144,6 +161,7 @@ snippet uldisc
     <ul type="cicle">${1}</ul>${2}
 snippet ulcicle
     <ul type="disc">${1}</ul>${2}
+
 
 snippet ol
     <ol>${1}</ol>${2}
@@ -156,8 +174,10 @@ snippet olI
 snippet oli
     <ol type="i">${1}</ol>${2}
 
+
 snippet li
     <li>${1}</li>${2}
+
 
 snippet dl
     <dl>${1}</dl>${2}
@@ -166,10 +186,12 @@ snippet dt
 snippet dd
     <dd>${1}</dd>${2}
 
+
 snippet form
     <form>
     ${1}
     </form>${2}
+
 
 snippet inputtext
     <input type="text" name="${1:user}">${2}
@@ -179,6 +201,7 @@ snippet inputradio
     <input type="radio" name="${1}" value="value">${2}
 snippet inputcheckbox
     <input type="checkbox" name="${1}">${2}
+
 
 snippet textarea
     <textarea rows="${1}" cols="${2}">
@@ -204,8 +227,8 @@ snippet label
 snippet labelfor
     <label for="${1}:id">${2}</label>${3}
 
-snippet fiedset
-    <fiedlset>${1}</fiedset>${2}
+snippet fieldset
+    <fieldset>${1}</fieldset>${2}
 
 snippet legend
     <legend>${1}</legend>${2}

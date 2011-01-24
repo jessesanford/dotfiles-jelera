@@ -1,5 +1,5 @@
 snippet ObjectMethod
-alias :f
+alias of
 	${1:method_name}: function(${2:attribute}){
 		${0}
 	}
@@ -45,14 +45,24 @@ snippet for
 	};
     
     
-snippet ;,
+snippet ObjectValueJS
+alias ;,
     ${1:value_name}:${0:value},
 
 
-snippet key
+snippet ObjectKey
+alias key
     ${1:key}: "${2:value}"}${3:, }
 
 
 snippet timeout
     setTimeout(function() {${0}}${2:}, ${1:10});
+
+
+snippet ObjectMethodString
+alias oms
+    '${1:${2:#thing}:${3:click}}': function(element){
+        $0
+    }${10:,}
+
 

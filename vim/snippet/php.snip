@@ -5,21 +5,26 @@ abbr func
 		${4:// code...}
 	}
 
+
 snippet php
 	<?php
 	${1}
 	?>
 
+
 snippet pecho
 	<?php echo ${1} ?>${0}
 
+
 snippet echoh
 	<?php echo htmlentities(${1}, ENT_QUOTES, 'utf-8') ?>${0}
+
 
 snippet pfore
 	<?$php foreach ($${1:variable} as $${2:key}${3: =>}): ?>
 	${0}
 	<?php endforeach ?>
+
 
 snippet pife
 	<?php if (${1:condition}): ?>
@@ -28,19 +33,24 @@ snippet pife
 	${0}
 	<?php endif ?>
 
+
 snippet pif
 	<?php if (${1:condition}): ?>
 	${0}
 	<?php endif ?>
 
+
 snippet pelse
 	<?php else: ?>
+
 
 snippet this
 	<?php $this->${0} ?>
 
+
 snippet ethis
 	<?php echo $this->${0} ?>
+
 
 snippet docc
 	/**
@@ -50,11 +60,13 @@ snippet docc
 	 **/
 	${1:var} \$${2};${0}
 
+
 snippet docd
 	/**
 	 * ${3:undocumented constant}
 	 **/
 	define(${1} ${2});${0}
+
 
 snippet docs
 	/**
@@ -64,6 +76,7 @@ snippet docs
 	 * @author ${6}
 	 **/
 	${1}function ${2}(${3});${0}
+
 
 snippet docf
 	/**
@@ -92,6 +105,7 @@ snippet doch
 	 * Define DocBlock
 	 **/
 
+
 snippet doci
 	/**
 	 * ${2:undocumented class}
@@ -104,10 +118,12 @@ snippet doci
 		${0}
 	} // END interface ${1}
 
+
 snippet c
 	/**
 	 * $0
 	 */
+
 
 snippet class
 	/**
@@ -122,6 +138,7 @@ snippet class
 		}
 	}
 
+
 snippet def
 	${1}defined('${2}')${0}
 
@@ -131,8 +148,10 @@ snippet do
 		${0:# code...}
 	} while (${1});
 
+
 snippet if? 
 	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b} ;
+
 
 snippet ifelse
 	if (${1:condition}) {
@@ -142,33 +161,40 @@ snippet ifelse
 	}
 	${0}
 
+
 snippet if
 	if (${1:condition}) {
 		${0:# code...}
 	}
 
+
 snippet echo
 	echo "${1:string}"${0};
+
 
 snippet else
 	else {
 		${0:# code...}
 	}
 
+
 snippet elseif
 	elseif (${1:condition}) {
 		${0:# code...}
 	}
+
 
 snippet for
 	for ($${1:i}=${2:0}; $${1:i} < ${3}; $${1:i}++) { 
 		${0:# code...}
 	}
 
+
 snippet fore
 	foreach ($${1:variable} as $${2:key}${3: =>} ${4:value}) {
 		${0:# code...}
 	}
+
 
 snippet func
     ${1:public }function ${2:FunctionName}(${3}})
@@ -176,45 +202,57 @@ snippet func
   ${0:# code...}
  }
 
+
 snippet con
 	function __construct(${1})
 	{
 		${0}
 	}
 
+
 snippet here
 	<<<${1:HTML}
 	${2:content here}
 	$1;
 
+
 snippet inc
 	include '${1:file}';${0}
+
 
 snippet inco
 	include_once '${1:file}';${0}
 
+
 snippet array
 	$${1:arrayName} = array('${2}' => ${3} ${0});
+
 
 snippet req
 	require '${1:file}';${0}
 
+
 snippet reqo
 	require_once '${1:file}';${0}
+
 
 snippet ret
 	return${1};${0}
 
+
 snippet retf
 	return false;
 
+
 snippet rett
 	return true;
+
 
 snippet case
 	case '${1:variable}':
 		${0:# code...}
 		break;
+
 
 snippet switch
 abbr sw
@@ -228,9 +266,11 @@ abbr sw
 		break;
 	}
 
+
 snippet throw
 	throw new ${1}Exception(${2:"${3:Error Processing Request}"}${4:});
 	${0}
+
 
 snippet while
 abbr wh
@@ -238,29 +278,40 @@ abbr wh
 		${0:# code...}
 	}
 
-snippet gloabals
+
+snippet globals
 	\$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${0}
+
 
 snippet cookie
 	\$_COOKIE['${1:variable}']
 
+
 snippet env
 	\$_ENV['${1:variable}']
+
 
 snippet files
 	\$_FILES['${1:variable}']
 
+
 snippet get
 	\$_GET['${1:variable}']
+
 
 snippet post
 	\$_POST['${1:variable}']
 
+
 snippet request
 	\$_REQUEST['${1:variable}']
+
 
 snippet server
 	\$_SERVER['${1:variable}']
 
+
 snippet session
 	\$_SESSION['${1:variable}']
+
+

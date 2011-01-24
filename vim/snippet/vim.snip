@@ -5,10 +5,12 @@ prev_word   '^'
         ${0}
     endif
 
+
 snippet elseif
 prev_word   '^'
     else if ${1:/* condition */}
         ${0}
+
 
 snippet     ifelse
 abbr        if else endif
@@ -19,12 +21,14 @@ prev_word   '^'
         ${3}  
     endif
 
+
 snippet     for
 abbr        for in endfor
 prev_word   '^'
     for ${1:var} in ${2:list}
         ${0}
     endfor
+
 
 snippet     while
 abbr        while endwhile
@@ -33,6 +37,7 @@ prev_word   '^'
         ${0}
     endwhile
 
+
 snippet     function
 abbr        func endfunc
 alias       func
@@ -40,6 +45,7 @@ prev_word   '^'
     function! ${1:func_name}(${2})
         ${0}
     endfunction
+
 
 snippet     try
 abbr        try endtry
@@ -50,7 +56,9 @@ prev_word   '^'
         ${3}
     endtry
 
+
 snippet     log
 prev_word   '^'
     echomsg string(${1})
+
 
