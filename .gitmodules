@@ -55,3 +55,6 @@
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "vim/bundle/w3cvalidate"]
+	path = vim/bundle/w3cvalidate
+	url = https://github.com/dekomote/w3cvalidate.vim.git

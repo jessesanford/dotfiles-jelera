@@ -179,7 +179,7 @@ if has("gui_running")
 	set t_Co=256
 	set background=dark
 	colorscheme nazca
-	set linespace=3
+	set linespace=6
 	" GUI is running or is about to start.
 	" Maximize gvim window.
 	set lines=50
@@ -576,7 +576,7 @@ au BufNewFile,BufRead *.snip set syntax=snippet ft=snippet foldmethod=indent
 """"""""""""""""""""""""""""""
 " => Autoclose plugin
 """"""""""""""""""""""""""""""
-nmap <Leader>tac <Plug>ToggleAutoCloseMappings
+nmap <Leader>ac <Plug>ToggleAutoCloseMappings
 
 """"""""""""""""""""""""""""""
 " => Syntastc Plugin
@@ -680,19 +680,19 @@ nnoremap <leader>sort ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " Select Database
 map <leader>db :call SwitchDB()<CR>
 function SwitchDB()
- let g:current_db = input("Database > ")
+	let g:current_db = input("Database > ")
 endfunction
 
 " Run SQL Query
 map <leader>sql :call Doquery()<CR>
 function Doquery()
- if !exists("g:current_db")
- call SwitchDB()
- endif
- let query_string = input(g:current_db . " > " )
- if query_string != ""
- exe "!mysql " . g:current_db . " -e \"" . escape(query_string, '"') . "\""
- endif
+	if !exists("g:current_db")
+		call SwitchDB()
+	endif
+	let query_string = input(g:current_db . " > " )
+	if query_string != ""
+		exe "!mysql " . g:current_db . " -e \"" . escape(query_string, '"') . "\""
+	endif
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -788,7 +788,7 @@ au FileType html,xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
 "au FileType html,xhtml setlocal errorformat=line\ %l\ column\ %v\ -\ %m
 
 " Expand compressed HTML with Tidy
-map <leader>tidy :%!tidy -q -config ~/.vim/tidy.conf --tidy-mark 0 2>/dev/null<CR><ESC>gg=G
+map <leader>td :%!tidy -q -config ~/.vim/tidy.conf --tidy-mark 0 2>/dev/null<CR><ESC>gg=G
 
 " Load the current buffer in Default Web Browser or Firefox
 au Filetype html,xhtml nmap <leader>pv : call PreviewInBrowser()<CR>
