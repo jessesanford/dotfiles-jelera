@@ -58,3 +58,6 @@
 [submodule "vim/bundle/w3cvalidate"]
 	path = vim/bundle/w3cvalidate
 	url = https://github.com/dekomote/w3cvalidate.vim.git
+[submodule "vim/bundle/haml"]
+	path = vim/bundle/haml
+	url = https://github.com/tpope/vim-haml.git
