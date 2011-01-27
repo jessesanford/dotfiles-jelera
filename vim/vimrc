@@ -360,7 +360,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+map <leader>bc :Bclose<cr>
 
 " Close all the buffers
 map <leader>ba :1,300 bd!<cr>
@@ -494,6 +494,21 @@ map <leader>h2 yypVr-o
 map <leader>cope :botright cope<cr>
 map <leader>cn :cn<cr>
 map <leader>cp :cp<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"toggle spell checking
+map <leader>spl :setlocal spell!<cr>
+
+" languages for the spelling checker
+set spelllang=en,es
+
+"Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
 
 """"""""""""""""""""""""""""""
 " => neocomplcache plugin
@@ -695,20 +710,10 @@ function Doquery()
 	endif
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"toggle spell checking
-map <leader>spl :setlocal spell!<cr>
-
-" languages for the spelling checker
-set spelllang=en,es
-
-"Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
+""""""""""""""""""""""""""""""
+" => LESS section
+""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.less set ft=less
 
 """"""""""""""""""""""""""""""
 " => Ruby section
