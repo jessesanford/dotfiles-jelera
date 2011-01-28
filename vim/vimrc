@@ -171,7 +171,7 @@ set tags+=../tags,../../tags,../../../tags,../../../../tags " Look for all the t
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable "Enable syntax hl
 
-set shell=$SHELL
+set shell=/bin/bash
 set cursorline
 
 if has("gui_running")
@@ -209,7 +209,7 @@ try
 catch
 endtry
 
-set fileformats=unix "Default file types
+set fileformats=unix,mac,dos "Default file types
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files and backups
