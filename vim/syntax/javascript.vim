@@ -66,8 +66,15 @@ syntax match   javaScriptLabel          /\(?\s*\)\@<!\<\w\+\(\s*:\)\@=/
 "" JavaScript Prototype
 syntax keyword javaScriptPrototype      prototype
 
-"" JavaScript Support (** Modified by Jose Elera)
-syntax keyword javaScriptSupport        document window XMLHttpRequest
+""""""""""""""""""""""""
+"  JavaScript Support  "
+""""""""""""""""""""""""
+" (** Modified by Jose Elera)
+"
+syntax keyword javaScriptBrowserObjects      window navigator screen history location
+syntax keyword javaScriptDOMObjects      document event HTMLElement Anchor Area Base Body Button Form Frame Frameset Image Link Meta Option Select Style Table TableCell TableRow Textarea
+syntax keyword javaScriptAjaxObjects     XMLHttpRequest
+syntax keyword javaScriptPropietaryObjects    ActiveXObject
 syntax keyword javaScriptDomElemFuncsKeywords   insertBefore replaceChild removeChild appendChild  hasChildNodes  cloneNode  normalize  isSupported  hasAttributes  getAttribute  setAttribute  removeAttribute  getAttributeNode  setAttributeNode  removeAttributeNode  getElementsByTagName  hasAttribute  getElementById
 syntax keyword javaScriptDomElemAttrKeywords nodeName  nodeValue  nodeType  parentNode  childNodes  firstChild  lastChild  previousSibling  nextSibling  attributes  ownerDocument  namespaceURI  prefix  localName  tagName
 syntax keyword javaScriptHtmlAttrKeywords className  clientHeight  clientLeft  clientTop  clientWidth  dir  id  innerHTML  lang  length  offsetHeight  offsetLeft  offsetParent  offsetTop  offsetWidth  scrollHeight  scrollLeft  scrollTop  scrollWidth  style  tabIndex  title
@@ -75,6 +82,9 @@ syntax keyword javaScriptHtmlElemAttrKeywords blur  click  focus  scrollIntoView
 syntax keyword javaScriptAjaxPropertiesKeywords readyState responseText responseXML status statusText
 syntax keyword javaScriptAjaxMethodsKeywords onreadystatechange abort getAllResponseHeaders getResponseHeader open send setRequestHeader
 
+""""""""""""""""""
+"  end modified  "
+""""""""""""""""""
 
 "" Programm Keywords
 syntax keyword javaScriptSource         import export
@@ -145,7 +155,7 @@ endif "DOM/HTML/CSS
 
 
 "" Code blocks
-syntax cluster javaScriptAll       contains=javaScriptComment,javaScriptLineComment,javaScriptDocComment,javaScriptStringD,javaScriptStringS,javaScriptRegexpString,javaScriptNumber,javaScriptFloat,javaScriptLabel,javaScriptSource,javaScriptType,javaScriptOperator,javaScriptBoolean,javaScriptNull,javaScriptFunction,javaScriptConditional,javaScriptRepeat,javaScriptBranch,javaScriptStatement,javaScriptGlobalObjects,javaScriptExceptions,javaScriptFutureKeys,javaScriptDomErrNo,javaScriptDomNodeConsts,javaScriptHtmlEvents,javaScriptDotNotation,javaScriptSupport,javaScriptDomElemFuncsKeywords,javaScriptHtmlAttrKeywords,javaScriptDomElemAttrKeywords,javaScriptHtmlElemAttrKeywords,javaScriptAjaxPropertiesKeywords,javaScriptAjaxMethodsKeywords 
+syntax cluster javaScriptAll       contains=javaScriptComment,javaScriptLineComment,javaScriptDocComment,javaScriptStringD,javaScriptStringS,javaScriptRegexpString,javaScriptNumber,javaScriptFloat,javaScriptLabel,javaScriptSource,javaScriptType,javaScriptOperator,javaScriptBoolean,javaScriptNull,javaScriptFunction,javaScriptConditional,javaScriptRepeat,javaScriptBranch,javaScriptStatement,javaScriptGlobalObjects,javaScriptExceptions,javaScriptFutureKeys,javaScriptDomErrNo,javaScriptDomNodeConsts,javaScriptHtmlEvents,javaScriptDotNotation,javaScriptBrowserObjects,javaScriptDOMObjects,javaScriptAjaxObjects,javaScriptPropietaryObjects,javaScriptDomElemFuncsKeywords,javaScriptHtmlAttrKeywords,javaScriptDomElemAttrKeywords,javaScriptHtmlElemAttrKeywords,javaScriptAjaxPropertiesKeywords,javaScriptAjaxMethodsKeywords
 syntax region  javaScriptBracket   matchgroup=javaScriptBracket transparent start="\[" end="\]" contains=@javaScriptAll,javaScriptParensErrB,javaScriptParensErrC,javaScriptBracket,javaScriptParen,javaScriptBlock,@htmlPreproc
 syntax region  javaScriptParen     matchgroup=javaScriptParen   transparent start="("  end=")"  contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrC,javaScriptParen,javaScriptBracket,javaScriptBlock,@htmlPreproc
 syntax region  javaScriptBlock     matchgroup=javaScriptBlock   transparent start="{"  end="}"  contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock,@htmlPreproc 

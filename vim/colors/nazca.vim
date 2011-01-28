@@ -221,7 +221,10 @@ hi markdownCodeBlock guifg=#c5b1e4
 " Special for Javascript
 " TODO:  - Add colors to the cterm
 hi link javaScriptNumber      Number 
-hi javaScriptSupport     guifg=#DBB6D2 ctermfg=182 gui=italic
+hi javaScriptBrowserObjects     guifg=#DBB6D2 ctermfg=182 gui=italic
+hi javaScriptDOMObjects      guifg=#DBB6D2 gui=BOLD
+hi javaScriptAjaxObjects  guifg=#5d91d3 gui=underline
+hi link javaScriptPropietaryObjects javaScriptAjaxObjects
 hi javaScriptDomElemFuncsKeywords      guifg=#D4FA9B ctermfg=192
 hi javaScriptFuncName    guifg=#B5E4F7 ctermfg=153 
 hi javaScriptHtmlAttrKeywords  guifg=#FF9494 ctermfg=210
