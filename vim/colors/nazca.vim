@@ -1,10 +1,14 @@
-" Nazca Color Scheme
-" based on ir_black color scheme More at: http://blog.infinitered.com/entries/show/8
-" Modification made by Jose Elera (http://www.twitter.com/jelera)
+""""""""""""""""""""""""
+"  Nazca Color Scheme  "
+""""""""""""""""""""""""
+" By: Jose Elera Campana - https://github.com/jelera
+" Based: on ir_black color scheme More at: http://blog.infinitered.com/entries/show/8
+" More about Nazca here : http://en.wikipedia.org/wiki/Nazca
 "
-" Enhanced Javascript highlighting, to be used with a modified javascript syntax file based on the one created by Yi Zhao (http://is.gd/eoqPN)
-
-
+" Tweak for Web Development, feel free to modified and share it.
+"
+" Support for 256 Color Terminal and Full Color graphical Vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ********************************************************************************
 " Standard colors used in all ir_black themes:
@@ -69,64 +73,63 @@ let colors_name = "nazca"
 "hi Example         guifg=NONE        guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 
 " General colors
-hi Normal           guifg=#f6f3e8 ctermfg=7     guibg=#161617 ctermbg=233       gui=NONE      ctermfg=252        ctermbg=234        cterm=NONE
-hi NonText          guifg=#505050 ctermfg=239    guibg=#000000 ctermbg=0       gui=NONE      ctermfg=black       ctermbg=NONE        cterm=NONE
+hi  Normal       guifg=#f6f3e8 guibg=#161617 gui=NONE      ctermfg=7     ctermbg=233  cterm=NONE
+hi  NonText      guifg=#505050 guibg=#000000 gui=NONE      ctermfg=239   ctermbg=0    cterm=NONE
 
-hi Cursor           guifg=#000000 ctermfg=0       guibg=#f0f000 ctermbg=11       gui=NONE      ctermfg=black       ctermbg=white       cterm=reverse
-hi LineNr           guifg=#3D3D3D ctermfg=237     guibg=#000000 ctermbg=0       gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
+hi  Cursor       guifg=#000000 guibg=#f0f000 gui=NONE      ctermfg=0     ctermbg=11   cterm=reverse
+hi  LineNr       guifg=#3D3D3D guibg=#000000 gui=NONE      ctermfg=237   ctermbg=0    cterm=NONE
 
-hi VertSplit        guifg=#202020 ctermfg=234     guibg=#202020 ctermbg=234     gui=NONE      ctermfg=darkgray    ctermbg=darkgray    cterm=NONE
-hi StatusLine       guifg= #9cffd3 ctermfg=252     guibg=#202020 ctermbg=234     gui=NONE    ctermfg=white       ctermbg=darkgray    cterm=NONE
-hi StatusLineNC     guifg=#000000 ctermfg=0       guibg=#202020 ctermbg=234     gui=bold      ctermfg=blue        ctermbg=darkgray    cterm=NONE  
+hi  VertSplit    guifg=#202020 guibg=#202020 gui=NONE      ctermfg=234   ctermbg=234  cterm=NONE
+hi  StatusLine   guifg=#9cffd3 guibg=#202020 gui=NONE      ctermfg=85    ctermbg=234  cterm=NONE
+hi  StatusLineNC guifg=#000000 guibg=#202020 gui=bold      ctermfg=0     ctermbg=234  cterm=BOLD
 
-hi FoldColumn       guifg=#a0a8b0 ctermfg=248     guibg=#384048 ctermbg=238     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-hi Folded           guifg=#a0a8b0 ctermfg=248     guibg=#384048 ctermbg=238     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-hi Title            guifg=#f6f3e8 ctermfg=7     guibg=NONE        gui=bold      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-hi Visual           guifg=NONE        guibg=#262D51 ctermbg=237     gui=NONE      ctermfg=NONE        ctermbg=darkgray    cterm=NONE
+hi  FoldColumn   guifg=#a0a8b0 guibg=#384048 gui=NONE      ctermfg=248   ctermbg=238  cterm=NONE
+hi  Folded       guifg=#a0a8b0 guibg=#384048 gui=NONE      ctermfg=248   ctermbg=238  cterm=NONE
+hi  Title        guifg=#f6f3e8 guibg=NONE    gui=bold      ctermfg=7     ctermbg=NONE cterm=BOLD
+hi  Visual       guifg=NONE    guibg=#262D51 gui=NONE      ctermfg=NONE  ctermbg=237  cterm=NONE
 
-hi SpecialKey       guifg=#505050 ctermfg=239     guibg=#000000 ctermbg=0     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi  SpecialKey   guifg=#505050 guibg=#000000 gui=NONE      ctermfg=239   ctermbg=0    term=NONE
 
+hi  WildMenu     guifg=#28882c guibg=#f0f000 gui=NONE      ctermfg=28    ctermbg=11   cterm=NONE
+hi  PmenuSbar    guifg=#000000 guibg=#ffffff gui=NONE      ctermfg=0     ctermbg=15   cterm=NONE
+"hi Ignore       guifg=gray    guibg=#000000 ctermbg=0     gui=NONE      ctermfg=NONE ctermbg=NONE  cterm=NONE
 
-hi WildMenu         guifg=green       guibg=#f0f000 ctermbg=11      gui=NONE      ctermfg=black       ctermbg=yellow      cterm=NONE
-hi PmenuSbar        guifg=#000000 ctermfg=0       guibg=#ffffff ctermbg=15       gui=NONE      ctermfg=black       ctermbg=white       cterm=NONE
-"hi Ignore           guifg=gray        guibg=#000000 ctermbg=0       gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-
-hi Error            guifg=NONE        guibg=NONE        gui=undercurl ctermfg=white       ctermbg=red         cterm=NONE     guisp=#FF6C60 " undercurl color
-hi ErrorMsg         guifg=#ffffff ctermfg=15       guibg=#FF6C60 ctermbg=203     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
-hi WarningMsg       guifg=#ffffff ctermfg=15       guibg=#FF6C60 ctermbg=203     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
+hi  Error        guifg=NONE    guibg=NONE    gui=undercurl guisp=#FF6C60 ctermfg=15   ctermbg=88    cterm=NONE
+hi  ErrorMsg     guifg=#ffffff guibg=#FF6C60 gui=BOLD      ctermfg=15    ctermbg=203  cterm=BOLD
+hi  WarningMsg   guifg=#ffffff guibg=#FF6C60 gui=BOLD      ctermfg=15    ctermbg=203  cterm=BOLD
 
 " Message displayed in lower left, such as --INSERT--
-hi ModeMsg          guifg=#000000 ctermfg=0       guibg=#C6C5FE ctermbg=189     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD
+hi ModeMsg          guifg=#000000  guibg=#C6C5FE gui=BOLD     ctermfg=0 ctermbg=189 cterm=BOLD
 
 if version >= 700 " Vim 7.x specific colors
-  hi CursorLine     guifg=NONE        guibg=#000000 ctermbg=0     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
-  hi CursorColumn   guifg=NONE        guibg=#121212 ctermbg=233     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
-  hi MatchParen     guifg=#f6f3e8 ctermfg=7     guibg=#857b6f ctermbg=243     gui=BOLD      ctermfg=white       ctermbg=darkgray    cterm=NONE
-  hi Pmenu          guifg=#f6f3e8 ctermfg=7     guibg=#444444 ctermbg=238     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi PmenuSel       guifg=#000000 ctermfg=0     guibg=#cae682 ctermbg=186     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi Search         guifg=#000000 ctermfg=0       guibg=#FFFFB6 ctermbg=229        gui=underline ctermfg=NONE        ctermbg=NONE        cterm=underline
+  hi CursorLine   guifg=NONE    guibg=#000000 gui=NONE      ctermfg=NONE ctermbg=16  cterm=NONE
+  hi CursorColumn guifg=NONE    guibg=#121212 gui=NONE      ctermfg=NONE ctermbg=233 cterm=BOLD
+  hi MatchParen   guifg=#f6f3e8 guibg=#857b6f gui=BOLD      ctermfg=7    ctermbg=243 cterm=BOLD
+  hi Pmenu        guifg=#f6f3e8 guibg=#444444 gui=NONE      ctermfg=7    ctermbg=238 cterm=NONE
+  hi PmenuSel     guifg=#000000 guibg=#cae682 gui=NONE      ctermfg=0    ctermbg=186 cterm=NONE
+  hi Search       guifg=#000000 guibg=#FFFFB6 gui=underline ctermfg=0    ctermbg=229 cterm=underline
 endif
 
 " Syntax highlighting
-hi Comment          guifg=#7C7C7C ctermfg=8     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
-hi String           guifg=#A8FF60 ctermfg=155     guibg=NONE        gui=NONE      ctermfg=green       ctermbg=NONE        cterm=NONE
-hi Number           guifg=#FF73FD ctermfg=207     guibg=NONE        gui=NONE      ctermfg=magenta     ctermbg=NONE        cterm=NONE
+hi Comment     guifg=#7C7C7C guibg=NONE    gui=NONE   ctermfg=8   ctermbg=NONE cterm=NONE
+hi String      guifg=#acff82 guibg=NONE    gui=NONE   ctermfg=156 ctermbg=NONE cterm=NONE
+hi Number      guifg=#FF73FD guibg=NONE    gui=NONE   ctermfg=207 ctermbg=NONE cterm=NONE
 
-hi Keyword          guifg=#96CBFE ctermfg=117     guibg=NONE        gui=NONE      ctermfg=blue        ctermbg=NONE        cterm=NONE
-hi PreProc          guifg=#96CBFE ctermfg=117     guibg=NONE        gui=NONE      ctermfg=blue        ctermbg=NONE        cterm=NONE
-hi Conditional      guifg=#6699CC ctermfg=68     guibg=NONE        gui=NONE      ctermfg=blue        ctermbg=NONE        cterm=NONE  " if else end
+hi Keyword     guifg=#96CBFE guibg=NONE    gui=NONE   ctermfg=117 ctermbg=NONE cterm=NONE
+hi PreProc     guifg=#96CBFE guibg=NONE    gui=NONE   ctermfg=117 ctermbg=NONE cterm=NONE
+hi Conditional guifg=#6699CC guibg=NONE    gui=NONE   ctermfg=68  ctermbg=NONE cterm=NONE
 
-hi Todo             guifg=#890a0a ctermfg=88  guibg=#f2f773 ctermbg=227       gui=BOLD      ctermfg=yellow         ctermbg=red        cterm=NONE
-hi Constant         guifg=#99CC99 ctermfg=114     guibg=NONE        gui=NONE      ctermfg=cyan        ctermbg=NONE        cterm=NONE
+hi Todo        guifg=#890a0a guibg=#f2f773 gui=BOLD   ctermfg=88  ctermbg=227  cterm=BOLD
+hi Constant    guifg=#99CC99 guibg=NONE    gui=ITALIC ctermfg=114 ctermbg=NONE cterm=NONE
 
-hi Identifier       guifg=#C6C5FE ctermfg=189     guibg=NONE        gui=NONE      ctermfg=cyan        ctermbg=NONE        cterm=NONE
-hi Function         guifg=#FFD2A7 ctermfg=223     guibg=NONE        gui=BOLD      ctermfg=brown       ctermbg=NONE        cterm=BOLD
-hi Type             guifg=#FFFFB6 ctermfg=229     guibg=NONE        gui=BOLD      ctermfg=yellow      ctermbg=NONE        cterm=NONE
-hi Statement        guifg=#6699CC ctermfg=68     guibg=NONE        gui=NONE      ctermfg=lightblue   ctermbg=NONE        cterm=NONE
+hi Identifier  guifg=#C6C5FE guibg=NONE    gui=NONE   ctermfg=189 ctermbg=NONE cterm=NONE
+hi Function    guifg=#FFD2A7 guibg=NONE    gui=BOLD   ctermfg=223 ctermbg=NONE cterm=BOLD
+hi Type        guifg=#FFFFB6 guibg=NONE    gui=BOLD   ctermfg=229 ctermbg=NONE cterm=BOLD
+hi Statement   guifg=#6699CC guibg=NONE    gui=NONE   ctermfg=68  ctermbg=NONE cterm=NONE
 
-hi Special          guifg=#E18964 ctermfg=173     guibg=NONE        gui=NONE      ctermfg=white       ctermbg=NONE        cterm=NONE
-hi Delimiter        guifg=#00A0A0 ctermfg=37     guibg=NONE        gui=NONE      ctermfg=cyan        ctermbg=NONE        cterm=NONE
-hi Operator         guifg=#E8AC6F ctermfg=179       guibg=NONE        gui=NONE      ctermfg=white       ctermbg=NONE        cterm=NONE
+hi Special     guifg=#E18964 guibg=NONE    gui=NONE   ctermfg=173 ctermbg=NONE cterm=NONE
+hi Delimiter   guifg=#00A0A0 guibg=NONE    gui=NONE   ctermfg=37  ctermbg=NONE cterm=NONE
+hi Operator    guifg=#E8AC6F guibg=NONE    gui=NONE   ctermfg=179 ctermbg=NONE cterm=NONE
 
 hi link Character       Constant
 hi link Boolean         Constant
@@ -147,13 +150,13 @@ hi link SpecialComment  Special
 hi link Debug           Special
 
 " Special for Ruby
-hi rubyRegexp                  guifg=#B18A3D ctermfg=137      guibg=NONE      gui=NONE      ctermfg=brown          ctermbg=NONE      cterm=NONE
-hi rubyRegexpDelimiter         guifg=#FF8000 ctermfg=208      guibg=NONE      gui=NONE      ctermfg=brown          ctermbg=NONE      cterm=NONE
-hi rubyEscape                  guifg=#ffffff ctermfg=15        guibg=NONE      gui=NONE      ctermfg=cyan           ctermbg=NONE      cterm=NONE
-hi rubyInterpolationDelimiter  guifg=#00A0A0 ctermfg=37      guibg=NONE      gui=NONE      ctermfg=blue           ctermbg=NONE      cterm=NONE
-hi rubyControl                 guifg=#6699CC ctermfg=68      guibg=NONE      gui=NONE      ctermfg=blue           ctermbg=NONE      cterm=NONE  "and break, etc
-"hi rubyGlobalVariable          guifg=#FFCCFF ctermfg=225      guibg=NONE      gui=NONE      ctermfg=lightblue      ctermbg=NONE      cterm=NONE  "yield
-hi rubyStringDelimiter         guifg=#336633 ctermfg=238      guibg=NONE      gui=NONE      ctermfg=lightgreen     ctermbg=NONE      cterm=NONE
+hi  rubyRegexp                 guifg=#B18A3D guibg=NONE gui=NONE ctermfg=137 ctermbg=NONE cterm=NONE
+hi  rubyRegexpDelimiter        guifg=#FF8000 guibg=NONE gui=NONE ctermfg=208 ctermbg=NONE cterm=NONE
+hi  rubyEscape                 guifg=#ffffff guibg=NONE gui=NONE ctermfg=15  ctermbg=NONE cterm=NONE
+hi  rubyInterpolationDelimiter guifg=#00A0A0 guibg=NONE gui=NONE ctermfg=37  ctermbg=NONE cterm=NONE
+hi  rubyControl                guifg=#6699CC guibg=NONE gui=NONE ctermfg=68  ctermbg=NONE cterm=NONE
+"hi rubyGlobalVariable         guifg=#FFCCFF guibg=NONE gui=NONE ctermfg=225 ctermbg=NONE cterm=NONE
+hi  rubyStringDelimiter        guifg=#336633 guibg=NONE gui=NONE ctermfg=238 ctermbg=NONE cterm=NONE
 "rubyInclude
 "rubySharpBang
 "rubyAccess
@@ -184,9 +187,9 @@ hi link javaDocTags           javaDocSeeTag
 hi link javaDocParam          javaDocSeeTag 
 hi link javaDocSeeTagParam    javaDocSeeTag 
 
-hi javaDocSeeTag              guifg=#CCCCCC ctermfg=252     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
-hi javaDocSeeTag              guifg=#CCCCCC ctermfg=252     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
-"hi javaClassDecl              guifg=#CCFFCC ctermfg=194     guibg=NONE        gui=NONE      ctermfg=white       ctermbg=NONE        cterm=NONE
+hi  javaDocSeeTag guifg=#CCCCCC guibg=NONE gui=NONE ctermfg=252 ctermbg=NONE cterm=NONE
+hi  javaDocSeeTag guifg=#CCCCCC guibg=NONE gui=NONE ctermfg=252 ctermbg=NONE cterm=NONE
+"hi javaClassDecl guifg=#CCFFCC guibg=NONE gui=NONE ctermfg=194 ctermbg=NONE cterm=NONE
 
 
 " Special for XML
@@ -196,43 +199,44 @@ hi link xmlEndTag       Identifier
 
 
 " Special for HTML
+hi htmlH1 guifg=#de675c   gui=underline ctermfg=167 cterm=UNDERLINE
+hi htmlLink guifg=#c777ff gui=underline ctermfg=177 cterm=UNDERLINE
 hi link htmlTag         Keyword
 hi link htmlTagName     Conditional 
 hi link htmlEndTag      Identifier 
-hi htmlH1 guifg=#93de60 ctermfg=113 gui=underline
 hi link htmlH2 htmlH1
 hi link htmlH3 htmlH1
 hi link htmlH4 htmlH1
 
 " Special for CSS
-hi cssTagName guifg=#70a8dd gui=BOLD
-hi cssBoxProp guifg=#d0af76 gui=NONE
+hi cssTagName guifg=#70a8dd gui=BOLD  ctermfg=74 cterm=BOLD
+hi cssBoxProp guifg=#d0af76  gui=NONE  ctermfg=180 gui=NONE
 hi link cssColorProp cssBoxProp
 hi link cssFontProp cssBoxProp
 hi link cssTextProp cssBoxProp
-hi cssPseudoClassId guifg=#9ccfdd gui=italic
-hi cssIdentifier guifg=#a2ddb8 gui=italic
+hi cssPseudoClassId guifg=#9ccfdd gui=italic ctermfg=152 cterm=NONE
+hi cssIdentifier    guifg=#a2ddb8 gui=italic ctermfg=151 cterm=NONE
 
 " Special for Markdown
-hi markdownUrl guifg=#e48944
-hi markdownCode guifg=#a7bee4 gui=BOLD
-hi markdownCodeBlock guifg=#c5b1e4
+hi markdownUrl guifg=#e48944 ctermfg=173 
+hi markdownCode guifg=#a7bee4   gui=BOLD ctermfg=151 cterm=BOLD
+hi markdownCodeBlock guifg=#c5b1e4 ctermfg=182
 
 " Special for Javascript
 " TODO:  - Add colors to the cterm
-hi javaScriptBrowserObjects       guifg=#DBB6D2 ctermfg=182   gui=italic
+hi javaScriptBrowserObjects       guifg=#DBB6D2      gui=italic    ctermfg=182 cterm=NONE
 
-hi javaScriptDOMObjects           guifg=#DBB6D2 gui=BOLD
-hi javaScriptDOMMethods           guifg=#D4FA9B ctermfg=192
-hi link javaScriptDOMProperties   Keyword
+hi javaScriptDOMObjects           guifg=#DBB6D2      gui=BOLD      ctermfg=182 cterm=BOLD
+hi javaScriptDOMMethods           guifg=#D4FA9B      ctermfg=192
+hi link javaScriptDOMProperties Keyword
 
-hi javaScriptAjaxObjects          guifg=#5d91d3 gui=underline
-hi javaScriptAjaxMethods          guifg=#6699CC ctermfg=68
-hi javaScriptAjaxProperties       guifg=#FF9494 ctermfg=210
+hi javaScriptAjaxObjects          guifg=#5d91d3      gui=underline ctermfg=68  cterm=UNDERLINE
+hi javaScriptAjaxMethods          guifg=#6699CC      ctermfg=68
+hi javaScriptAjaxProperties       guifg=#FF9494      ctermfg=210
 
-hi javaScriptFuncName             guifg=#B5E4F7 ctermfg=153
-hi javaScriptHtmlElemProperties   guifg=#FF9494 ctermfg=210
-hi javaScriptEventListenerKeyword guifg=#6699CC ctermfg=68
+hi javaScriptFuncName             guifg=#B5E4F7      ctermfg=153
+hi javaScriptHtmlElemProperties   guifg=#FF9494      ctermfg=210
+hi javaScriptEventListenerKeyword guifg=#6699CC      ctermfg=68
 
 hi link javaScriptNumber      Number 
 hi link javaScriptPropietaryObjects javaScriptAjaxObjects
@@ -245,3 +249,4 @@ hi link javaScriptPropietaryObjects javaScriptAjaxObjects
 hi  link csXmlTag             Keyword      
 
 " Special for PHP
+hi phpDefine  guifg=#ffc795    gui=BOLD ctermfg=209 cterm=BOLD
