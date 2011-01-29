@@ -220,18 +220,18 @@ hi markdownCodeBlock guifg=#c5b1e4
 
 " Special for Javascript
 " TODO:  - Add colors to the cterm
+hi javaScriptBrowserObjects         guifg=#DBB6D2 ctermfg=182   gui=italic
+hi javaScriptDOMObjects             guifg=#DBB6D2 gui=BOLD
+hi javaScriptAjaxObjects            guifg=#5d91d3 gui=underline
+hi javaScriptDOMMethods   guifg=#D4FA9B ctermfg=192
+hi javaScriptFuncName               guifg=#B5E4F7 ctermfg=153
+hi javaScriptHtmlElemProperties       guifg=#FF9494 ctermfg=210
+hi javaScriptEventListenerKeyword   guifg=#6699CC ctermfg=68
+hi javaScriptAjaxMethods    guifg=#6699CC ctermfg=68
+hi javaScriptAjaxProperties guifg=#FF9494 ctermfg=210
 hi link javaScriptNumber      Number 
-hi javaScriptBrowserObjects     guifg=#DBB6D2 ctermfg=182 gui=italic
-hi javaScriptDOMObjects      guifg=#DBB6D2 gui=BOLD
-hi javaScriptAjaxObjects  guifg=#5d91d3 gui=underline
 hi link javaScriptPropietaryObjects javaScriptAjaxObjects
-hi javaScriptDomElemFuncsKeywords      guifg=#D4FA9B ctermfg=192
-hi javaScriptFuncName    guifg=#B5E4F7 ctermfg=153 
-hi javaScriptHtmlAttrKeywords  guifg=#FF9494 ctermfg=210
-hi link javaScriptDomElemAttrKeywords     Keyword
-hi javaScriptHtmlElemAttrKeywords  guifg=#6699CC ctermfg=68       
-hi javaScriptAjaxMethodsKeywords guifg=#6699CC ctermfg=68     
-hi javaScriptAjaxPropertiesKeywords guifg=#FF9494 ctermfg=210
+hi link javaScriptDOMProperties     Keyword
 
 " Special for Python
 "hi  link pythonEscape         Keyword      

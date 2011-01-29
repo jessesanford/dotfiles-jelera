@@ -7,6 +7,15 @@
 "
 " TODO:
 "  - Add the HTML syntax inside the JSDoc
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Modified Javascript Syntax file
+" By: Jose Elera Campana
+" Last Change: 28/01/11 16:02:44
+" Changes: 
+" - Added support for Browser, DOM and Ajax Objects, Ajax methods and properties, 
+" - Firebug's Console Object and its methods and properties
 
 if !exists("main_syntax")
   if version < 600
@@ -72,15 +81,25 @@ syntax keyword javaScriptPrototype      prototype
 " (** Modified by Jose Elera)
 "
 syntax keyword javaScriptBrowserObjects      window navigator screen history location
+
 syntax keyword javaScriptDOMObjects      document event HTMLElement Anchor Area Base Body Button Form Frame Frameset Image Link Meta Option Select Style Table TableCell TableRow Textarea
+syntax keyword javaScriptDOMMethods   insertBefore replaceChild removeChild appendChild  hasChildNodes  cloneNode  normalize  isSupported  hasAttributes  getAttribute  setAttribute  removeAttribute  getAttributeNode  setAttributeNode  removeAttributeNode  getElementsByTagName  hasAttribute  getElementById
+syntax keyword javaScriptDOMProperties nodeName  nodeValue  nodeType  parentNode  childNodes  firstChild  lastChild  previousSibling  nextSibling  attributes  ownerDocument  namespaceURI  prefix  localName  tagName
+
 syntax keyword javaScriptAjaxObjects     XMLHttpRequest
+syntax keyword javaScriptAjaxProperties readyState responseText responseXML status statusText
+syntax keyword javaScriptAjaxMethods onreadystatechange abort getAllResponseHeaders getResponseHeader open send setRequestHeader
+
 syntax keyword javaScriptPropietaryObjects    ActiveXObject
-syntax keyword javaScriptDomElemFuncsKeywords   insertBefore replaceChild removeChild appendChild  hasChildNodes  cloneNode  normalize  isSupported  hasAttributes  getAttribute  setAttribute  removeAttribute  getAttributeNode  setAttributeNode  removeAttributeNode  getElementsByTagName  hasAttribute  getElementById
-syntax keyword javaScriptDomElemAttrKeywords nodeName  nodeValue  nodeType  parentNode  childNodes  firstChild  lastChild  previousSibling  nextSibling  attributes  ownerDocument  namespaceURI  prefix  localName  tagName
-syntax keyword javaScriptHtmlAttrKeywords className  clientHeight  clientLeft  clientTop  clientWidth  dir  id  innerHTML  lang  length  offsetHeight  offsetLeft  offsetParent  offsetTop  offsetWidth  scrollHeight  scrollLeft  scrollTop  scrollWidth  style  tabIndex  title
-syntax keyword javaScriptHtmlElemAttrKeywords blur  click  focus  scrollIntoView  addEventListener  dispatchEvent  removeEventListener  item
-syntax keyword javaScriptAjaxPropertiesKeywords readyState responseText responseXML status statusText
-syntax keyword javaScriptAjaxMethodsKeywords onreadystatechange abort getAllResponseHeaders getResponseHeader open send setRequestHeader
+syntax keyword javaScriptPropietaryMethods    attachEvent
+
+syntax keyword javaScriptHtmlElemProperties className  clientHeight  clientLeft  clientTop  clientWidth  dir  href  id  innerHTML  lang  length  offsetHeight  offsetLeft  offsetParent  offsetTop  offsetWidth  scrollHeight  scrollLeft  scrollTop  scrollWidth  style  tabIndex  target  title 
+
+syntax keyword javaScriptEventListenerKeywords   blur  click  focus  scrollIntoView  addEventListener  dispatchEvent  removeEventListener  mouseover mouseout load item
+
+" Firebug support
+syntax keyword fireBugObjects     console
+syntax keyword firebugBasicLogging     log
 
 """"""""""""""""""
 "  end modified  "
@@ -155,7 +174,7 @@ endif "DOM/HTML/CSS
 
 
 "" Code blocks
-syntax cluster javaScriptAll       contains=javaScriptComment,javaScriptLineComment,javaScriptDocComment,javaScriptStringD,javaScriptStringS,javaScriptRegexpString,javaScriptNumber,javaScriptFloat,javaScriptLabel,javaScriptSource,javaScriptType,javaScriptOperator,javaScriptBoolean,javaScriptNull,javaScriptFunction,javaScriptConditional,javaScriptRepeat,javaScriptBranch,javaScriptStatement,javaScriptGlobalObjects,javaScriptExceptions,javaScriptFutureKeys,javaScriptDomErrNo,javaScriptDomNodeConsts,javaScriptHtmlEvents,javaScriptDotNotation,javaScriptBrowserObjects,javaScriptDOMObjects,javaScriptAjaxObjects,javaScriptPropietaryObjects,javaScriptDomElemFuncsKeywords,javaScriptHtmlAttrKeywords,javaScriptDomElemAttrKeywords,javaScriptHtmlElemAttrKeywords,javaScriptAjaxPropertiesKeywords,javaScriptAjaxMethodsKeywords
+syntax cluster javaScriptAll       contains=javaScriptComment,javaScriptLineComment,javaScriptDocComment,javaScriptStringD,javaScriptStringS,javaScriptRegexpString,javaScriptNumber,javaScriptFloat,javaScriptLabel,javaScriptSource,javaScriptType,javaScriptOperator,javaScriptBoolean,javaScriptNull,javaScriptFunction,javaScriptConditional,javaScriptRepeat,javaScriptBranch,javaScriptStatement,javaScriptGlobalObjects,javaScriptExceptions,javaScriptFutureKeys,javaScriptDomErrNo,javaScriptDomNodeConsts,javaScriptHtmlEvents,javaScriptDotNotation,javaScriptBrowserObjects,javaScriptDOMObjects,javaScriptAjaxObjects,javaScriptPropietaryObjects,javaScriptDOMMethods,javaScriptHtmlElemProperties,javaScriptDOMProperties,javaScriptEventListenerKeywords,javaScriptAjaxProperties,javaScriptAjaxMethods
 syntax region  javaScriptBracket   matchgroup=javaScriptBracket transparent start="\[" end="\]" contains=@javaScriptAll,javaScriptParensErrB,javaScriptParensErrC,javaScriptBracket,javaScriptParen,javaScriptBlock,@htmlPreproc
 syntax region  javaScriptParen     matchgroup=javaScriptParen   transparent start="("  end=")"  contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrC,javaScriptParen,javaScriptBracket,javaScriptBlock,@htmlPreproc
 syntax region  javaScriptBlock     matchgroup=javaScriptBlock   transparent start="{"  end="}"  contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock,@htmlPreproc 
