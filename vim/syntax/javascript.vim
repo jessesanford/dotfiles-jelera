@@ -12,10 +12,9 @@
 "
 " Modified Javascript Syntax file
 " By: Jose Elera Campana
-" Last Change: 28/01/11 16:02:44
+" Last Change: 29/01/11 01:14:12
 " Changes: 
 " - Added support for Browser, DOM and Ajax Objects, Ajax methods and properties, 
-" - Firebug's Console Object and its methods and properties
 
 if !exists("main_syntax")
   if version < 600
@@ -96,10 +95,6 @@ syntax keyword javaScriptPropietaryMethods    attachEvent
 syntax keyword javaScriptHtmlElemProperties className  clientHeight  clientLeft  clientTop  clientWidth  dir  href  id  innerHTML  lang  length  offsetHeight  offsetLeft  offsetParent  offsetTop  offsetWidth  scrollHeight  scrollLeft  scrollTop  scrollWidth  style  tabIndex  target  title 
 
 syntax keyword javaScriptEventListenerKeywords   blur  click  focus  scrollIntoView  addEventListener  dispatchEvent  removeEventListener  mouseover mouseout load item
-
-" Firebug support
-syntax keyword fireBugObjects     console
-syntax keyword firebugBasicLogging     log
 
 """"""""""""""""""
 "  end modified  "
