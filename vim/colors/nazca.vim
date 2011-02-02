@@ -227,7 +227,8 @@ hi markdownCodeBlock guifg=#c5b1e4 ctermfg=182
 hi javaScriptBrowserObjects       guifg=#DBB6D2      gui=italic    ctermfg=182 cterm=NONE
 
 hi javaScriptDOMObjects           guifg=#DBB6D2      gui=BOLD      ctermfg=182 cterm=BOLD
-hi javaScriptDOMMethods           guifg=#D4FA9B      ctermfg=192
+hi javaScriptDOMMethods           guifg=#fadb6e      ctermfg=222
+
 hi link javaScriptDOMProperties Keyword
 
 hi javaScriptAjaxObjects          guifg=#5d91d3      gui=underline ctermfg=68  cterm=UNDERLINE

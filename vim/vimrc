@@ -174,12 +174,13 @@ syntax enable "Enable syntax hl
 set shell=/bin/bash
 set cursorline
 
+set linespace=6
+
 if has("gui_running")
 	set guioptions-=T
 	set t_Co=256
 	set background=dark
 	colorscheme nazca
-	set linespace=6
 	" GUI is running or is about to start.
 	" Maximize gvim window.
 	set lines=50
@@ -281,11 +282,11 @@ inoremap []     []
 "  Code Comment Banners  "
 """"""""""""""""""""""""""
 " TODO: Fix or delete it for html and xhtml
-autocmd FileType vim map <leader>comm I"<DEL>  <ESC>A  "<DEL><ESC>yyp0lv$hhr"yykPjj
-autocmd FileType javascript,php,c map <leader>comm I//  <ESC>A  //<ESC>yyp0llv$hhhr-yykPjj
-autocmd FileType python,ruby,sh,zsh map <leader>comm I#  <ESC>A  #<ESC>yyp0lv$hhr-yykPjj
-"autocmd FileType html,xhtml map <leader>comm I<!--  <DEL><ESC>A  --><ESC>yyp0llllv$r-$hhc$--><ESC>yykPjj
-autocmd FileType css map <leader>comm I/*  <ESC>A  */<ESC>yyp0llv$r-$hc$*/<ESC>yykPjj
+autocmd FileType vim map <leader>ccb I"<DEL>  <ESC>A  "<DEL><ESC>yyp0lv$hhr"yykPjj
+autocmd FileType javascript,php,c map <leader>ccb I//  <ESC>A  //<ESC>yyp0llv$hhhr-yykPjj
+autocmd FileType python,ruby,sh,zsh map <leader>ccb I#  <ESC>A  #<ESC>yyp0lv$hhr-yykPjj
+"autocmd FileType html,xhtml map <leader>ccb I<!--  <DEL><ESC>A  --><ESC>yyp0llllv$r-$hhc$--><ESC>yykPjj
+autocmd FileType css map <leader>ccb I/*  <ESC>A  */<ESC>yyp0llv$r-$hc$*/<ESC>yykPjj
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -744,19 +745,17 @@ au BufNewFile,BufRead *.mako set ft=mako
 """"""""""""""""""""""
 "  Markdown Section  "
 """"""""""""""""""""""
-
 " Markdown to HTML
 au FileType markdown nmap <leader>html :%!markdown 2>/dev/null<CR>
 
 " Preview Markdown text
-" TODO: Find a way to Preview without Saving First 
 au Filetype markdown nmap <leader>pv : call MarkdownPreview()<CR>
 func! MarkdownPreview()
-	exec "w"
+	exec "w /tmp/previewmkd.markdown"
 	if has("mac")
-		exec "!markdown % > /tmp/previewmkd.html && open /tmp/previewmkd.html"
+		exec "!markdown /tmp/previewmkd.markdown > /tmp/previewmkd.html && open /tmp/previewmkd.html"
 	else
-		exec "!markdown % > /tmp/previewmkd.html && firefox /tmp/previewmkd.html"
+		exec "!markdown /tmp/previewmkd.markdown > /tmp/previewmkd.html && firefox /tmp/previewmkd.html"
 	endif
 endfunc
 
@@ -789,7 +788,7 @@ endfunction
 au FileType javascript nmap <leader>jsb : call g:Jsbeautify()<CR>
 
 " Javascript Lint for the inline scripts in HTML files
-au BufWritePost,FileWritePost *.html call JavaScriptLint()
+"au BufWritePost,FileWritePost *.html call JavaScriptLint()
 
 "func! JavaScriptLint()
 	"exec "w"
