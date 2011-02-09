@@ -812,7 +812,8 @@ map <leader>td :%!tidy -q -config ~/.vim/tidy.conf --tidy-mark 0 2>/dev/null<CR>
 au Filetype html,xhtml nmap <leader>pv : call PreviewInBrowser()<CR>
 func! PreviewInBrowser()
 	if has("mac")
-		exec "!open %"
+		"exec "!open %"
+		exec "!open -a /Applications/Firefox.app/ %"
 		"exec "!open -a firefox.app %:p"
 	else
 		exec "!firefox %"
