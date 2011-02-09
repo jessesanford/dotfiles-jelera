@@ -25,7 +25,7 @@ alias ping='ping -c 4'
 # Version Control:
 #------------------------------------------////
 ## GIT
-alias gst='git status'
+alias gst='git status --ignore-submodules'
 alias gl='git pull'
 alias gp='git push'
 alias gd='git diff | mate'
