@@ -707,13 +707,13 @@ nnoremap <leader>sort ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
 " Select Database
 map <leader>db :call SwitchDB()<CR>
-function SwitchDB()
+function! SwitchDB()
 	let g:current_db = input("Database > ")
 endfunction
 
 " Run SQL Query
 map <leader>sql :call Doquery()<CR>
-function Doquery()
+function! Doquery()
 	if !exists("g:current_db")
 		call SwitchDB()
 	endif
@@ -1062,7 +1062,7 @@ if (version >= 700)
 	set showtabline=2
 	set tabline=%!MyTabLine()
 
-	function MyTabLabel(n)
+	function! MyTabLabel(n)
 		let buflist = tabpagebuflist(a:n)
 		let winnr = tabpagewinnr(a:n)
 		let bufname = bufname(buflist[winnr - 1])
@@ -1088,7 +1088,7 @@ if (version >= 700)
 		return label
 	endfunction
 
-	function MyTabLine()
+	function! MyTabLine()
 		let s = ''
 		let i = 1
 		while i <= tabpagenr('$')
@@ -1111,7 +1111,7 @@ if (version >= 700)
 endif
 
 " Update header
-function UpdateRcHeader()
+function! UpdateRcHeader()
 	let l:c=col(".")
 	let l:l=line(".")
 	silent 1,10 s/\(Modified:\).*/\="Modified: ".strftime("%c")/
@@ -1134,7 +1134,7 @@ if has("eval")
 	endfun
 endif
 
-function RemoveBlankLines()
+function! RemoveBlankLines()
 	%s/^[\ \t]*\n//g
 endfunction
 
