@@ -654,7 +654,7 @@ nnoremap <F6> :TlistShowPrototype<CR>
 """"""""""""""""""""""""""""""
 " => NerdTree
 """"""""""""""""""""""""""""""
-map <leader>nt NERDTreeToggle<CR>
+map <leader>nt :NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""
 " => SuperTab
@@ -809,7 +809,7 @@ au FileType html,xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
 map <leader>td :%!tidy -q -config ~/.vim/tidy.conf --tidy-mark 0 2>/dev/null<CR><ESC>gg=G
 
 " Load the current buffer in Default Web Browser or Firefox
-au Filetype html,xhtml nmap <leader>pv : call PreviewInBrowser()<CR>
+au Filetype html,xhtml nmap <silent> <leader>pv : call PreviewInBrowser()<CR>
 func! PreviewInBrowser()
 	if has("mac")
 		"exec "!open %"
