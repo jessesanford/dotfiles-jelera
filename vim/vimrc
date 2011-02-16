@@ -468,7 +468,10 @@ vnoremap <C-C> "+y
 " Smart Paste CTRL-V from the system's clipboard and indents code automatically
 nnoremap <C-V> "+P=']
 inoremap <C-V> <C-o>"+P<C-o>=']
-"
+
+" Select All
+map <C-A> ggVG
+
 " Pasting blockwise and linewise selections is not possible in Insert and
 " Visual mode without the +virtualedit feature.  They are pasted as if they
 " were characterwise instead.
@@ -654,6 +657,7 @@ nnoremap <F6> :TlistShowPrototype<CR>
 """"""""""""""""""""""""""""""
 " => NerdTree
 """"""""""""""""""""""""""""""
+map <F2> :NERDTreeToggle<CR>
 map <leader>nt :NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""
