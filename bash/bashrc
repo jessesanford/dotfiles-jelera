@@ -5,7 +5,6 @@ alias reload='source ~/.bashrc'
 #------------------------------------------////
 
 source ~/dotfiles/bash/env
-source ~/dotfiles/bash/config
 source ~/dotfiles/bash/aliases
 # source /usr/local/Cellar/coreutils/8.5/aliases # The aliases for the coreutils installed by brew for OSX
 source ~/dotfiles/bash/shellscripts

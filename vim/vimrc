@@ -189,7 +189,7 @@ if has("gui_running")
 	if has("mac")
 		set gfn=DejaVu\ Sans\ Mono\:h14
 	else
-		set gfn=DejaVu\ Sans\ Mono\ 9
+		set gfn=DejaVu\ Sans\ Mono\ 10
 	endif
 else
 	" This is console Vim.
@@ -426,6 +426,12 @@ iab #b #!/bin/bash
 iab lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+"""""""""""""""""""""""""
+"  Arch Linux Specials  "
+"""""""""""""""""""""""""
+au BufNewFile,BufRead PKGBUILD set syntax=sh ft=sh
+au BufNewFile,BufRead *.install set syntax=sh ft=sh
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings

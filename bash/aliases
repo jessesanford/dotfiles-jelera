@@ -11,11 +11,19 @@ alias findbig='find . -type f -exec ls -s {} \; | sort -n -r | head -5'
 alias cls='clear'
 alias ..='cd ..'
 alias cdd='cd -'
+alias grep='grep --color=auto'
+alias diff='colordiff'
+alias more='less'
+alias df='df -h'
+alias du='du -c -h'
+alias mkdir='mkdir -p -v'
+alias tmux='tmux -2'
 
 #------------------------------------------////
 # Only for Mac OSX
 #------------------------------------------////
-alias brewupd='brew update && brew list | xargs brew install'
+#alias brewupd='brew update && brew list | xargs brew install'
+
 #------------------------------------------////
 # Network
 #------------------------------------------////

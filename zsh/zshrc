@@ -33,6 +33,10 @@ bindkey -v
 echo  "${bldred}Today is:\t\t${txtcyn}" `date`; echo ""
 echo  "${bldred}Kernel Information: \t${txtcyn}" `uname -smr`
 echo  "${bldcyn}"`upinfo`;echo ""
+echo ""
+fortune
+echo ""
+cal
 
 # RVM integration
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
