@@ -16,7 +16,7 @@ function prompt_char {
 }
 
 function box_name {
-    [ -f ~/.box-name ] && cat ~/.box-name || hostname -s
+    [ -f ~/.box-name ] && cat ~/.box-name || hostname
 }
 
 PROMPT='

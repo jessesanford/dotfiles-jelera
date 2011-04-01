@@ -1,9 +1,7 @@
-
 alias reload='source ~/.bashrc'
 #------------------------------------------////
 # Sources
 #------------------------------------------////
-
 source ~/dotfiles/bash/env
 source ~/dotfiles/bash/aliases
 # source /usr/local/Cellar/coreutils/8.5/aliases # The aliases for the coreutils installed by brew for OSX
@@ -14,7 +12,6 @@ source ~/dotfiles/bash/shellscripts
 #------------------------------------------////
 # Colors
 #------------------------------------------////
-
 txtrst='\e[0m'    # Text Reset
 
 # regular colors
@@ -62,13 +59,11 @@ undwht='\e[4;37m' # White
 #------------------------------------------////
 # Prompt:
 #------------------------------------------////
-
 PS1="\n\[$bldylw\]\u@\h\[$txtrst\] [\[$txtgrn\]\w\[$txtrst\]] \[$bldcyn\]\$(vcprompt)\[$txtrst\]  \n\[$txtpur\][\T]\[$txtrst\]\[$bldwht\] $\[$txtrst\] "
 
 #------------------------------------------////
 # Some default .bashrc contents:
 #------------------------------------------////
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -99,10 +94,10 @@ if [ -f /etc/bash_completion ]; then
  . /etc/bash_completion
 fi
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
-fi
-
+## For OSX Homebrew Package Manager
+#if [ -f `brew --prefix`/etc/bash_completion ]; then
+  #. `brew --prefix`/etc/bash_completion
+#fi
 
 # Set vi Editing Mode
 set -o vi
@@ -110,7 +105,6 @@ set -o vi
 #------------------------------------------////
 # System Info:
 #------------------------------------------////
-
 echo -ne "${bldred}Today is:\t\t${txtcyn}" `date`; echo ""
 echo -e "${bldred}Kernel Information: \t${txtcyn}" `uname -smr`
 echo -ne "${bldcyn}";upinfo;echo ""
