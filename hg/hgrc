@@ -1,2 +1,2 @@
 [extensions]
-prompt = $HOME/Downloads/hg-prompt/prompt.py
+prompt = $HOME/bin/prompt.py

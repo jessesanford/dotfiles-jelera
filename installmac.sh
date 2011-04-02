@@ -51,19 +51,11 @@ brew install ack \
 	moreutils \
 	mplayer \
 	mutt \
-	mysql \
-	ncursesw \
 	oniguruma \
-	python \
-	python3 \
 	par \
-	pip \
 	rename \
 	renameutils \
-	rsync \
-	ruby \
 	spidermonkey \
-	sqlite \
 	subversion \
 	task \
 	tmux \
