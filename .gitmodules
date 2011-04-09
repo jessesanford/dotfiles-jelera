@@ -73,3 +73,6 @@
 [submodule "vim/bundle/current-func-info"]
 	path = vim/bundle/current-func-info
 	url = https://github.com/tyru/current-func-info.vim.git
+[submodule "vim/bundle/taglist-plus"]
+	path = vim/bundle/taglist-plus
+	url = https://github.com/int3/vim-taglist-plus.git

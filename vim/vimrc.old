@@ -1,0 +1,1178 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer: Jose Elera Campana <jelera at gmail.com>
+"             http://www.twitter.com/jelera
+"
+" Version: 1.1 - 19/01/11 16:13:10
+"
+" Based_on:
+"    http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
+"
+" How_to_Install_in_Unix_or_OSX:
+"    $ ln -s $HOME/dotfiles/vim $HOME/.vim
+"    $ ln -s $HOME/dotfiles/vim/vimrc $HOME/.vimrc
+"
+" Git_Repository_in_Github:
+"    https://github.com/jelera/dotfiles
+"
+" License: GPL v3
+"   This program is free software: you can redistribute it and/or modify
+"   it under the terms of the GNU General Public License as published by
+"   the Free Software Foundation, either version 3 of the License, or
+"   (at your option) any later version.
+
+"   This program is distributed in the hope that it will be useful,
+"   but WITHOUT ANY WARRANTY; without even the implied warranty of
+"   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+"   GNU General Public License for more details.
+
+"   You should have received a copy of the GNU General Public License
+"   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"}}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" We want Vim to expand its full capability
+set nocompatible
+
+" Pathogen plugin management
+silent! call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+" Display the mode you're in
+set showmode
+
+" Sets how many lines of history VIM has to remember
+set history=500
+
+" Automatical code indent
+set autoindent
+set cindent
+set smartindent
+
+set matchpairs+=<:>
+
+set shortmess=atToO
+
+"Show 3 lines of context around the cursor
+set scrolloff=3
+
+" Enable filetype plugin
+filetype plugin on
+filetype indent on
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Automatically use the current file's directory as the working directory
+set autochdir
+
+" Enable code folding
+set foldenable
+
+" Hide Mouse when typing
+set mousehide
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" Fast editing of the .vimrc
+map <leader>vim :e $MYVIMRC<cr>
+
+" Fast editing of the nazca colorscheme
+map <leader>naz :e $HOME/.vim/colors/nazca.vim<cr>
+
+" When vimrc is edited, reload it
+autocmd bufwritepost .vimrc source $MYVIMRC
+
+" Big Viminfo file
+set viminfo='1000,f1,:1000,/1000
+
+" Saving on losing focus (after tabbing away or switching buffers)
+au FocusLost * :wa
+
+" Open in last edit place
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+
+" Swap directory to store temporary files
+set directory=$HOME/.vim/swapfiles,/var/tmp,/tmp,.
+
+" Toggle between 'Relative' and 'Absolute' line numbers by aj3423
+map <leader>ln :call g:ToggleNuMode()<cr>
+function! g:ToggleNuMode()
+	if(&rnu == 1)
+		set nu
+	else
+		set rnu
+	endif
+endfunc
+
+if v:version >= 703
+	" undo - set up persistent undo
+	set undofile
+	set undodir=$HOME/.undo
+endif
+
+set undolevels=999
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set number
+set showcmd " show typed commands
+set wildmenu "Turn on WiLd menu
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
+set wildmode=list:longest " activate TAB auto-completion for file paths
+
+set ruler "Always show current position
+
+set cmdheight=2 "The commandbar height
+
+set hidden "Change buffer - without saving
+
+set backspace=indent,eol,start " Set backspace config
+set whichwrap+=<,>,h,l
+
+set title " Set the Terminal Title
+
+set ignorecase "Ignore case when searching
+set smartcase   " but case-sensitive if expression contains a capital letter.
+
+set hlsearch "Highlight search things
+
+set incsearch "Make search act like search in modern browsers
+
+set magic "Set magic on, for regular expressions
+
+" Turn off the highlighted search
+nnoremap <leader><space> :noh<cr>
+
+set showmatch "Show matching bracets when text indicator is over them
+set mat=2 "How many tenths of a second to blink
+
+set lazyredraw " Don't redraw screen during macros
+
+set ttyfast " Improves redrawing for newer computers
+
+set report=0
+
+set noerrorbells " No sound on errors
+set visualbell
+set t_vb=
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+set tags+=../tags,../../tags,../../../tags,../../../../tags " Look for all the tags files in the recurrent directories
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax enable "Enable syntax hl
+
+set shell=/bin/bash
+set cursorline
+
+set linespace=6
+
+if has("gui_running")
+	set guioptions-=T
+	set t_Co=256
+	set background=dark
+	colorscheme nazca
+	" GUI is running or is about to start.
+	" Maximize gvim window.
+	set lines=50
+	set columns=150
+	if has("mac")
+		set gfn=DejaVu\ Sans\ Mono\:h14
+	else
+		set gfn=DejaVu\ Sans\ Mono\ 10
+	endif
+else
+	" This is console Vim.
+	set background=dark
+	set t_Co=256
+	colorscheme nazca
+	if exists("+lines")
+		set lines=40
+	endif
+	if exists("+columns")
+		set columns=125
+	endif
+
+endif
+
+set encoding=utf-8
+set termencoding=utf-8
+try
+	lang en_US
+catch
+endtry
+
+set fileformats=unix,mac,dos "Default file types
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files and backups
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git anyway...
+set nobackup
+set nowritebackup
+set noswapfile
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set shiftwidth=4
+set tabstop=4
+set smarttab
+
+set linebreak " This will not break whole words while wrap is enabled
+"set textwidth=79
+
+set wrap "Wrap lines
+
+set formatprg=par
+" "set formatoptions=qr
+" set colorcolumn=85 " This is that big red line at the right
+
+set foldcolumn=3 " Fold column width
+
+set showbreak=…
+
+" Emulates Textmate's Ctrl-Q. Re-hardwraps paragraphs of text
+nnoremap <leader>q gqip
+
+" Mark tabs not used for indentation in Code
+match errorMsg /[^\t]\zs\t\+/
+
+map <leader>t2 :setlocal shiftwidth=2<cr>
+map <leader>t4 :setlocal shiftwidth=4<cr>
+map <leader>t8 :setlocal shiftwidth=4<cr>
+
+" In MacOS X, Move around through wrapped lines
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-4> g$
+vmap <D-6> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-4> g$
+nmap <D-6> g^
+nmap <D-0> g^
+
+" Auto complete {} indent and position the cursor in the middle line
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+
+inoremap (      ()<Left>
+inoremap (<CR>  (<CR>)<Esc>O
+inoremap ((     (
+inoremap ()     ()
+
+inoremap [      []<Left>
+inoremap [<CR>  [<CR>]<Esc>O
+inoremap [[     [
+inoremap []     []
+
+""""""""""""""""""""""""""
+"  Code Comment Banners  "
+""""""""""""""""""""""""""
+" TODO: Fix or delete it for html and xhtml
+autocmd FileType vim map <leader>ccb I"<DEL>  <ESC>A  "<DEL><ESC>yyp0lv$hhr"yykPjj
+autocmd FileType javascript,php,c map <leader>ccb I//  <ESC>A  //<ESC>yyp0llv$hhhr-yykPjj
+autocmd FileType python,ruby,sh,zsh map <leader>ccb I#  <ESC>A  #<ESC>yyp0lv$hhr-yykPjj
+"autocmd FileType html,xhtml map <leader>ccb I<!--  <DEL><ESC>A  --><ESC>yyp0llllv$r-$hhc$--><ESC>yykPjj
+autocmd FileType css map <leader>ccb I/*  <ESC>A  */<ESC>yyp0llv$r-$hc$*/<ESC>yykPjj
+
+""""""""""""""""""""""""""""""
+" => Visual mode related
+""""""""""""""""""""""""""""""
+" Really useful!
+"  In visual mode when you press * or # to search for the current selection
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+
+" When you press gv you vimgrep after the selected text
+vnoremap <silent> gv :call VisualSearch('gv')<CR>
+map <leader>grp :vimgrep // **/*.<left><left><left><left><left><left><left>
+
+function! CmdLine(str)
+	exe "menu Foo.Bar :" . a:str
+	emenu Foo.Bar
+	unmenu Foo
+endfunction
+
+" From an idea by Michael Naumann
+function! VisualSearch(direction) range
+	let l:saved_reg = @"
+	execute "normal! vgvy"
+
+	let l:pattern = escape(@", '\\/.*$^~[]')
+	let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+	if a:direction == 'b'
+		execute "normal ?" . l:pattern . "^M"
+	elseif a:direction == 'gv'
+		call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+	elseif a:direction == 'f'
+		execute "normal /" . l:pattern . "^M"
+	endif
+
+	let @/ = l:pattern
+	let @" = l:saved_reg
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Command mode related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Move around matching bracket pairs
+nnoremap <tab> %
+vnoremap <tab> %
+
+func! Cwd()
+	let cwd = getcwd()
+	return "e " . cwd
+endfunc
+
+func! DeleteTillSlash()
+	let g:cmd = getcmdline()
+	let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*", "\\1", "")
+	if g:cmd == g:cmd_edited
+		let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
+	endif
+	return g:cmd_edited
+endfunc
+
+func! CurrentFileDir(cmd)
+	return a:cmd . " " . expand("%:p:h") . "/"
+endfunc
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Smart way to move btw. windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Close the current buffer
+map <leader>bc :Bclose<cr>
+
+" Close all the buffers
+map <leader>ba :1,300 bd!<cr>
+
+" Use the arrows to something usefull
+map <right> :bn<cr>
+map <left> :bp<cr>
+
+" Tab configuration
+map <leader>tb :tabnew<cr>
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>to :tabonly<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tf :tabfirst<cr>
+map <leader>tl :tablast<cr>
+map <leader>tm :tabmove
+
+" When pressing <leader>cd switch to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>
+
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+	let l:currentBufNum = bufnr("%")
+	let l:alternateBufNum = bufnr("#")
+
+	if buflisted(l:alternateBufNum)
+		buffer #
+	else
+		bnext
+	endif
+
+	if bufnr("%") == l:currentBufNum
+		new
+	endif
+
+	if buflisted(l:currentBufNum)
+		execute("bdelete! ".l:currentBufNum)
+	endif
+endfunction
+
+" Specify the behavior when switching between buffers
+try
+	set switchbuf=usetab
+	set stal=2
+catch
+endtry
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General Abbrevs
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+
+iab #p #!/usr/bin/perl
+iab #e #!/usr/bin/env
+iab #r #!/usr/bin/ruby
+iab #b #!/bin/bash
+
+" For Web Design, Lorem Ipsum Dummy Text
+iab lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+"""""""""""""""""""""""""
+"  Arch Linux Specials  "
+"""""""""""""""""""""""""
+au BufNewFile,BufRead PKGBUILD set syntax=sh ft=sh
+au BufNewFile,BufRead *.install set syntax=sh ft=sh
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Indent visual selected code without unselecting and going back to normal mode
+vmap > >gv
+vmap < <gv
+
+"Strip all trailing whitespace in the current file"
+nnoremap <leader>nw :%s/\s\+$//e<cr>:let @/=''<CR>
+
+"Delete trailing whitespace from vimcasts on Python, Javascript and Ruby"
+function! DeleteTrailingWS()
+	" Preparation: save the last search, and curson position"
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+	" Do the business"
+	%s/\s\+$//e
+	"Clean up: restore previous search history and cursor position"
+	let @/=_s
+	call cursor(l, c)
+endfunction
+
+" Delete trailing space when saving Python, Ruby and Javascript files"
+autocmd BufWrite *.py,*.js,*.rb :call DeleteTrailingWS()
+
+"CTRL-X is cut
+vnoremap <C-X> "+x
+
+"CTRL-C is copy
+vnoremap <C-C> "+y
+
+" Smart Paste CTRL-V from the system's clipboard and indents code automatically
+nnoremap <C-V> "+P=']
+inoremap <C-V> <C-o>"+P<C-o>=']
+
+" Select All
+map <C-A> ggVG
+
+" Pasting blockwise and linewise selections is not possible in Insert and
+" Visual mode without the +virtualedit feature.  They are pasted as if they
+" were characterwise instead.
+" Uses the paste.vim autoload script.
+
+exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+
+imap <S-Insert> <C-V>
+vmap <S-Insert> <C-V>
+
+" Use CTRL-Q to do what CTRL-V used to do, Blockwise Visual Selection
+noremap <C-Q>   <C-V>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Documentation writing and Formatting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>h1 yypVr=o
+map <leader>h2 yypVr-o
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Cope
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Do :help cope if you are unsure what cope is. It's super useful!
+map <leader>cope :botright cope<cr>
+map <leader>cn :cn<cr>
+map <leader>cp :cp<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"toggle spell checking
+map <leader>spl :setlocal spell!<cr>
+
+" languages for the spelling checker
+set spelllang=en,es
+
+"Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+""""""""""""""""""""""""""""""
+" => neocomplcache plugin
+""""""""""""""""""""""""""""""
+" TODO: Still need to tweak behavior with <TAB> to expand
+"       snippets, change throughout the autocompletion list
+
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_snippets_dir = '~/.vim/snippet/'
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+			\ 'default' : '',
+			\ 'vimshell' : $HOME.'/.vimshell_hist',
+			\ 'scheme' : $HOME.'/.gosh_completions'
+			\ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+	let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+" inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" AutoComplPop like behavior.
+"let g:neocomplcache_enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+	let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+
+au BufNewFile,BufRead *.snip set syntax=snippet ft=snippet foldmethod=indent
+
+""""""""""""""""""""""""""""""
+" => Autoclose plugin
+""""""""""""""""""""""""""""""
+nmap <Leader>ac <Plug>ToggleAutoCloseMappings
+
+""""""""""""""""""""""""""""""
+" => Syntastc Plugin
+""""""""""""""""""""""""""""""
+au FileType c,coffee,cpp,cucumber,docbk,eruby,haml,haskell,html,javascript,lua,perl,php,python,ruby,sass,sh,tex,xhtml nmap <Leader>val :Errors<CR><C-W>j
+
+"let g:syntastic_enable_signs=1
+"let g:syntastic_quiet_warnings=1
+
+""""""""""""""""""""""""""""""
+" => JSlint.vim plugin
+""""""""""""""""""""""""""""""
+if has("gui_running")
+	let g:JSLintHighlightErrorLine = 1
+else
+	let g:JSLintHighlightErrorLine = 0
+endif
+
+
+""""""""""""""""""""""""""""""
+" => Minibuffer plugin
+""""""""""""""""""""""""""""""
+let g:miniBufExplModSelTarget = 1
+let g:miniBufExplorerMoreThanOne = 2
+let g:miniBufExplModSelTarget = 0
+let g:miniBufExplUseSingleClick = 1
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplVSplit = 25
+let g:miniBufExplSplitBelow=1
+
+let g:bufExplorerSortBy = "name"
+
+autocmd BufRead,BufNew :call UMiniBufExplorer
+
+map <leader>u :TMiniBufExplorer<cr>
+
+""""""""""""""""""""""""""""""
+" => Gundo plugin
+""""""""""""""""""""""""""""""
+nnoremap <leader>gun :GundoToggle<CR>
+""""""""""""""""""""""""""""""
+" => Taglist
+""""""""""""""""""""""""""""""
+" TagList options
+let Tlist_Close_On_Select = 1 "close taglist window once we selected something
+let Tlist_Exit_OnlyWindow = 1 "if taglist window is the only window left, exit vim
+let Tlist_Show_Menu = 1 "show Tags menu in gvim
+let Tlist_Show_One_File = 1 "show tags of only one file
+let Tlist_GainFocus_On_ToggleOpen = 1 "automatically switch to taglist window
+let Tlist_Highlight_Tag_On_BufEnter = 1 "highlight current tag in taglist window
+let Tlist_Process_File_Always = 1 "taglist window on the right
+let Tlist_Display_Prototype = 1 "display full prototype instead of just function name
+" "let Tlist_Ctags_Cmd = /usr/local/bin/ctags
+
+nnoremap <F5> :TlistToggle<CR>
+nnoremap <F6> :TlistShowPrototype<CR>
+
+""""""""""""""""""""""""""""""
+" => NerdTree
+""""""""""""""""""""""""""""""
+map <F2> :NERDTreeToggle<CR>
+map <leader>nt :NERDTreeToggle<CR>
+
+""""""""""""""""""""""""""""""
+" => SuperTab
+""""""""""""""""""""""""""""""
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
+
+""""""""""""""""""""""""""""""
+" => Vim grep and Ack
+""""""""""""""""""""""""""""""
+" Using Ack instead of grep.
+set grepprg=ack
+
+nnoremap <leader>a :Ack
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Web Development formatting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" for CSS, also have things in braces indented:
+autocmd FileType css set smartindent foldmethod=indent
+
+" for HTML, generally format text, but if a long line has been created
+" leave it alone when editing:
+autocmd FileType html,xhtml set formatoptions+=tl
+
+" folding HTML
+autocmd FileType html,xhtml set foldmethod=indent smartindent
+
+" for both CSS and HTML, use genuine tab characters for
+" indentation, to make files a few bytes smaller:
+autocmd FileType html,xhtml set noexpandtab tabstop=3 shiftwidth=3
+autocmd FileType css set noexpandtab tabstop=2 shiftwidth=2
+
+" Color picker for CSS
+if has("mac")
+	map <leader>pik :PickHEX<CR>
+else
+	map <leader>pik <Esc>:ColorPicker<Cr>a
+	vmap <leader>pik <Del><Esc>h:ColorPicker<Cr>a
+endif
+
+" Sort CSS properties
+nnoremap <leader>sort ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => SQL Section
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" http://stepanoff.org/wordpress/archives/1536
+
+" Select Database
+map <leader>db :call SwitchDB()<CR>
+function! SwitchDB()
+	let g:current_db = input("Database > ")
+endfunction
+
+" Run SQL Query
+map <leader>sql :call Doquery()<CR>
+function! Doquery()
+	if !exists("g:current_db")
+		call SwitchDB()
+	endif
+	let query_string = input(g:current_db . " > " )
+	if query_string != ""
+		exe "!mysql " . g:current_db . " -e \"" . escape(query_string, '"') . "\""
+	endif
+endfunction
+
+""""""""""""""""""""""""""""""
+" => LESS section
+""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.less set ft=less
+
+""""""""""""""""""""""""""""""
+" => Ruby section
+""""""""""""""""""""""""""""""
+au FileType ruby setlocal ts=2 sts=2 sw=2 noexpandtab foldmethod=syntax
+
+""""""""""""""""""""""""""""""
+" => Python section
+""""""""""""""""""""""""""""""
+au FileType python set nocindent
+let python_highlight_all = 1
+au FileType python syn keyword pythonDecorator True None False self
+
+au BufNewFile,BufRead *.jinja set syntax=htmljinja
+au BufNewFile,BufRead *.mako set ft=mako
+
+""""""""""""""""""""""
+"  Markdown Section  "
+""""""""""""""""""""""
+" Markdown to HTML
+au FileType markdown nmap <leader>html :%!markdown 2>/dev/null<CR>
+
+" Preview Markdown text
+au Filetype markdown nmap <leader>pv : call MarkdownPreview()<CR>
+func! MarkdownPreview()
+	exec "w /tmp/previewmkd.markdown"
+	if has("mac")
+		exec "!markdown /tmp/previewmkd.markdown > /tmp/previewmkd.html && open /tmp/previewmkd.html"
+	else
+		exec "!markdown /tmp/previewmkd.markdown > /tmp/previewmkd.html && firefox /tmp/previewmkd.html"
+	endif
+endfunc
+
+""""""""""""""""""""""""""""""
+" => JavaScript section
+"""""""""""""""""""""""""""""""
+au FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+au FileType javascript call JavaScriptFold()
+au FileType javascript setl fen
+au FileType javascript setl nocindent
+
+" jQuery syntax
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+" JSON syntax
+au BufRead,BufNewFile *.json set ft=json
+
+function! JavaScriptFold()
+	setl foldmethod=syntax
+	setl foldlevelstart=1
+	syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+	function! FoldText()
+		return substitute(getline(v:foldstart), '{.*', '{...}', '')
+	endfunction
+	setl foldtext=FoldText()
+endfunction
+
+" Expand compressed (minified) Javascript with JSBeautify.vim
+au FileType javascript nmap <leader>jsb : call g:Jsbeautify()<CR>
+
+" Javascript Lint for the inline scripts in HTML files
+"au BufWritePost,FileWritePost *.html call JavaScriptLint()
+
+"func! JavaScriptLint()
+	"exec "w"
+	"exec "!jsl -conf ~/.vim/jsl.conf -process % "
+"endfunc
+
+"""""""""""""""""""""""""""""""
+" => HTML section
+"""""""""""""""""""""""""""""""
+au FileType html,xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
+
+" HTML Tidy
+"au FileType html,xhtml setlocal makeprg=tidy\ -quiet\ -errors\ %
+"au FileType html,xhtml setlocal errorformat=line\ %l\ column\ %v\ -\ %m
+
+" Expand compressed HTML with Tidy
+map <leader>td :%!tidy -q -config ~/.vim/tidy.conf --tidy-mark 0 2>/dev/null<CR><ESC>gg=G
+
+" Load the current buffer in Default Web Browser or Firefox
+au Filetype html,xhtml nmap <silent> <leader>pv : call PreviewInBrowser()<CR>
+func! PreviewInBrowser()
+	if has("mac")
+		"exec "!open %"
+		exec "!open -a /Applications/Firefox.app/ %"
+		"exec "!open -a firefox.app %:p"
+	else
+		exec "!firefox %"
+	endif
+endfunc
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  => Statusline (This is a VERY BIG SECTION, and THE LAST ONE)  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Always hide the statusline
+set laststatus=2
+
+" http://dotfiles.org/~gregf/.vimrc"
+
+"  {{{ Nice statusbar  "
+""""""""""""""""""""""""
+
+"statusline setup
+
+set statusline=   " clear the statusline for when vimrc is reloaded
+set statusline+=%-2.2n\                      " buffer number
+set statusline+=%f\       "tail of the filename
+
+"display a warning if fileformat isnt unix
+set statusline+=%#warningmsg#
+set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+set statusline+=%*
+
+"display a warning if file encoding isnt utf-8
+set statusline+=%#warningmsg#
+set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
+set statusline+=%*
+
+set statusline+=%h      "help file flag
+set statusline+=%y\      "filetype
+set statusline+=%r      "read only flag
+set statusline+=%m\      "modified flag
+
+" display the filesize
+set statusline+=[%{FileSize()}]\
+
+" display current git branch
+set statusline+=%{fugitive#statusline()}\
+
+" display current version of Ruby thru RVM
+set statusline+=%{rvm#statusline()}\
+
+" dispaly Mercurial Information
+set statusline+=[r%{HGRev()}]\
+
+"display a warning if &et is wrong, or we have mixed-indenting
+set statusline+=%#error#
+set statusline+=%{StatuslineTabWarning()}
+set statusline+=%*
+
+set statusline+=%{StatuslineTrailingSpaceWarning()}
+
+" Display a warning with Syntastic, of validation errors and syntax checkers
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+"display a warning if &paste is set
+set statusline+=%#error#
+set statusline+=%{&paste?'[paste]':''}
+set statusline+=%*
+
+set statusline+=%=      "left/right separator
+
+" Display the name of the function or variable generated by ctags
+set statusline+=[%{Tlist_Get_Tagname_By_Line()}]\
+
+set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P\   "percent through file
+set laststatus=2        " Always show status line
+
+" }}}
+
+"  {{{ Window title  "
+""""""""""""""""""""""
+if has('title') && (has('gui_running') || &title)
+	set titlestring=
+	set titlestring+=%{substitute(getcwd(),\ $HOME,\ '~',\ '')}/  " working directory
+	set titlestring+=%f\                                              " file name
+	set titlestring+=%h%m%r%w                                         " flags
+	set titlestring+=\ -\ %{v:progname}                               " program name
+endif
+
+" If we have a BOM, always honour that rather than trying to guess.
+if &fileencodings !~? "ucs-bom"
+	set fileencodings^=ucs-bom
+endif
+
+" Always check for UTF-8 when trying to determine encodings.
+if &fileencodings !~? "utf-8"
+	" If we have to add this, the default encoding is not Unicode.
+	" We use this fact later to revert to the default encoding in plaintext/empty
+	" files.
+	let g:added_fenc_utf8 = 1
+	set fileencodings+=utf-8
+endif
+
+" Make sure we have a sane fallback for encoding detection
+if &fileencodings !~? "default"
+	set fileencodings+=default
+endif
+
+"  {{{ Functions  "
+"""""""""""""""""""
+function! FileSize()
+	let bytes = getfsize(expand("%:p"))
+	if bytes <= 0
+		return ""
+	endif
+	if bytes < 1024
+		return bytes . " Bytes"
+	else
+		return (bytes / 1024) . "kB"
+	endif
+endfunction
+
+"return the syntax highlight group under the cursor ''
+function! StatuslineCurrentHighlight()
+	let name = synIDattr(synID(line('.'),col('.'),1),'name')
+	if name == ''
+		return ''
+	else
+		return '[' . name . ']'
+	endif
+endfunction
+
+"recalculate the trailing whitespace warning when idle, and after saving
+autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+
+"return '[\s]' if trailing white space is detected
+"return '' otherwise
+function! StatuslineTrailingSpaceWarning()
+	if !exists("b:statusline_trailing_space_warning")
+		if search('\s\+$', 'nw') != 0
+			let b:statusline_trailing_space_warning = '[\s]'
+		else
+			let b:statusline_trailing_space_warning = ''
+		endif
+	endif
+	return b:statusline_trailing_space_warning
+endfunction
+
+"return '[&et]' if &et is set wrong
+"return '[mixed-indenting]' if spaces and tabs are used to indent
+"return an empty string if everything is fine
+function! StatuslineTabWarning()
+	if !exists("b:statusline_tab_warning")
+		let tabs = search('^\t', 'nw') != 0
+		let spaces = search('^ ', 'nw') != 0
+
+		if tabs && spaces
+			let b:statusline_tab_warning =  '[mixed-indenting]'
+		elseif (spaces && !&et) || (tabs && &et)
+			let b:statusline_tab_warning = '[&et]'
+		else
+			let b:statusline_tab_warning = ''
+		endif
+	endif
+	return b:statusline_tab_warning
+endfunction
+
+"return a warning for "long lines" where "long" is either &textwidth or 80 (if
+"no &textwidth is set)
+"
+"return '' if no long lines
+"return '[#x,my,$z] if long lines are found, were x is the number of long
+"lines, y is the median length of the long lines and z is the length of the
+"longest line
+function! StatuslineLongLineWarning()
+	if !exists("b:statusline_long_line_warning")
+		let long_line_lens = s:LongLines()
+
+		if len(long_line_lens) > 0
+			let b:statusline_long_line_warning = "[" .
+						\ '#' . len(long_line_lens) . "," .
+						\ 'm' . s:Median(long_line_lens) . "," .
+						\ '$' . max(long_line_lens) . "]"
+		else
+			let b:statusline_long_line_warning = ""
+		endif
+	endif
+	return b:statusline_long_line_warning
+endfunction
+
+"return a list containing the lengths of the long lines in this buffer
+function! s:LongLines()
+	let threshold = (&tw ? &tw : 80)
+	let spaces = repeat(" ", &ts)
+
+	let long_line_lens = []
+
+	let i = 1
+	while i <= line("$")
+		let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
+		if len > threshold
+			call add(long_line_lens, len)
+		endif
+		let i += 1
+	endwhile
+
+	return long_line_lens
+endfunction
+
+"find the median of the given array of numbers
+function! s:Median(nums)
+	let nums = sort(a:nums)
+	let l = len(nums)
+
+	if l % 2 == 1
+		let i = (l-1) / 2
+		return nums[i]
+	else
+		return (nums[l/2] + nums[(l/2)-1]) / 2
+	endif
+endfunction
+
+command! -nargs=0 RDocPreview call RDocRenderBufferToPreview()
+
+function! RDocRenderBufferToPreview()
+	let rdocoutput = "/tmp/vimrdoc/"
+	call system("rdoc " . bufname("%") . " --op " . rdocoutput)
+	call system("firefox ". rdocoutput . "index.html")
+endfunction
+
+"If possible, try to use a narrow number column.
+if v:version >= 700
+	try
+		setlocal numberwidth=2
+	catch
+	endtry
+endif
+
+if (version >= 700)
+	set completeopt=menu,longest,preview
+	"map :bn :tabn
+	"map :bp :tabp
+	set showtabline=2
+	set tabline=%!MyTabLine()
+
+	function! MyTabLabel(n)
+		let buflist = tabpagebuflist(a:n)
+		let winnr = tabpagewinnr(a:n)
+		let bufname = bufname(buflist[winnr - 1])
+
+		if !strlen(bufname)
+			let bufname = '(nil)'
+		endif
+
+		let label = ''
+		" Add '+' if one of the buffers in the tab page is modified
+		let bufnr = 0
+		while bufnr < len(buflist)
+			if getbufvar(buflist[bufnr], "&modified")
+				let label = '+'
+				break
+			endif
+			let bufnr = bufnr + 1
+		endwhile
+		if !strlen(label)
+			let label = ' '
+		endif
+		let label .= bufname
+		return label
+	endfunction
+
+	function! MyTabLine()
+		let s = ''
+		let i = 1
+		while i <= tabpagenr('$')
+			" select the highlighting
+			if i == tabpagenr()
+				let s .= '%#TabLineSel#'
+			else
+				let s .= '%#TabLine#'
+			endif
+			" set the tab page number (for mouse clicks)
+			let s .= '%' . i . 'T'
+			" the label is made by MyTabLabel()
+			let s .= ' %{MyTabLabel(' . i . ')} '
+			let i = i + 1
+		endwhile
+		" after the last tab fill with TabLineFill and reset tab page nr
+		let s .= '%#TabLineFill#%T'
+		return s
+	endfunction
+endif
+
+" Update header
+function! UpdateRcHeader()
+	let l:c=col(".")
+	let l:l=line(".")
+	silent 1,10 s/\(Modified:\).*/\="Modified: ".strftime("%c")/
+	call cursor(l:l, l:c)
+endfunction
+
+if has("eval")
+	" If we're in a wide window, enable line numbers.
+	fun! WindowWidth()
+		if winwidth(0) > 90
+			setlocal foldcolumn=0
+			setlocal number
+			if v:version >= 703
+				setlocal rnu
+			endif
+		else
+			setlocal nonumber
+			setlocal foldcolumn=0
+		endif
+	endfun
+endif
+
+function! RemoveBlankLines()
+	%s/^[\ \t]*\n//g
+endfunction
+
+function! VBlockquote(...) range
+	" Author: Ralf Arens
+	" put `| ' at beginning of line
+	exe a:firstline.",".a:lastline."s/^/| /"
+	" remove trailing whitespaces
+	exe a:firstline.",".a:lastline.'s/^| $/|/e'
+	" generate tail
+	exe a:lastline."put ='`----'"
+	" set mark
+	normal m'
+	" generate title
+	let @z = ',----'
+	if (a:0 != 0)
+		" -> extra argument a:1
+		let @z = @z."[ ".a:1." ]"
+	endif
+	exe a:firstline."put! z"
+	" jump back to mark
+	normal ''
+endfunction
