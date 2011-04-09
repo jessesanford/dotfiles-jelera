@@ -29,6 +29,7 @@
 "   You should have received a copy of the GNU General Public License
 "   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+exe "set path=".expand("$PATH")
 
 " Load pathogen {{{
 	filetype off
@@ -186,6 +187,7 @@
 		let g:default_stl .= "#[Branch] %(%{substitute(fugitive#statusline(), 'GIT(\\([a-z0-9\\-_\\./:]\\+\\))', '∓ \\1', 'gi')}#[BranchS] [>] %)" " Git branch
 		let g:default_stl .= "#[ModFlag]%{&readonly ? '[RO] ' : ''}" " RO flag
 		let g:default_stl .= "#[FileName]%t " " File name
+		let g:default_stl .= "[%{FileSize()}] " " File size
 		let g:default_stl .= "<CUR>#[Error]%(%{substitute(SyntasticStatuslineFlag(), '\\[Syntax: line:\\(\\d\\+\\) \\((\\(\\d\\+\\))\\)\\?\\]', '[>][>][>] SYNTAX № \\1 \\2 [>][>][>]', 'i')} %)</CUR>" " Syntastic error flag
 		let g:default_stl .= "#[ModFlag]%(%M %)" " Modified flag
 		let g:default_stl .= "#[BufFlag]%(%H%W %)" " HLP,PRV flags
@@ -194,12 +196,37 @@
 		let g:default_stl .= "%<" " Truncate right
 		let g:default_stl .= "<CUR>%(%{cfi#format('%s', '')} %)</CUR>" " Function name
 		let g:default_stl .= "%= " " Right align
+		let g:default_stl .= "%{StatuslineCurrentHighlight()}  " " Right align
 		let g:default_stl .= "<CUR>#[FileFormat]%{&fileformat} </CUR>" " File format
 		let g:default_stl .= "<CUR>#[FileEncoding]%{(&fenc == '' ? &enc : &fenc)} </CUR>" " File encoding
 		let g:default_stl .= "<CUR>#[Separator][<] ₣₮ #[FileType]%{strlen(&ft) ? &ft : 'n/a'} </CUR>" " File type
 		let g:default_stl .= "#[LinePercentS][<<]#[LinePercent] %p%% " " Line/column/virtual column, Line percentage
 		let g:default_stl .= "#[LineNumberS][<<]#[LineNumber] № %l#[LineColumn]:%c%V " " Line/column/virtual column, Line percentage
 		let g:default_stl .= "%{exists('g:synid') && g:synid ? '[<] '.synIDattr(synID(line('.'), col('.'), 1), 'name').' ' : ''}" " Current syntax group
+
+		function! FileSize()
+			let bytes = getfsize(expand("%:p"))
+			if bytes <= 0
+				return ""
+			endif
+			if bytes < 1024
+				return bytes . " Bytes"
+			else
+				return (bytes / 1024) . "kB"
+			endif
+		endfunction
+
+
+		"return the syntax highlight group under the cursor ''
+		function! StatuslineCurrentHighlight()
+			let name = synIDattr(synID(line('.'),col('.'),1),'name')
+			if name == ''
+				return ''
+			else
+				return '[' . name . ']'
+			endif
+		endfunction
+
 	" }}}
 	" Color dict {{{
 		let s:statuscolors = {
@@ -992,7 +1019,7 @@
 		" }}}
 		" Markdown {{{
 			" Markdown to HTML
-			au FileType markdown nmap <leader>html :%!markdown 2>/dev/null<CR>
+			au FileType markdown nmap <leader>md :%!markdown 2>/dev/null<CR>
 
 			" Preview Markdown text
 			au Filetype markdown nmap <leader>pv : call MarkdownPreview()<CR>
