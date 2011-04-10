@@ -308,12 +308,6 @@ exe "set path=".expand("$PATH")
 			else
 				set guifont=DejaVu\ Sans\ Mono\ 10
 			endif
-		else
-			if &t_Co == 256
-				colo nazca
-			else
-				colo desert
-			endif
 		endif
 	" }}}
 	" Use custom fillchars/listchars/showbreak icons {{{

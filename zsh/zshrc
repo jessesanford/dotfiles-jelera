@@ -16,7 +16,7 @@ export ZSH_THEME="prose"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git osx github brew rails3 ruby ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -24,7 +24,6 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/dotfiles/bash/env
 source ~/dotfiles/bash/aliases
-# source /usr/local/Cellar/coreutils/8.5/aliases # The aliases for the coreutils installed by brew for OSX
 source ~/dotfiles/bash/shellscripts
 
 # Set Vi-like binding

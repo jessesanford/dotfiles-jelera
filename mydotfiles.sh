@@ -54,6 +54,7 @@ ln -s $HOME/dotfiles/bash/bashrc $HOME/.bashrc
 
 # Zsh
 ln -s $HOME/dotfiles/zsh/zshrc  $HOME/.zshrc
+ln -s $HOME/dotfiles/zsh/prose.zsh-theme $HOME/dotfiles/zsh/oh-my-zsh/themes/prose.zsh-theme
 
 # tmux
 ln -s $HOME/dotfiles/tmux/tmux.conf  $HOME/.tmux.conf
