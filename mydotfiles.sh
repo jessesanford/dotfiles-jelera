@@ -65,6 +65,9 @@ ln -s $HOME/dotfiles/gnu-screen/screenrc  $HOME/.screenrc
 # git
 ln -s $HOME/dotfiles/git/gitconfig  $HOME/.gitconfig
 
+# ctags
+ln -s $HOME/dotfiles/ctags/ctags $HOME/.ctags
+
 # mutt
 # ln -s $HOME/dotfiles/mutt/muttrc  $HOME/.muttrc
 

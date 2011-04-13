@@ -29,6 +29,7 @@
 "   You should have received a copy of the GNU General Public License
 "   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
 exe "set path=".expand("$PATH")
 
 " Load pathogen {{{
@@ -40,8 +41,6 @@ exe "set path=".expand("$PATH")
 	syntax on
 	filetype plugin on
 	filetype indent on
-
-	set nocompatible
 
 	set nobackup
 	set nowritebackup
@@ -183,7 +182,7 @@ exe "set path=".expand("$PATH")
 	" }}}
 	" Default statusline {{{
 		let g:default_stl  = ""
-		let g:default_stl .= "<CUR>#[Mode] %{&paste ? 'PASTE [>] ' : ''}%{substitute(mode(), '', '^V', 'g')} #[ModeS][>>]</CUR>"
+		"let g:default_stl .= "<CUR>#[Mode] %{&paste ? 'PASTE [>] ' : ''}%{substitute(mode(), '', '^V', 'g')} #[ModeS][>>]</CUR>"
 		let g:default_stl .= "#[Branch] %(%{substitute(fugitive#statusline(), 'GIT(\\([a-z0-9\\-_\\./:]\\+\\))', '∓ \\1', 'gi')}#[BranchS] [>] %)" " Git branch
 		let g:default_stl .= "#[ModFlag]%{&readonly ? '[RO] ' : ''}" " RO flag
 		let g:default_stl .= "#[FileName]%t " " File name
@@ -302,7 +301,6 @@ exe "set path=".expand("$PATH")
 	" GUI settings {{{
    		if has('gui_running')
 			set guioptions-=T
-			colo nazca
 			if has('mac')
 				set guifont=DejaVu\ Sans\ Mono\:h14
 			else
@@ -325,6 +323,7 @@ exe "set path=".expand("$PATH")
 	if exists('+breakindent')
 		set breakindent
 	endif
+	colorscheme nazca
 	set laststatus=2
 	set hlsearch
 	set incsearch
@@ -733,11 +732,9 @@ exe "set path=".expand("$PATH")
 			inoremap []     []
 		" }}}
 		" Code Comment Banners {{{
-			" TODO: Fix or delete it for html and xhtml
 			autocmd FileType vim map <leader>ccb I"<DEL>  <ESC>A  "<DEL><ESC>yyp0lv$hhr"yykPjj
 			autocmd FileType javascript,php,c map <leader>ccb I//  <ESC>A  //<ESC>yyp0llv$hhhr-yykPjj
 			autocmd FileType python,ruby,sh,zsh map <leader>ccb I#  <ESC>A  #<ESC>yyp0lv$hhr-yykPjj
-			"autocmd FileType html,xhtml map <leader>ccb I<!--  <DEL><ESC>A  --><ESC>yyp0llllv$r-$hhc$--><ESC>yykPjj
 			autocmd FileType css map <leader>ccb I/*  <ESC>A  */<ESC>yyp0llv$r-$hc$*/<ESC>yykPjj
 		" }}}
 		" HEX Color Picker {{{
@@ -836,9 +833,6 @@ exe "set path=".expand("$PATH")
 			au FileType diff hi clear RedundantSpaces
 				\ | hi DiffCol ctermbg=238 cterm=bold
 				\ | match DiffCol /^[ +-]\([+-]\)\@!/
-		" }}}
-		" Load .Xdefaults/.Xresources on save {{{
-			au BufWritePost,FileWritePost ~/.Xdefaults,~/.Xresources silent! !xrdb -load % >/dev/null 2>&1
 		" }}}
 		" Save on losing focus (after tabbing away or switching buffers) {{{
 			au FocusLost * :wa
@@ -1229,26 +1223,26 @@ exe "set path=".expand("$PATH")
 		let g:delimitMate_balance_matchpairs = 1
 	" }}}
 " }}}
-" Project-specific settings {{{
-	let s:projectpath = system("cat $XDG_CONFIG_HOME/projectpath 2&>/dev/null")
+"" Project-specific settings {{{
+	"let s:projectpath = system("cat $XDG_CONFIG_HOME/projectpath 2&>/dev/null")
 
-	if ! empty(s:projectpath) && isdirectory(s:projectpath)
-		let &path = s:projectpath . "/**," . &path
-		let &tags = s:projectpath . "/TAGS," . &tags
-		let g:NERDTreeBookmarksFile = s:projectpath . "/.bookmarks"
+	"if ! empty(s:projectpath) && isdirectory(s:projectpath)
+		"let &path = s:projectpath . "/**," . &path
+		"let &tags = s:projectpath . "/TAGS," . &tags
+		"let g:NERDTreeBookmarksFile = s:projectpath . "/.bookmarks"
 
-		set nocsverb
-		silent! exec "cd " . s:projectpath
-		silent! exec "cscope add " . s:projectpath . "/cscope.out"
-		set csverb
+		"set nocsverb
+		"silent! exec "cd " . s:projectpath
+		"silent! exec "cscope add " . s:projectpath . "/cscope.out"
+		"set csverb
 
-		set cscopetag
-		set cscopetagorder=0
+		"set cscopetag
+		"set cscopetagorder=0
 
-		augroup ProjectHighlight " {{{
-			autocmd!
+		"augroup ProjectHighlight " {{{
+			"autocmd!
 
-			au BufReadPost,CursorHold *.php silent! exec "source " . s:projectpath . "/TAGS.PHP.hl.vim"
-		augroup END " }}}
-	endif
-" }}}
+			"au BufReadPost,CursorHold *.php silent! exec "source " . s:projectpath . "/TAGS.PHP.hl.vim"
+		"augroup END " }}}
+	"endif
+"" }}}
