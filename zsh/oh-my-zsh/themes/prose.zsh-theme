@@ -1,1 +1,0 @@
-/home/jose/dotfiles/zsh/prose.zsh-theme
