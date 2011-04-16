@@ -609,75 +609,8 @@ exe "set path=".expand("$PATH")
 			" }}}
 		" }}}
 		" Repurpose arrow keys to move lines {{{
-			" Inspired by http://jeetworks.com/node/89
-			function! s:MoveLineUp()
-				call <SID>MoveLineOrVisualUp(".", "")
-			endfunction
-
-			function! s:MoveLineDown()
-				call <SID>MoveLineOrVisualDown(".", "")
-			endfunction
-
-			function! s:MoveVisualUp()
-				call <SID>MoveLineOrVisualUp("'<", "'<,'>")
-				normal gv
-			endfunction
-
-			function! s:MoveVisualDown()
-				call <SID>MoveLineOrVisualDown("'>", "'<,'>")
-				normal gv
-			endfunction
-
-			function! s:MoveLineOrVisualUp(line_getter, range)
-				let l_num = line(a:line_getter)
-				if l_num - v:count1 - 1 < 0
-					let move_arg = "0"
-				else
-					let move_arg = a:line_getter." -".(v:count1 + 1)
-				endif
-				call <SID>MoveLineOrVisualUpOrDown(a:range."move ".move_arg)
-			endfunction
-
-			function! s:MoveLineOrVisualDown(line_getter, range)
-				let l_num = line(a:line_getter)
-				if l_num + v:count1 > line("$")
-					let move_arg = "$"
-				else
-					let move_arg = a:line_getter." +".v:count1
-				endif
-				call <SID>MoveLineOrVisualUpOrDown(a:range."move ".move_arg)
-			endfunction
-
-			function! s:MoveLineOrVisualUpOrDown(move_arg)
-				let col_num = virtcol(".")
-				execute "silent! ".a:move_arg
-				execute "normal! ".col_num."|"
-			endfunction
-
-			" Arrow key remapping:
-			" Up/Dn = move line up/dn
-			" Left/Right = indent/unindent
-			function! SetArrowKeysAsTextShifters()
-				" Normal mode
 				nnoremap <silent> <Left>   :bn<CR>
 				nnoremap <silent> <Right>  :bp<CR>
-				nnoremap <silent> <Up>     <Esc>:call <SID>MoveLineUp()<CR>
-				nnoremap <silent> <Down>   <Esc>:call <SID>MoveLineDown()<CR>
-
-				" Visual mode
-				vnoremap <silent> <Left>   <gv
-				vnoremap <silent> <Right>  >gv
-				vnoremap <silent> <S-Up>   <Esc>:call <SID>MoveVisualUp()<CR>
-				vnoremap <silent> <S-Down> <Esc>:call <SID>MoveVisualDown()<CR>
-
-				" Insert mode
-				inoremap <silent> <Left>   <C-D>
-				inoremap <silent> <Right>  <C-T>
-				inoremap <silent> <Up>     <C-O>:call <SID>MoveLineUp()<CR>
-				inoremap <silent> <Down>   <C-O>:call <SID>MoveLineDown()<CR>
-			endfunction
-
-			call SetArrowKeysAsTextShifters()
 		" }}}
 		" Toggle between 'Relative' and 'Absolute' line numbers {{{
 		" by aj3423
@@ -785,11 +718,6 @@ exe "set path=".expand("$PATH")
 		" }}}
 	" }}}
 	" Plugin-Related {{{
-		" Tabularize mappings {{{
-			vnoremap <silent> <Leader>t> :Tabularize /=><CR>
-			vnoremap <silent> <Leader>t= :Tabularize /=<CR>
-			vnoremap <silent> <Leader>t, :Tabularize /,<CR>
-		" }}}
 	" }}}
 	" QuickFix {{{
 		map <leader>cope :botright cope<cr>
@@ -914,9 +842,6 @@ exe "set path=".expand("$PATH")
 		" Nginx {{{
 			au BufNewFile,BufRead /etc/nginx/conf/* set ft=nginx
 		" }}}
-		" SASS {{{
-			au FileType sass set sw=6 ts=6 noet
-		" }}}
 		" Arch Linux {{{
 			au BufNewFile,BufRead PKGBUILD set syntax=sh ft=sh
 			au BufNewFile,BufRead *.install set syntax=sh ft=sh
@@ -930,9 +855,9 @@ exe "set path=".expand("$PATH")
 		" HTML/XHTML {{{
 			" for HTML, generally format text, but if a long line has been created
 			" leave it alone when editing:
-			autocmd FileType html,xhtml set formatoptions+=tl
-			autocmd FileType html,xhtml set foldmethod=indent smartindent
-			autocmd FileType html,xhtml set noexpandtab tabstop=3 shiftwidth=3
+			autocmd FileType html,xhtml setlocal formatoptions+=tl
+			autocmd FileType html,xhtml setlocal foldmethod=indent smartindent
+			autocmd FileType html,xhtml setlocal noexpandtab tabstop=3 shiftwidth=3
 			au FileType html,xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
 
 			" Load the Current buffer in default web browser of Firefox {{{
@@ -949,8 +874,8 @@ exe "set path=".expand("$PATH")
 			" }}}
 		" }}}
 		" CSS {{{
-			autocmd FileType css set smartindent foldmethod=indent
-			autocmd FileType css set noexpandtab tabstop=2 shiftwidth=2
+			autocmd FileType css setlocal smartindent foldmethod=indent
+			autocmd FileType css setlocal noexpandtab tabstop=2 shiftwidth=2
 		" }}}
 		" Javascript {{{
 			au FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
@@ -959,10 +884,10 @@ exe "set path=".expand("$PATH")
 			au FileType javascript setl nocindent
 
 			" jQuery syntax
-			au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+			au BufRead,BufNewFile jquery.*.js setlocal ft=javascript syntax=jquery
 
 			" JSON syntax
-			au BufRead,BufNewFile *.json set ft=json
+			au BufRead,BufNewFile *.json setlocal ft=json
 
 
 			" Expand compressed (minified) Javascript with JSBeautify.vim
@@ -998,12 +923,12 @@ exe "set path=".expand("$PATH")
 			endfunction
 		" }}}
 		" Python {{{
-			au FileType python set nocindent
+			au FileType python setlocal nocindent
 			let python_highlight_all = 1
 			au FileType python syn keyword pythonDecorator True None False self
 
-			au BufNewFile,BufRead *.jinja set syntax=htmljinja
-			au BufNewFile,BufRead *.mako set ft=mako
+			au BufNewFile,BufRead *.jinja setlocal syntax=htmljinja
+			au BufNewFile,BufRead *.mako setlocal ft=mako
 		" }}}
 		" Markdown {{{
 			" Markdown to HTML
@@ -1044,7 +969,7 @@ exe "set path=".expand("$PATH")
 " }}}
 " Plugin settings {{{
 	" EasyMotion {{{
-		let g:EasyMotion_mapping_e = '<Leader>ee'
+		"let g:EasyMotion_mapping_e = '<Leader>ee'
 	" }}}
 	" Taglist {{{
 		" TagList options
@@ -1221,6 +1146,14 @@ exe "set path=".expand("$PATH")
 	" }}}
 	" delimitMate {{{
 		let g:delimitMate_balance_matchpairs = 1
+	" }}}
+	" Tabularize {{{
+		vnoremap <silent> <Leader>t> :Tabularize /=><CR>
+		vnoremap <silent> <Leader>t= :Tabularize /=<CR>
+		vnoremap <silent> <Leader>t, :Tabularize /,<CR>
+	" }}}
+	" ConqueTerm {{{
+		nnoremap <silent> <Leader>sh :ConqueTermSplit zsh<CR>
 	" }}}
 " }}}
 "" Project-specific settings {{{

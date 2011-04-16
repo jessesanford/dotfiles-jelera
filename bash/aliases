@@ -22,7 +22,7 @@ alias tmux='tmux -2'
 #------------------------------------------////
 # Only for Mac OSX
 #------------------------------------------////
-#alias brewupd='brew update && brew list | xargs brew install'
+alias brewupd='brew update && brew list | xargs brew install'
 
 #------------------------------------------////
 # Network
