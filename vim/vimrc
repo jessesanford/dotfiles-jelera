@@ -33,11 +33,14 @@ set nocompatible
 exe "set path=".expand("$PATH")
 
 " Load pathogen {{{
+
 	filetype off
 	silent! call pathogen#runtime_append_all_bundles()
 	call pathogen#helptags()
+
 " }}}
 " Basic configuration {{{
+
 	syntax on
 	filetype plugin on
 	filetype indent on
@@ -110,6 +113,7 @@ exe "set path=".expand("$PATH")
 " Statusline {{{
 	" Functions {{{
 		" Statusline updater {{{
+
 			" Inspired by StatusLineHighlight by Ingo Karkat
 			function! s:StatusLine(new_stl, type, current)
 				let current = (a:current ? "" : "NC")
@@ -159,8 +163,10 @@ exe "set path=".expand("$PATH")
 					let &l:statusline = new_stl
 				endif
 			endfunction
+
 		" }}}
 		" Color dict parser {{{
+
 			function! s:StatusLineColors(colors)
 				for type in keys(a:colors)
 					for name in keys(a:colors[type])
@@ -178,11 +184,13 @@ exe "set path=".expand("$PATH")
 					endfor
 				endfor
 			endfunction
+
 		" }}}
 	" }}}
 	" Default statusline {{{
+
 		let g:default_stl  = ""
-		"let g:default_stl .= "<CUR>#[Mode] %{&paste ? 'PASTE [>] ' : ''}%{substitute(mode(), '', '^V', 'g')} #[ModeS][>>]</CUR>"
+		let g:default_stl .= "<CUR>#[Mode] %{&paste ? 'PASTE [>] ' : ''}%{substitute(mode(), '', '^V', 'g')} #[ModeS][>>]</CUR>"
 		let g:default_stl .= "#[Branch] %(%{substitute(fugitive#statusline(), 'GIT(\\([a-z0-9\\-_\\./:]\\+\\))', '∓ \\1', 'gi')}#[BranchS] [>] %)" " Git branch
 		let g:default_stl .= "#[ModFlag]%{&readonly ? '[RO] ' : ''}" " RO flag
 		let g:default_stl .= "#[FileName]%t " " File name
@@ -215,7 +223,6 @@ exe "set path=".expand("$PATH")
 			endif
 		endfunction
 
-
 		"return the syntax highlight group under the cursor ''
 		function! StatuslineCurrentHighlight()
 			let name = synIDattr(synID(line('.'),col('.'),1),'name')
@@ -228,6 +235,7 @@ exe "set path=".expand("$PATH")
 
 	" }}}
 	" Color dict {{{
+
 		let s:statuscolors = {
 			\   'NONE': {
 				\   'NONE'         : [[ 236, 231, 'bold', '#303030', '#ffffff', 'bold'], [ 232, 244, 'none', '#080808', '#808080', 'none']]
@@ -275,10 +283,12 @@ exe "set path=".expand("$PATH")
 				\ , 'LineColumn'   : [[ 117,  31, 'none', '#87d7ff', '#0087af', 'none'], [                 ]]
 			\ }
 		\ }
+
 	" }}}
 " }}}
 " UI options {{{
 	" Statusline highlighting {{{
+
 		augroup StatusLineHighlight
 			autocmd!
 
@@ -289,16 +299,20 @@ exe "set path=".expand("$PATH")
 			au BufLeave,BufWinLeave,WinLeave,CmdwinLeave * call <SID>StatusLine((exists('b:stl') ? b:stl : g:default_stl), 'Normal', 0)
 			au InsertEnter,CursorHoldI * call <SID>StatusLine((exists('b:stl') ? b:stl : g:default_stl), 'Insert', 1)
 		augroup END
+
 	" }}}
 	" Change cursor color in insert mode {{{
+
 		silent !echo -ne "]12;\#dd4010\x7"
 
 		let &t_SI="]12;\#89b6e2\x7"
 		let &t_EI="]12;\#dd4010\x7"
 
 		au VimLeave * silent !echo -ne "]12;\#dd4010\x7"
+
 	" }}}
 	" GUI settings {{{
+
    		if has('gui_running')
 			set guioptions-=T
 			if has('mac')
@@ -307,12 +321,16 @@ exe "set path=".expand("$PATH")
 				set guifont=DejaVu\ Sans\ Mono\ 10
 			endif
 		endif
+
 	" }}}
 	" Use custom fillchars/listchars/showbreak icons {{{
+
 		set fillchars=vert:║,diff:∓
 		set listchars=tab:▸\ ,eol:¬
 		set showbreak=⋯
+
 	" }}}
+
 	set background=dark
 	if exists('+lines')
 		set lines=45
@@ -348,8 +366,10 @@ exe "set path=".expand("$PATH")
 	set undolevels=1000
 	set pumheight=10
 	set diffopt+=context:3
+
 " }}}
 " Layout / Text formatting {{{
+
 	set autoindent
 	set cindent
 	set smartindent
@@ -364,30 +384,40 @@ exe "set path=".expand("$PATH")
 	set smarttab
 
 	set smartcase
-	set nostartofline
+	"set nostartofline
 	set completeopt=menu,menuone,longest
+
 	" Highlight problematic whitespace (spaces before tabs) {{{
+
 		hi RedundantSpaces ctermfg=214 ctermbg=160 cterm=bold
 		match RedundantSpaces / \+\ze\t/
+
 	" }}}
 	" Conflict markers {{{
+
 		" Highlight conflict markers
 		match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 		" Shortcut to jump to next conflict marker
 		nmap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+
 	" }}}
 " }}}
 " Folding {{{
+
 	set foldenable
 	set foldmethod=marker
 	set foldlevel=0
 	set foldcolumn=0
 	set foldtext=FoldText()
+
 	" Universal FoldText function {{{
+
 		function! FoldText(...)
+
 			" This function uses code from doy's vim-foldtext: https://github.com/doy/vim-foldtext
 			" Prepare fold variables {{{
+
 				" Use function argument as line text if provided
 				let l:line = a:0 > 0 ? a:1 : getline(v:foldstart)
 
@@ -397,22 +427,29 @@ exe "set path=".expand("$PATH")
 				let l:w_win = winwidth(0)
 				let l:w_num = getwinvar(0, '&number') * getwinvar(0, '&numberwidth')
 				let l:w_fold = getwinvar(0, '&foldcolumn')
+
 			" }}}
 			" Handle diff foldmethod {{{
+
 				if &fdm == 'diff'
 					let l:text = printf(' ⋆ %s matching lines ⋆ ', l:line_count)
 
 					" Center-align the foldtext
 					return repeat('≛', (l:w_win - strchars(l:text) - l:w_num - l:w_fold) / 2) . l:text
 				endif
+
 			" }}}
 			" Handle other foldmethods {{{
+
 				let l:text = l:line
 				" Remove foldmarkers {{{
+
 					let l:foldmarkers = split(&foldmarker, ',')
 					let l:text = substitute(l:text, '\V' . l:foldmarkers[0] . '\%(\d\+\)\?\s\*', '', '')
+
 				" }}}
 				" Remove comments {{{
+
 					let l:comment = split(&commentstring, '%s')
 
 					if l:comment[0] != ''
@@ -435,19 +472,27 @@ exe "set path=".expand("$PATH")
 							endif
 						endif
 					endif
+
 				" }}}
 				" Remove preceding non-word characters {{{
+
 					let l:text = substitute(l:text, '^\W*', '', '')
+
 				" }}}
 				" Remove surrounding whitespace {{{
+
 					let l:text = substitute(l:text, '^\s*\(.\{-}\)\s*$', '\1', '')
+
 				" }}}
 				" Make unmatched block delimiters prettier {{{
+
 					let l:text = substitute(l:text, '([^)]*$',   'ǒ ĵ Ǔ', '')
 					let l:text = substitute(l:text, '{[^}]*$',   'ǒ ĵ Ǔ', '')
 					let l:text = substitute(l:text, '\[[^\]]*$', 'ǒ ĵ Ǔ', '')
+
 				" }}}
 				" Add arrows when indent level > 2 spaces {{{
+
 					if indent(v:foldstart) > 2
 						let l:cline = substitute(l:line, '^\s*\(.\{-}\)\s*$', '\1', '')
 						let l:clen = strlen(matchstr(l:cline, '^\W*'))
@@ -455,29 +500,38 @@ exe "set path=".expand("$PATH")
 						let l:indent = repeat(' ', indent(v:foldstart) - 2)
 						let l:text = '⊙ ' . l:text
 					endif
+
 				" }}}
 				" Prepare fold text {{{
+
 					let l:fnum = printf(' %s ⇲ ', l:line_count)
 					let l:ftext = printf('%s%s ', l:indent, l:text)
+
 				" }}}
 				return l:ftext . repeat('⋯', l:w_win - strchars(l:fnum) - strchars(l:ftext) - l:w_num - l:w_fold) . l:fnum . ' '
+
 			" }}}
+
 		endfunction
 	" }}}
 	" PHP FoldText function {{{
+
 		function! FoldText_PHP()
 			" This function uses code from phpfolding.vim
 			let l:curline = v:foldstart
 			let l:line = getline(l:curline)
 			" Did we fold a DocBlock? {{{
+
 				if strridx(l:line, '#@+') != -1
 					if (matchstr(l:line, '^.*#@+..*$') == l:line)
 						let l:line = substitute(l:line, '^.*#@+', '', 'g') . ' ' . g:phpDocBlockIncludedPostfix
 					else
 						let l:line = getline(l:curline + 1) . ' ' . g:phpDocBlockIncludedPostfix
 					endif
+
 			" }}}
 			" Did we fold an API comment block? {{{
+
 				elseif strridx(l:line, "\/\*\*") != -1
 					let s:state = 0
 
@@ -495,38 +549,45 @@ exe "set path=".expand("$PATH")
 
 					let l:line = getline(l:curline)
 				endif
+
 			" }}}
 			" Cleanup {{{
+
 				let l:line = substitute(l:line, '/\*\|\*/\d\=', '', 'g')
 				let l:line = substitute(l:line, '^\s*\*\?\s*', '', 'g')
 				let l:line = substitute(l:line, '{$', '', 'g')
 				let l:line = substitute(l:line, '($', '(...)', 'g')
+
 			" }}}
 			" Append postfix if there is PhpDoc in the fold {{{
+
 				if l:curline != v:foldstart
 					let l:line = l:line . " " . g:phpDocIncludedPostfix . " "
 				endif
+
 			" }}}
 			return FoldText(l:line)
 		endfunction
+
 	" }}}
 	" Enable PHP FoldText function {{{
+
 		let g:DisableAutoPHPFolding = 1
 
 		au FileType php EnableFastPHPFolds
-		au FileType php set foldtext=FoldText() | setl foldtext=FoldText_PHP()
+		au FileType php setlocal foldtext=FoldText() | setl foldtext=FoldText_PHP()
+
 	" }}}
 	" JavaScriptFold Function {{{
+
 		function! JavaScriptFold()
 			setl foldmethod=syntax
 			setl foldlevelstart=1
 			syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 
-			function! FoldText()
-				return substitute(getline(v:foldstart), '{.*', '{...}', '')
-			endfunction
 			setl foldtext=FoldText()
 		endfunction
+
 	" }}}
 " }}}
 " Mappings {{{
@@ -626,6 +687,24 @@ exe "set path=".expand("$PATH")
 		" Show Invisible Characters {{{
 		   nmap <Leader>l :set list!<CR>
 		" }}}
+		" Toggle Foldings {{{
+			nnoremap <Space> za
+		" }}}
+		" Using vimdiff to track changes {{{
+
+		 	nmap <Leader>wd :call DiffWithFileFromDisk()<CR><Leader>u
+
+			function! DiffWithFileFromDisk()
+				let filename=expand('%')
+				let diffname = filename.'.fileFromBuffer'
+				exec 'saveas! '.diffname
+				diffthis
+				vsplit
+				exec 'edit '.filename
+				diffthis
+			endfunction
+
+		" }}}
 		" Indent visual selected code without unselecting {{{
 			vmap > >gv
 			vmap < <gv
@@ -651,17 +730,17 @@ exe "set path=".expand("$PATH")
 		" Autocomplete {} indent and reposition of the cursor in the middle {{{
 			inoremap {      {}<Left>
 			inoremap {<CR>  {<CR>}<Esc>O
-			inoremap {{     {
+			"inoremap {{     {
 			inoremap {}     {}
 
 			inoremap (      ()<Left>
 			inoremap (<CR>  (<CR>)<Esc>O
-			inoremap ((     (
+			"inoremap ((     (
 			inoremap ()     ()
 
 			inoremap [      []<Left>
 			inoremap [<CR>  [<CR>]<Esc>O
-			inoremap [[     [
+			"inoremap [[     [
 			inoremap []     []
 		" }}}
 		" Code Comment Banners {{{
@@ -707,8 +786,8 @@ exe "set path=".expand("$PATH")
 			" were characterwise instead.
 			" Uses the paste.vim autoload script.
 
-			exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-			exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+			"exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+			"exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 
 			imap <S-Insert> <C-V>
 			vmap <S-Insert> <C-V>
@@ -716,8 +795,6 @@ exe "set path=".expand("$PATH")
 			" Use CTRL-Q to do what CTRL-V used to do, Blockwise Visual Selection
 			noremap <C-Q>   <C-V>
 		" }}}
-	" }}}
-	" Plugin-Related {{{
 	" }}}
 	" QuickFix {{{
 		map <leader>cope :botright cope<cr>
@@ -753,9 +830,6 @@ exe "set path=".expand("$PATH")
 			endfunction
 
 			au FileType help au BufEnter,BufWinEnter <buffer> call <SID>SetupHelpWindow()
-		" }}}
-		" Disable Syntastic for selected filetypes {{{
-			au FileType sass SyntasticDisable
 		" }}}
 		" Fix space highlighting in diff files {{{
 			au FileType diff hi clear RedundantSpaces
@@ -837,17 +911,20 @@ exe "set path=".expand("$PATH")
 			au BufNewFile *.php so ~/.vim/templates/tpl.php
 		" }}}
 		" PSQL {{{
-			au BufNewFile,BufRead *.sql set ft=psql foldmethod=marker
+			"au BufNewFile,BufRead *.sql set ft=psql foldmethod=marker
 		" }}}
 		" Nginx {{{
-			au BufNewFile,BufRead /etc/nginx/conf/* set ft=nginx
+			au BufNewFile,BufRead /etc/nginx/conf/* setl ft=nginx
 		" }}}
 		" Arch Linux {{{
-			au BufNewFile,BufRead PKGBUILD set syntax=sh ft=sh
-			au BufNewFile,BufRead *.install set syntax=sh ft=sh
+			au BufNewFile,BufRead PKGBUILD setl syntax=sh ft=sh
+			au BufNewFile,BufRead *.install setl syntax=sh ft=sh
 		" }}}
 		" LESS {{{
-			au BufNewFile,BufRead *.less set ft=less
+			au BufNewFile,BufRead *.less setl ft=less
+		" }}}
+		" SASS {{{
+			au FileType sass SyntasticDisable
 		" }}}
 		" Ruby {{{
 			au FileType ruby setlocal ts=2 sts=2 sw=2 noexpandtab foldmethod=syntax
@@ -932,10 +1009,10 @@ exe "set path=".expand("$PATH")
 		" }}}
 		" Markdown {{{
 			" Markdown to HTML
-			au FileType markdown nmap <leader>md :%!markdown 2>/dev/null<CR>
+			au FileType markdown nnoremap <silent> <leader>md :%!markdown 2>/dev/null<CR>
 
 			" Preview Markdown text
-			au Filetype markdown nmap <leader>pv : call MarkdownPreview()<CR>
+			au Filetype markdown nnoremap <silent> <leader>pv : call MarkdownPreview()<CR>
 			func! MarkdownPreview()
 				exec "w /tmp/previewmkd.markdown"
 				if has("mac")
