@@ -76,3 +76,6 @@
 [submodule "vim/bundle/taglist-plus"]
 	path = vim/bundle/taglist-plus
 	url = https://github.com/int3/vim-taglist-plus.git
+[submodule "vim/bundle/PIV"]
+	path = vim/bundle/PIV
+	url = https://github.com/spf13/PIV.git
