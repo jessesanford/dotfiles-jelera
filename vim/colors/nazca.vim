@@ -15,12 +15,12 @@
 " Note, x:x:x are RGB values
 "
 "  normal: #f6f3e8
-" 
-"  string: #A8FF60  168:255:96                   
+"
+"  string: #A8FF60  168:255:96
 "    string inner (punc, code, etc): #00A0A0  0:160:160
-"  number: #FF73FD  255:115:253                 
+"  number: #FF73FD  255:115:253
 "  comments: #7C7C7C  124:124:124
-"  keywords: #96CBFE  150:203:254             
+"  keywords: #96CBFE  150:203:254
 "  operators: white
 "  class: #FFFFB6  255:255:182
 "  method declaration name: #FFD2A7  255:210:167
@@ -28,20 +28,20 @@
 "    regexp alternate: #FF8000  255:128:0
 "    regexp alternate 2: #B18A3D  177:138:61
 "  variable: #C6C5FE  198:197:254
-"  
+"
 " Misc colors:
-"  red color (used for whatever): #FF6C60   255:108:96 
+"  red color (used for whatever): #FF6C60   255:108:96
 "     light red: #FFB6B0   255:182:176
 "
 "  brown: #E18964  good for special
 "
 "  lightpurpleish: #FFCCFF
-" 
+"
 " Interface colors:
 "  background color: black
 "  cursor (where underscore is used): #FFA560  255:165:96
 "  cursor (where block is used): white
-"  visual selection: #1D1E2C  
+"  visual selection: #1D1E2C
 "  current line: #151515  21:21:21
 "  search selection: #07281C  7:40:28
 "  line number: #3D3D3D  61:61:61
@@ -73,7 +73,7 @@ let colors_name = "nazca"
 "hi Example         guifg=NONE        guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 
 " General colors
-hi  Normal       guifg=#f6f3e8 guibg=#161617 gui=NONE      ctermfg=7     ctermbg=233  cterm=NONE
+hi  Normal       guifg=#ebe8de  guibg=#161617 gui=NONE      ctermfg=7     ctermbg=233  cterm=NONE
 hi  NonText      guifg=#505050 guibg=#000000 gui=NONE      ctermfg=239   ctermbg=0    cterm=NONE
 
 hi  Cursor       guifg=#000000 guibg=#f0f000 gui=NONE      ctermfg=0     ctermbg=11   cterm=reverse
@@ -95,8 +95,8 @@ hi  PmenuSbar    guifg=#000000 guibg=#ffffff gui=NONE      ctermfg=0     ctermbg
 "hi Ignore       guifg=gray    guibg=#000000 ctermbg=0     gui=NONE      ctermfg=NONE ctermbg=NONE  cterm=NONE
 
 hi  Error        guifg=NONE    guibg=NONE    gui=undercurl guisp=#FF6C60 ctermfg=15   ctermbg=88    cterm=NONE
-hi  ErrorMsg     guifg=#ffffff guibg=#FF6C60 gui=BOLD      ctermfg=15    ctermbg=203  cterm=BOLD
-hi  WarningMsg   guifg=#ffffff guibg=#FF6C60 gui=BOLD      ctermfg=15    ctermbg=203  cterm=BOLD
+hi  ErrorMsg     guifg=#ffffff guibg=#c75249  gui=BOLD      ctermfg=15    ctermbg=203  cterm=BOLD
+hi  WarningMsg   guifg=#ffffff guibg=#ff8cc2  gui=BOLD      ctermfg=15    ctermbg=203  cterm=BOLD
 
 " Message displayed in lower left, such as --INSERT--
 hi ModeMsg          guifg=#000000  guibg=#C6C5FE gui=BOLD     ctermfg=0 ctermbg=189 cterm=BOLD
@@ -112,11 +112,11 @@ endif
 
 " Syntax highlighting
 hi Comment     guifg=#7C7C7C guibg=NONE    gui=NONE   ctermfg=8   ctermbg=NONE cterm=NONE
-hi String      guifg=#acff82 guibg=NONE    gui=NONE   ctermfg=156 ctermbg=NONE cterm=NONE
-hi Number      guifg=#FF73FD guibg=NONE    gui=NONE   ctermfg=207 ctermbg=NONE cterm=NONE
+hi String      guifg=#8ac891        guibg=NONE    gui=NONE   ctermfg=156 ctermbg=NONE cterm=NONE
+hi Number      guifg=#cc59d7  guibg=NONE    gui=NONE   ctermfg=207 ctermbg=NONE cterm=NONE
 
-hi Keyword     guifg=#96CBFE guibg=NONE    gui=NONE   ctermfg=117 ctermbg=NONE cterm=NONE
-hi PreProc     guifg=#96CBFE guibg=NONE    gui=NONE   ctermfg=117 ctermbg=NONE cterm=NONE
+hi Keyword     guifg=#9ed0ed  guibg=NONE    gui=NONE   ctermfg=117 ctermbg=NONE cterm=NONE
+hi PreProc     guifg=#96CBFE guibg=NONE    gui=BOLD   ctermfg=117 ctermbg=NONE cterm=NONE
 hi Conditional guifg=#6699CC guibg=NONE    gui=NONE   ctermfg=68  ctermbg=NONE cterm=NONE
 
 hi Todo        guifg=#890a0a guibg=#f2f773 gui=BOLD   ctermfg=88  ctermbg=227  cterm=BOLD
@@ -124,7 +124,7 @@ hi Constant    guifg=#99CC99 guibg=NONE    gui=ITALIC ctermfg=114 ctermbg=NONE c
 
 hi Identifier  guifg=#C6C5FE guibg=NONE    gui=NONE   ctermfg=189 ctermbg=NONE cterm=NONE
 hi Function    guifg=#FFD2A7 guibg=NONE    gui=BOLD   ctermfg=223 ctermbg=NONE cterm=BOLD
-hi Type        guifg=#FFFFB6 guibg=NONE    gui=BOLD   ctermfg=229 ctermbg=NONE cterm=BOLD
+hi Type        guifg=#e8e0a7        guibg=NONE    gui=BOLD   ctermfg=229 ctermbg=NONE cterm=BOLD
 hi Statement   guifg=#6699CC guibg=NONE    gui=NONE   ctermfg=68  ctermbg=NONE cterm=NONE
 
 hi Special     guifg=#E18964 guibg=NONE    gui=NONE   ctermfg=173 ctermbg=NONE cterm=NONE
@@ -168,24 +168,24 @@ hi  rubyStringDelimiter        guifg=#336633 guibg=NONE gui=NONE ctermfg=238 cte
 "hi link rubyArrayDelimiter    Special  " [ , , ]
 "rubyCurlyBlock  { , , }
 
-hi link rubyClass             Keyword 
-hi link rubyModule            Keyword 
-hi link rubyKeyword           Keyword 
+hi link rubyClass             Keyword
+hi link rubyModule            Keyword
+hi link rubyKeyword           Keyword
 hi link rubyOperator          Operator
 hi link rubyIdentifier        Identifier
 hi link rubyInstanceVariable  Identifier
 hi link rubyGlobalVariable    Identifier
 hi link rubyClassVariable     Identifier
-hi link rubyConstant          Type  
+hi link rubyConstant          Type
 
 
 " Special for Java
 " hi link javaClassDecl    Type
-hi link javaScopeDecl         Identifier 
-hi link javaCommentTitle      javaDocSeeTag 
-hi link javaDocTags           javaDocSeeTag 
-hi link javaDocParam          javaDocSeeTag 
-hi link javaDocSeeTagParam    javaDocSeeTag 
+hi link javaScopeDecl         Identifier
+hi link javaCommentTitle      javaDocSeeTag
+hi link javaDocTags           javaDocSeeTag
+hi link javaDocParam          javaDocSeeTag
+hi link javaDocSeeTagParam    javaDocSeeTag
 
 hi  javaDocSeeTag guifg=#CCCCCC guibg=NONE gui=NONE ctermfg=252 ctermbg=NONE cterm=NONE
 hi  javaDocSeeTag guifg=#CCCCCC guibg=NONE gui=NONE ctermfg=252 ctermbg=NONE cterm=NONE
@@ -193,17 +193,17 @@ hi  javaDocSeeTag guifg=#CCCCCC guibg=NONE gui=NONE ctermfg=252 ctermbg=NONE cte
 
 
 " Special for XML
-hi link xmlTag          Keyword 
-hi link xmlTagName      Conditional 
-hi link xmlEndTag       Identifier 
+hi link xmlTag          Keyword
+hi link xmlTagName      Conditional
+hi link xmlEndTag       Identifier
 
 
 " Special for HTML
 hi htmlH1 guifg=#de675c   gui=underline ctermfg=167 cterm=UNDERLINE
 hi htmlLink guifg=#c777ff gui=underline ctermfg=177 cterm=UNDERLINE
 hi link htmlTag         Keyword
-hi link htmlTagName     Conditional 
-hi link htmlEndTag      Identifier 
+hi link htmlTagName     Conditional
+hi link htmlEndTag      Identifier
 hi link htmlH2 htmlH1
 hi link htmlH3 htmlH1
 hi link htmlH4 htmlH1
@@ -218,7 +218,7 @@ hi cssPseudoClassId guifg=#9ccfdd gui=italic ctermfg=152 cterm=NONE
 hi cssIdentifier    guifg=#a2ddb8 gui=italic ctermfg=151 cterm=NONE
 
 " Special for Markdown
-hi markdownUrl guifg=#e48944 ctermfg=173 
+hi markdownUrl guifg=#e48944 ctermfg=173
 hi markdownCode guifg=#a7bee4   gui=BOLD ctermfg=151 cterm=BOLD
 hi markdownCodeBlock guifg=#c5b1e4 ctermfg=182
 
@@ -239,15 +239,15 @@ hi javaScriptFuncName             guifg=#B5E4F7      ctermfg=153
 hi javaScriptHtmlElemProperties   guifg=#FF9494      ctermfg=210
 hi javaScriptEventListenerKeyword guifg=#6699CC      ctermfg=68
 
-hi link javaScriptNumber      Number 
+hi link javaScriptNumber      Number
 hi link javaScriptPropietaryObjects javaScriptAjaxObjects
 
 " Special for Python
-"hi  link pythonEscape         Keyword      
+"hi  link pythonEscape         Keyword
 
 
 " Special for CSharp
-hi  link csXmlTag             Keyword      
+hi  link csXmlTag             Keyword
 
 " Special for PHP
 hi phpDefine  guifg=#ffc795    gui=BOLD ctermfg=209 cterm=BOLD

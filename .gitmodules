@@ -73,9 +73,15 @@
 [submodule "vim/bundle/current-func-info"]
 	path = vim/bundle/current-func-info
 	url = https://github.com/tyru/current-func-info.vim.git
-[submodule "vim/bundle/taglist-plus"]
-	path = vim/bundle/taglist-plus
-	url = https://github.com/int3/vim-taglist-plus.git
 [submodule "vim/bundle/PIV"]
 	path = vim/bundle/PIV
 	url = https://github.com/spf13/PIV.git
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "vim/bundle/delimitMate"]
+	path = vim/bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "vim/bundle/enter-indent"]
+	path = vim/bundle/enter-indent
+	url = https://github.com/acustodioo/vim-enter-indent.git

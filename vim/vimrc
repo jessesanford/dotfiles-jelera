@@ -374,7 +374,7 @@ exe "set path=".expand("$PATH")
 	set cindent
 	set smartindent
 	set wrap
-	""set textwidth=72
+	set textwidth=79
 	set formatoptions=croqwanl1
 	set ignorecase
 	set linebreak
@@ -382,6 +382,7 @@ exe "set path=".expand("$PATH")
 	set shiftwidth=4
 	set tabstop=4
 	set smarttab
+	set noexpandtab
 
 	set smartcase
 	"set nostartofline
@@ -435,7 +436,7 @@ exe "set path=".expand("$PATH")
 					let l:text = printf(' ⋆ %s matching lines ⋆ ', l:line_count)
 
 					" Center-align the foldtext
-					return repeat('≛', (l:w_win - strchars(l:text) - l:w_num - l:w_fold) / 2) . l:text
+					return repeat('=', (l:w_win - strchars(l:text) - l:w_num - l:w_fold) / 2) . l:text
 				endif
 
 			" }}}
@@ -498,17 +499,17 @@ exe "set path=".expand("$PATH")
 						let l:clen = strlen(matchstr(l:cline, '^\W*'))
 
 						let l:indent = repeat(' ', indent(v:foldstart) - 2)
-						let l:text = '⊙ ' . l:text
+						let l:text = '⊙  ' . l:text
 					endif
 
 				" }}}
 				" Prepare fold text {{{
 
-					let l:fnum = printf(' %s ⇲ ', l:line_count)
-					let l:ftext = printf('%s%s ', l:indent, l:text)
+					let l:fnum = printf(' [ Lines : %s ]           ', l:line_count)
+					let l:ftext = printf('+  %s%s ', l:indent, l:text)
 
 				" }}}
-				return l:ftext . repeat('⋯', l:w_win - strchars(l:fnum) - strchars(l:ftext) - l:w_num - l:w_fold) . l:fnum . ' '
+				return l:ftext . repeat(' ', l:w_win - strchars(l:fnum) - strchars(l:ftext) - l:w_num - l:w_fold) . l:fnum . ' '
 
 			" }}}
 
@@ -728,20 +729,20 @@ exe "set path=".expand("$PATH")
 			nnoremap <leader>nw :%s/\s\+$//e<cr>:let @/=''<CR>
 		" }}}
 		" Autocomplete {} indent and reposition of the cursor in the middle {{{
-			inoremap {      {}<Left>
-			inoremap {<CR>  {<CR>}<Esc>O
-			"inoremap {{     {
-			inoremap {}     {}
+		   " inoremap {      {}<Left>
+			"inoremap {<CR>  {<CR>}<Esc>O
+			""inoremap {{     {
+			"inoremap {}     {}
 
-			inoremap (      ()<Left>
-			inoremap (<CR>  (<CR>)<Esc>O
-			"inoremap ((     (
-			inoremap ()     ()
+			"inoremap (      ()<Left>
+			"inoremap (<CR>  (<CR>)<Esc>O
+			""inoremap ((     (
+			"inoremap ()     ()
 
-			inoremap [      []<Left>
-			inoremap [<CR>  [<CR>]<Esc>O
-			"inoremap [[     [
-			inoremap []     []
+			"inoremap [      []<Left>
+			"inoremap [<CR>  [<CR>]<Esc>O
+			""inoremap [[     [
+			"inoremap []     []
 		" }}}
 		" Code Comment Banners {{{
 			autocmd FileType vim map <leader>ccb I"<DEL>  <ESC>A  "<DEL><ESC>yyp0lv$hhr"yykPjj
@@ -795,7 +796,6 @@ exe "set path=".expand("$PATH")
 			" Use CTRL-Q to do what CTRL-V used to do, Blockwise Visual Selection
 			noremap <C-Q>   <C-V>
 		" }}}
-	" }}}
 	" QuickFix {{{
 		map <leader>cope :botright cope<cr>
 		map <leader>cn :cn<cr>
@@ -812,6 +812,7 @@ exe "set path=".expand("$PATH")
 		map <leader>sa zg
 		map <leader>s? z=
 
+	" }}}
 	" }}}
 " }}}
 " Autocommands {{{
@@ -934,6 +935,7 @@ exe "set path=".expand("$PATH")
 			" leave it alone when editing:
 			autocmd FileType html,xhtml setlocal formatoptions+=tl
 			autocmd FileType html,xhtml setlocal foldmethod=indent smartindent
+			autocmd FileType html,xhtml setlocal textwidth=0
 			autocmd FileType html,xhtml setlocal noexpandtab tabstop=3 shiftwidth=3
 			au FileType html,xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
 
@@ -1047,21 +1049,6 @@ exe "set path=".expand("$PATH")
 " Plugin settings {{{
 	" EasyMotion {{{
 		"let g:EasyMotion_mapping_e = '<Leader>ee'
-	" }}}
-	" Taglist {{{
-		" TagList options
-		let Tlist_Close_On_Select = 1 "close taglist window once we selected something
-		let Tlist_Exit_OnlyWindow = 1 "if taglist window is the only window left, exit vim
-		let Tlist_Show_Menu = 1 "show Tags menu in gvim
-		let Tlist_Show_One_File = 1 "show tags of only one file
-		let Tlist_GainFocus_On_ToggleOpen = 1 "automatically switch to taglist window
-		let Tlist_Highlight_Tag_On_BufEnter = 1 "highlight current tag in taglist window
-		let Tlist_Process_File_Always = 1 "taglist window on the right
-		let Tlist_Display_Prototype = 1 "display full prototype instead of just function name
-		" "let Tlist_Ctags_Cmd = /usr/local/bin/ctags
-
-		nnoremap <F5> :TlistToggle<CR>
-		nnoremap <F6> :TlistShowPrototype<CR>
 	" }}}
 	" MiniBufExpl {{{
 		let g:miniBufExplModSelTarget = 1
@@ -1187,10 +1174,12 @@ exe "set path=".expand("$PATH")
 		map <leader>nt :NERDTreeToggle<CR>
 	" }}}
 	" Tagbar {{{
-		let g:tagbar_width = 50
+		let g:tagbar_width = 40
 		let g:tagbar_autoclose = 1
 		let g:tagbar_autofocus = 1
 		let g:tagbar_compact = 1
+
+		nnoremap <silent> <F5> :TagbarToggle<CR>
 	" }}}
 	" Syntastic {{{
 		let g:syntastic_enable_signs = 1

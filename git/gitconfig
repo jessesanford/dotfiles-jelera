@@ -29,6 +29,7 @@
 [core]
         pager = less -FRSX
         whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	quotepath = false
 
 [alias]
         co = checkout
@@ -37,3 +38,9 @@
     user = github username
     token = github API token
 
+[difftool "Kaleidoscope"]
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[diff]
+	tool = Kaleidoscope

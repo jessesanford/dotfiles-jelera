@@ -28,7 +28,7 @@ brew install ack \
 	closure-compiler \
 	csstidy \
 	ctags \
-	fdupes \
+	fortune \
 	ffmpeg \
 	findutils \
 	gawk \
@@ -66,6 +66,12 @@ brew install ack \
 	yuicompressor \
 	zsh \
 	
+# Install NPM
+curl http://npmjs.org/install.sh | sh
+
+# Install Rvm
+bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
+
 # Install MacVim and updated Vim for the Terminal
 brew install macvim
 echo "`ls /usr/local/Cellar/macvim/*/MacVim.app/Contents/MacOS/Vim | head -n 1` \$*" > /usr/local/bin/vim

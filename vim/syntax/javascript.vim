@@ -74,8 +74,7 @@ syntax match   javaScriptLabel          /\(?\s*\)\@<!\<\w\+\(\s*:\)\@=/
 "" JavaScript Prototype
 syntax keyword javaScriptPrototype      prototype
 
-""""""""""""""""""""""""
-"  JavaScript Support  "
+"  Ajax Support   {{{
 """"""""""""""""""""""""
 " (** Modified by Jose Elera)
 "
@@ -97,10 +96,7 @@ syntax keyword javaScriptHtmlElemProperties className  clientHeight  clientLeft 
 syntax keyword javaScriptEventListenerKeywords   blur  click  focus  mouseover mouseout load item
 
 syntax keyword javaScriptEventListenerMethods   scrollIntoView  addEventListener  dispatchEvent  removeEventListener preventDefault stopPropagation
-
-""""""""""""""""""
-"  end modified  "
-""""""""""""""""""
+" }}}
 
 "" Programm Keywords
 syntax keyword javaScriptSource         import export
@@ -124,7 +120,7 @@ syntax keyword javaScriptFutureKeys     abstract enum int short boolean export i
 "" DOM/HTML/CSS specified things
 
   " DOM2 Objects
-  syntax keyword javaScriptGlobalObjects  DOMImplementation DocumentFragment Document Node NodeList NamedNodeMap CharacterData Attr Element Text Comment CDATASection DocumentType Notation Entity EntityReference ProcessingInstruction
+  syntax keyword javaScriptGlobalObjects  DOMImplementation DocumentFragment Node NodeList NamedNodeMap CharacterData Attr Element Text Comment CDATASection DocumentType Notation Entity EntityReference ProcessingInstruction
   syntax keyword javaScriptExceptions     DOMException
 
   " DOM2 CONSTANT
