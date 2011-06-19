@@ -689,10 +689,10 @@ function! javascriptcomplete#CompleteJS(findstart, base)
 	let keywords = ["Array", "Boolean", "Date", "Function", "Math", "Number", "Object", "RegExp", "String", "XMLHttpRequest", "ActiveXObject", "abstract", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "debugger", "default", "delete", "do", "double ", "else", "enum", "export", "extends", "false", "final", "finally", "float", "for", "function", "goto", "if", "implements", "import", "in ", "instanceof", "int", "interface", "long", "native", "new", "null", "package", "private", "protected", "public", "return", "short", "static", "super ", "switch", "synchronized", "this", "throw", "throws", "transient", "true", "try", "typeof", "var", "void", "volatile", "while", "with"]
 
 	" jQuery
-	let jqueryObj = ['$', 'jQuery']
-	call map(jqueryObj, 'v:val."("')
+	let jQueryObj = ['$', 'jQuery']
+	call map(jQueryObj, 'v:val."("')
 
-	let values = variables + functions + htmldom + arguments + builtin + properties + keywords + jqueryObj
+	let values = variables + functions + htmldom + arguments + builtin + properties + keywords + jQueryObj
 
 	for m in values
 		if m =~? '^'.a:base
