@@ -40,9 +40,6 @@
 [submodule "vim/bundle/vim-rails"]
 	path = vim/bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
-[submodule "vim/bundle/rdoc"]
-	path = vim/bundle/rdoc
-	url = https://github.com/hallison/vim-rdoc.git
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
 	url = https://github.com/tpope/vim-surround.git
@@ -82,6 +79,3 @@
 [submodule "vim/bundle/delimitMate"]
 	path = vim/bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
-[submodule "vim/bundle/autosave"]
-	path = vim/bundle/autosave
-	url = https://github.com/kien/autosavesetting.vim.git
