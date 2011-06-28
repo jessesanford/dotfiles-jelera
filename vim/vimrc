@@ -743,6 +743,58 @@ exe "set path=".expand("$PATH")
 			"inoremap [<CR>  [<CR>]<Esc>O
 			""inoremap [[     [
 			"inoremap []     []
+
+			" Taken from https://github.com/acustodioo/vim-enter-indent
+			func! EnterIndent()
+				let EnterIndentActive = [
+							\ {'left' : '[\{\[\(]','right' : '[\)\]\}]'},
+							\ {'left' : '<[^>]*>', 'right' : '</[^>]*>'},
+							\ {'left' : '<?\(php\)\?', 'right' : '?>'},
+							\ {'left' : '<%', 'right' : '%>'},
+							\ {'left' : '\[[^\]]*\]', 'right' : '\[/[^\]]*\]'},
+							\ {'left' : '<!--', 'right' : '-->'},
+							\ {'left' : '\(#\)\?{[^\}]*\}', 'right' : '\(#\)\?{[^\}]*\}'},
+							\ ]
+
+				let GetLine = getline('.')
+				let ColNow = col('.') - 1
+
+				let RightGetLine = substitute(
+							\ strpart(GetLine, ColNow, col('$')),
+							\ '^[ ]*', '', ''
+							\ )
+
+				if RightGetLine == "" | call feedkeys("\<CR>", 'n') | return '' | endif
+
+				for value in EnterIndentActive
+					if matchstr(RightGetLine, '^' . value.right) != ""
+						let EnterIndentRun = 1 | break
+					endif
+				endfor
+
+				if !exists('EnterIndentRun') | call feedkeys("\<CR>", 'n') | return '' | endif
+
+				let LeftGetLine = substitute(
+							\ strpart(GetLine, 0, ColNow),
+							\ '[ ]*$', '', ''
+							\ )
+
+				if matchstr(LeftGetLine, value.left . '$') == ""
+					call feedkeys("\<CR>", 'n') | return ''
+				endif
+
+				let LineNow = line('.')
+				let Indent = substitute(LeftGetLine, '^\([ |\t]*\).*$', '\1', '')
+
+				call setline(LineNow, LeftGetLine)
+				call append(LineNow, Indent . RightGetLine)
+				call append(LineNow, Indent)
+				call feedkeys("\<Down>\<Esc>\A\<Tab>", 'n')
+
+				return ''
+			endf
+
+			inoremap <silent> <cr> <c-r>=EnterIndent()<cr>
 		" }}}
 		" Code Comment Banners {{{
 			autocmd FileType vim map <leader>ccb I"<DEL>  <ESC>A  "<DEL><ESC>yyp0lv$hhr"yykPjj
