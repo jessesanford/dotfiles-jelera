@@ -110,4 +110,6 @@ echo -e "${bldred}Kernel Information: \t${txtcyn}" `uname -smr`
 echo -ne "${bldcyn}";upinfo;echo ""
 echo -e "${bldgrn}";cal 
 
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+ . ~/.nvm/nvm.sh
+
