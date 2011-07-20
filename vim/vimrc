@@ -973,11 +973,23 @@ exe "set path=".expand("$PATH")
 			au BufNewFile,BufRead PKGBUILD setl syntax=sh ft=sh
 			au BufNewFile,BufRead *.install setl syntax=sh ft=sh
 		" }}}
+		" PHP highlighting {{{
+			let g:php_folding = 0
+			let g:php_html_in_strings = 1
+			let g:php_parent_error_close = 1
+			let g:php_parent_error_open = 1
+			let g:php_no_shorttags = 1
+		" }}}
 		" LESS {{{
 			au BufNewFile,BufRead *.less setl ft=less
 		" }}}
 		" SASS {{{
 			au FileType sass SyntasticDisable
+		" }}}
+		" Python highlighting {{{
+			let g:python_highlight_all = 1
+			let g:python_show_sync = 1
+			let g:python_print_as_function = 1
 		" }}}
 		" Ruby {{{
 			au FileType ruby setlocal ts=2 sts=2 sw=2 noexpandtab foldmethod=syntax
@@ -1092,15 +1104,15 @@ exe "set path=".expand("$PATH")
 
 	iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 " }}}
-" Vim GREP and Ack {{{
-	" Using Ack instead of grep.
-	set grepprg=ack
-
-	nnoremap <leader>a :Ack
-" }}}
 " Plugin settings {{{
 	" EasyMotion {{{
 		"let g:EasyMotion_mapping_e = '<Leader>ee'
+	" }}}
+	" Vim GREP and Ack {{{
+		" Using Ack instead of grep.
+		set grepprg=ack
+
+		nnoremap <leader>a :Ack
 	" }}}
 	" MiniBufExpl {{{
 		let g:miniBufExplModSelTarget = 1
@@ -1116,6 +1128,9 @@ exe "set path=".expand("$PATH")
 		autocmd BufRead,BufNew :call UMiniBufExplorer
 
 		map <leader>u :TMiniBufExplorer<cr>
+	" }}}
+	" Command-T {{{
+		map <leader>ct :CommandT<cr>
 	" }}}
 	" JSlint.vim {{{
 		if has("gui_running")
@@ -1202,18 +1217,6 @@ exe "set path=".expand("$PATH")
 		let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 
 		au BufNewFile,BufRead *.snip set syntax=snippet ft=snippet foldmethod=indent
-	" }}}
-	" PHP highlighting {{{
-		let g:php_folding = 0
-		let g:php_html_in_strings = 1
-		let g:php_parent_error_close = 1
-		let g:php_parent_error_open = 1
-		let g:php_no_shorttags = 1
-	" }}}
-	" Python highlighting {{{
-		let g:python_highlight_all = 1
-		let g:python_show_sync = 1
-		let g:python_print_as_function = 1
 	" }}}
 	" NERD tree {{{
 		let g:NERDTreeChristmasTree = 1
