@@ -34,17 +34,15 @@ exe "set path=".expand("$PATH")
 
 " Load pathogen {{{
 
-	filetype off
-	silent! call pathogen#runtime_append_all_bundles()
-	call pathogen#helptags()
+"	filetype off
+	call pathogen#infect()
 
 " }}}
 " Basic configuration {{{
 
 	syntax on
-	filetype plugin on
-	filetype indent on
 
+	filetype plugin indent on
 	set nobackup
 	set nowritebackup
 	set noswapfile
@@ -72,7 +70,6 @@ exe "set path=".expand("$PATH")
 	endtry
 
 	set title
-	set clipboard=unnamed,unnamedplus,autoselect
 	set autoread " Set to auto read when a file is changed from the outside
 	set mousehide " Hide the mouse cursor when typing
 	set report=0
