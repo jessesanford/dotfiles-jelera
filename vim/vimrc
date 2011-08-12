@@ -311,12 +311,46 @@ exe "set path=".expand("$PATH")
 	" GUI settings {{{
 
    		if has('gui_running')
+
+			" For gVim / MacVim
 			set guioptions-=T
+			set guioptions+=c
+
+			set background=dark
+
+			colorscheme nazca
+
+			" Font Selection
 			if has('mac')
+				" For MacVim
 				set guifont=DejaVu\ Sans\ Mono\:h14
 			else
+				" For Linux gVim
 				set guifont=DejaVu\ Sans\ Mono\ 10
 			endif
+
+		else
+
+			" For Terminal Vim
+			set background=dark
+
+			if $TERM =~ '^xterm'
+				set t_Co=256
+				colorscheme nazca
+			elseif $TERM =~ '^screen'
+				set t_Co=256
+				colorscheme pablo
+			elseif $TERM =~ '^rxvt'
+				set t_Co=88
+				colorscheme pablo
+			elseif $TERM =~ '^linux'
+				set t_Co=8
+				colorscheme vividchalk
+			else
+				set t_Co=16
+				colorscheme pablo
+			endif
+
 		endif
 
 	" }}}
@@ -328,7 +362,6 @@ exe "set path=".expand("$PATH")
 
 	" }}}
 
-	set background=dark
 	if exists('+lines')
 		set lines=45
 	endif
@@ -338,7 +371,7 @@ exe "set path=".expand("$PATH")
 	if exists('+breakindent')
 		set breakindent
 	endif
-	colorscheme nazca
+
 	set laststatus=2
 	set hlsearch
 	set incsearch
