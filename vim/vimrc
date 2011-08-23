@@ -310,13 +310,14 @@ au VimLeave * silent !echo -ne "]12;\#dd4010\x7"
 " }}}
 " GUI settings {{{
 
+set background=dark
+
 if has('gui_running')
 
 	" For gVim / MacVim
 	set guioptions-=T
 	set guioptions+=c
 
-	set background=dark
 
 	colorscheme nazca
 
@@ -332,7 +333,6 @@ if has('gui_running')
 else
 
 	" For Terminal Vim
-	set background=dark
 
 	if $TERM =~ '^xterm'
 		set t_Co=256
@@ -747,25 +747,24 @@ nmap <Leader>cd :cd %:p:h<CR>
 " Check in Google Codebase Online Documentation {{{
 
 function! OnlineDoc()
-	if has("mac")
-		let s:browser = "open"
-	else
+	""if has("mac")
+		"let s:browser = "open"
+	"else
 		let s:browser = "firefox"
-	endif
+	"endif
 	let s:wordUnderCursor = expand("<cword>")
 
 	if &ft == "cpp" || &ft == "c" || &ft == "ruby" || &ft == "php" || &ft == "python" || &ft == "javascript"
 		let s:url = "http://www.google.com/codesearch?q=".s:wordUnderCursor."+lang:".&ft
 	elseif &ft == "vim"
 		let s:url = "http://www.google.com/codesearch?q=".s:wordUnderCursor
-	else
-		return
+	" "else
+		""return
 	endif
 
 	let s:cmd = "silent !" . s:browser . " " . s:url
 	"echo  s:cmd
 	execute  s:cmd
-	redraw!
 endfunction
 
 " online doc search
