@@ -16,7 +16,7 @@ export ZSH_THEME="prose"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git gem pip svn vi-mode osx github brew rails3 ruby ssh-agent)
+plugins=(git svn vi-mode osx)
 
 source $ZSH/oh-my-zsh.sh
 
