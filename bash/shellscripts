@@ -40,10 +40,10 @@ myip ()
 }
 
 # Shows the uptime for this terminal
-upinfo ()
-{
-	echo -ne "${txtgrn}$HOSTNAME ${txtred}uptime is ${txtcyn} \t ";uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'
-}
+#upinfo ()
+#{
+	#echo -ne "${txtgrn}$HOSTNAME ${txtred}uptime is ${txtcyn} \t ";uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'
+#}
 
 # Fetch the weather from Weather Underground
 weather ()

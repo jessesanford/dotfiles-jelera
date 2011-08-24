@@ -29,13 +29,15 @@ source ~/dotfiles/bash/shellscripts
 # Set Vi-like binding
 bindkey -v
 
-echo  "${bldred}Today is:\t\t${txtcyn}" `date`; echo ""
-echo  "${bldred}Kernel Information: \t${txtcyn}" `uname -smr`
-echo  "${bldcyn}"`upinfo`;echo ""
+echo  "$fg[red]Today is:\t\t $fg[cyan]`date`"
+echo  "$fg[red]Kernel Information:\t $fg[cyan]`uname -smr` " 
+echo  "$fg[green]$(box_name) $fg[red]uptime is:\t $fg[cyan]`uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'`$reset_color"
 echo ""
 fortune
 echo ""
-cal
-
+echo ""
+echo "$fg[red] *** System Message ***"
+echo "$fg_bold[green]`cat /etc/motd`"
+echo ""
 # RVM integration
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm

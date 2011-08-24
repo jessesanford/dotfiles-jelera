@@ -1,10 +1,10 @@
 alias reload='source ~/.bashrc'
+
 #------------------------------------------////
 # Sources
 #------------------------------------------////
 source ~/dotfiles/bash/env
 source ~/dotfiles/bash/aliases
-# source /usr/local/Cellar/coreutils/8.5/aliases # The aliases for the coreutils installed by brew for OSX
 source ~/dotfiles/bash/shellscripts
 
 
@@ -64,19 +64,23 @@ PS1="\n\[$bldylw\]\u@\h\[$txtrst\] [\[$txtgrn\]\w\[$txtrst\]] \[$bldcyn\]\$(vcpr
 #------------------------------------------////
 # Some default .bashrc contents:
 #------------------------------------------////
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
+
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
+
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 	debian_chroot=$(cat /etc/debian_chroot)
 fi
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -94,22 +98,19 @@ if [ -f /etc/bash_completion ]; then
  . /etc/bash_completion
 fi
 
-## For OSX Homebrew Package Manager
-#if [ -f `brew --prefix`/etc/bash_completion ]; then
-  #. `brew --prefix`/etc/bash_completion
-#fi
-
 # Set vi Editing Mode
 set -o vi
+
 
 #------------------------------------------////
 # System Info:
 #------------------------------------------////
+
 echo -ne "${bldred}Today is:\t\t${txtcyn}" `date`; echo ""
 echo -e "${bldred}Kernel Information: \t${txtcyn}" `uname -smr`
-echo -ne "${bldcyn}";upinfo;echo ""
+echo -ne "${txtgrn}$HOSTNAME ${txtred}uptime is ${txtcyn} \t ";uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}' 
+# echo -ne "${bldcyn}";upinfo;echo ""
 echo -e "${bldgrn}";cal 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
  . ~/.nvm/nvm.sh
-
