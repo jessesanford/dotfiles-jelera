@@ -62,7 +62,7 @@ set hidden
 set encoding=utf-8
 set termencoding=utf-8
 
-set spelllang=en,es
+set spelllang=en_us,es
 
 try
 	lang en_US
@@ -914,12 +914,16 @@ map <leader>cp :cp<cr>
 "toggle spell checking
 map <leader>spl :setlocal spell!<cr>
 
+" Spell checking in Mail textfiles (mutt)
+au FileType mail au BufEnter,BufWinEnter <buffer> setlocal spell
+
 " Movement - spell errors
 map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
+map <leader>ss ]sz=
 " }}}
 " }}}
 " }}}
@@ -1092,13 +1096,6 @@ augroup Filetype Specific " {{{
 	" Expand compressed (minified) Javascript with JSBeautify.vim
 	au FileType javascript nmap <leader>jsb : call g:Jsbeautify()<CR>
 
-	" Javascript Lint for the inline scripts in HTML files
-	"au BufWritePost,FileWritePost *.html call JavaScriptLint()
-
-	"func! JavaScriptLint()
-	"exec "w"
-	"exec "!jsl -conf ~/.vim/jsl.conf -process % "
-	"endfunc
 	" }}}
 	" SQL {{{
 	" http://stepanoff.org/wordpress/archives/1536

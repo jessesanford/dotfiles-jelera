@@ -2,5 +2,7 @@
 tags*
 bin/mate
 
-/bin/hg-prompt/prompt.pyc
-/zsh/oh-my-zsh/themes/prose.zsh-theme
+bin/hg-prompt/prompt.pyc
+zsh/oh-my-zsh/themes/prose.zsh-theme
+
+vim/spell
