@@ -1,6 +1,7 @@
 #! /bin/bash
 echo "Don't forget to install XCode and Java Developer Update"
 echo "======================================================="
+sleep 3
 
 # Install latest GNU Coreutils and get the symlinks in $HOME/bin
 brew install coreutils
