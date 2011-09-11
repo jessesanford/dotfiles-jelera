@@ -2,7 +2,7 @@
 " Maintainer: Jose Elera Campana <jelera at gmail.com>
 "             http://www.twitter.com/jelera
 "
-" Last_updated:
+" Last_updated: 09/03/11 22:48:22
 "
 " Based_on:
 "    http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
@@ -875,6 +875,10 @@ set foldtext=FoldText()
 		map <leader>h2 yypVr-o
 		" }}}
 		" Copy, Cut, Paste and Blockwise Visual Selection {{{
+
+		" Use CTRL-Q to do what CTRL-V used to do, Blockwise Visual Selection
+		noremap <C-Q>   <C-V>
+
 		"CTRL-X is cut
 		vnoremap <C-X> "+x
 
@@ -899,8 +903,6 @@ set foldtext=FoldText()
 		imap <S-Insert> <C-V>
 		vmap <S-Insert> <C-V>
 
-		" Use CTRL-Q to do what CTRL-V used to do, Blockwise Visual Selection
-		noremap <C-Q>   <C-V>
 		" }}}
 		" QuickFix {{{
 		map <leader>cope :botright cope<cr>
@@ -1026,7 +1028,7 @@ set foldtext=FoldText()
 		au BufNewFile *.php so ~/.vim/templates/tpl.php
 		" }}}
 		" PSQL {{{
-		"au BufNewFile,BufRead *.sql set ft=psql foldmethod=marker
+		au BufNewFile,BufRead *.sql set ft=psql foldmethod=marker
 		" }}}
 		" Nginx {{{
 		au BufNewFile,BufRead /etc/nginx/conf/* setl ft=nginx
@@ -1081,6 +1083,8 @@ set foldtext=FoldText()
 		" CSS {{{
 		autocmd FileType css setlocal smartindent foldmethod=indent
 		autocmd FileType css setlocal noexpandtab tabstop=2 shiftwidth=2
+		autocmd FileType css map <leader>css %s/{\_.\{-}}/\=substitute(submatch(0), '\n', '', 'g')/
+
 		" }}}
 		" Javascript {{{
 		au FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
@@ -1167,10 +1171,7 @@ iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius
 	"let g:EasyMotion_mapping_e = '<Leader>ee'
 	" }}}
 	" Vim GREP and Ack {{{
-	" Using Ack instead of grep.
 	set grepprg=ack
-
-	nnoremap <leader>a :Ack
 	" }}}
 	" MiniBufExpl {{{
 	let g:miniBufExplModSelTarget = 1
@@ -1330,9 +1331,6 @@ iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius
 	vnoremap <silent> <Leader>t> :Tabularize /=><CR>
 	vnoremap <silent> <Leader>t= :Tabularize /=<CR>
 	vnoremap <silent> <Leader>t, :Tabularize /,<CR>
-	" }}}
-	" ConqueTerm {{{
-	nnoremap <silent> <Leader>sh :ConqueTermSplit zsh<CR>
 	" }}}
 " }}}
 "" Project-specific settings {{{
