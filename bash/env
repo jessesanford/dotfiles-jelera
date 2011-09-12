@@ -1,4 +1,4 @@
-export PATH=:~/bin:~/dotfiles/bin:/usr/local:/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=:~/bin:/usr/local:/usr/local/Cellar:/usr/local/bin:/usr/local/sbin:~/dotfiles/bin:$PATH
 export EDITOR="vim"
 export LESS="-R"
 export GREP_COLOR="1;33"
