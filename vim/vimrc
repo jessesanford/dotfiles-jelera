@@ -954,7 +954,7 @@ set foldtext=FoldText()
 					\ | match DiffCol /^[ +-]\([+-]\)\@!/
 		" }}}
 		" Save on losing focus (after tabbing away or switching buffers) {{{
-		au FocusLost * :wa
+			au FocusLost * :wa
 		" }}}
 		" Open in last edit place {{{
 		au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
@@ -1157,9 +1157,10 @@ set foldtext=FoldText()
 
 iab xdate <c-r>=strftime("%m/%d/%y %H:%M:%S")<cr>
 
-iab #p #!/usr/bin/perl
+iab #pl #!/usr/bin/env perl
+iab #py #!/usr/bin/env python
 iab #e #!/usr/bin/env
-iab #r #!/usr/bin/   ruby
+iab #r #!/usr/bin/env ruby
 iab #b #!/bin/bash
 
 iabbrev lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sollicitudin quam eget libero pulvinar id condimentum velit sollicitudin. Proin cursus scelerisque dui ac condimentum. Nullam quis tellus leo. Morbi consectetur, lectus a blandit tincidunt, tortor augue tincidunt nisi, sit amet rhoncus tortor velit eu felis.

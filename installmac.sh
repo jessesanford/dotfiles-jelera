@@ -88,7 +88,8 @@ clear
 
 echo "Install MacVim and updated Vim for the Terminal"
 brew install macvim
-
+echo "`ls /usr/local/Cellar/macvim/*/MacVim.app/Contents/MacOS/Vim | head -n 1` \$*" > /usr/local/bin/vim
+chmod 755 /usr/local/bin/vim
 
 echo ""
 echo "done ... Installing MacVim"
