@@ -98,6 +98,11 @@ if [ -f /etc/bash_completion ]; then
  . /etc/bash_completion
 fi
 
+#JS Added this for homebrew install of bash-completion
+if [ -f `brew --prefix`/etc/bash_completion ]; then  
+ . `brew --prefix`/etc/bash_completion
+fi
+
 # Set vi Editing Mode
 set -o vi
 

@@ -1,12 +1,15 @@
-# Path to your oh-my-zsh configuration.
+#Customize your path variable
+export PATH=$HOME/android-sdk-mac_x86/platform-tools:$HOME/android-sdk-mac_x86/tools:$PATH
+
+#location of your oh-my-zsh installation
 export ZSH=$HOME/dotfiles/zsh/oh-my-zsh
 
 # Set to the name theme to load.
 # Look in ~/.oh-my-zsh/themes/
-export ZSH_THEME="prose"
+export ZSH_THEME="nanotech"
 
 # Set to this to use case-sensitive completion
-# export CASE_SENSITIVE="true"
+export CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
 # export DISABLE_AUTO_UPDATE="true"
@@ -14,24 +17,33 @@ export ZSH_THEME="prose"
 # Uncomment following line if you want to disable colors in ls
 # export DISABLE_LS_COLORS="true"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load? (plugins can be found in 
+# ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git svn vi-mode osx)
 
-source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+#This will intern include all oh-my-zsh/lib and oh-my-zsh/custom files
+source $ZSH/oh-my-zsh.sh
 
+# The following brings in bash customizations
 source ~/dotfiles/bash/env
 source ~/dotfiles/bash/aliases
 source ~/dotfiles/bash/shellscripts
 
 # Set Vi-like binding
-bindkey -v
+#bindkey -v          
+
+#Set Emacs-Like key binding
+bindkey -e
+
+#Reversi search key binding
+bindkey '^R' history-incremental-search-backward
 
 echo  "$fg[red]Today is:\t\t $fg[cyan]`date`"
 echo  "$fg[red]Kernel Information:\t $fg[cyan]`uname -smr` " 
-echo  "$fg[green]$(box_name) $fg[red]uptime is:\t $fg[cyan]`uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'`$reset_color"
+echo  "$fg[green]$(HOSTNAME) $fg[red]uptime is:\t $fg[cyan]`uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'`$reset_color"
 echo ""
 fortune
 echo ""
@@ -41,3 +53,10 @@ echo "$fg_bold[green]`cat /etc/motd`"
 echo ""
 # RVM integration
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+
+#install autojump shortcut
+if [ -f `brew --prefix`/etc/autojump.zsh ]; then
+  . `brew --prefix`/etc/autojump.zsh
+fi
+ 
+

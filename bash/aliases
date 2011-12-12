@@ -10,6 +10,7 @@ alias la='ls --color=auto -lah'
 alias findbig='find . -type f -exec ls -s {} \; | sort -n -r | head -5'
 alias cls='clear'
 alias ..='cd ..'
+alias ...='cd ../..'
 alias cdd='cd -'
 alias grep='grep --color=auto'
 alias diff='colordiff'
@@ -18,6 +19,7 @@ alias df='df -h'
 alias du='du -c -h'
 alias mkdir='mkdir -p -v'
 alias tmux='tmux -2'
+alias vi='vim'
 
 #------------------------------------------////
 # Only for Mac OSX
