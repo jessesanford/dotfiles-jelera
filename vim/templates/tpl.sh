@@ -1,4 +1,4 @@
 :insert
-#!/bin/zsh
+#!/bin/bash
 
 
