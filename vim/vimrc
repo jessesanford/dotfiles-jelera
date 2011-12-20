@@ -622,8 +622,8 @@ set foldtext=FoldText()
 		nnoremap <silent> <F5>  :set number!<CR>
 		nnoremap <silent> <F6>  :GundoToggle<CR>
 		nnoremap <silent> <F8>  :LustyJuggler<CR>
-		"nnoremap <silent> <F7>  :LustyExplorer<CR>
-		"nnoremap <silent> <F8>  :TagbarToggle<CR>
+		nnoremap <silent> <F7>  :LustyExplorer<CR>
+		nnoremap <silent> <F8>  :TagbarToggle<CR>
 		nnoremap <silent> <F9> :NERDTreeToggle<CR>
 		nnoremap <silent> <F10>  :TMiniBufExplorer<CR>
 		" }}}
@@ -697,8 +697,8 @@ set foldtext=FoldText()
 		" }}}
 		" }}}
 		" Repurpose arrow keys to move lines {{{
-		"nnoremap <silent> <Left>   :bn<CR>
-		"nnoremap <silent> <Right>  :bp<CR>
+		nnoremap <silent> <Left>   :bn<CR>
+		nnoremap <silent> <Right>  :bp<CR>
 		" }}}
 		" Toggle between 'Relative' and 'Absolute' line numbers {{{
 		" by aj3423
@@ -713,8 +713,7 @@ set foldtext=FoldText()
 		" }}}
 		" Show Invisible Characters {{{
 		nmap <Leader>l :set list!<CR>
-		" }}}
-		" Toggle Foldings {{{
+		" }}} " Toggle Foldings {{{
 		nnoremap <Space> za
 		" }}}
 		" Y yanks from cursor to EOL {{{
@@ -867,8 +866,7 @@ set foldtext=FoldText()
 		" }}}
 		" Sort CSS Properties {{{
 		nnoremap <leader>sort ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-		" }}}
-		" Expand Compressed HTML with Tidy {{{
+		" }}} " Expand Compressed HTML with Tidy {{{
 		map <leader>td :%!tidy -q -config ~/.vim/tidy.conf --tidy-mark 0 2>/dev/null<CR><ESC>gg=G
 		" }}}
 		" Documentation Writing and Formatting {{{
@@ -885,8 +883,9 @@ set foldtext=FoldText()
 		vnoremap <C-C> "+y
 
 		" Smart Paste CTRL-V from the system's clipboard and indents code automatically
-		nnoremap <C-V> "+P=']
-		inoremap <C-V> <C-o>"+P<C-o>=']
+		nnoremap <C-V> "+p
+		" nnoremap <C-V> "+P=']
+		"inoremap <C-V> <C-o>"+P<C-o>=']
 
 		" Select All
 		map <C-A> ggVG
@@ -1292,7 +1291,7 @@ iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius
 	let g:NERDTreeWinPos = 'right'
 	let g:NERDTreeWinSize = 50
 	let g:NERDTreeShowBookmarks = 1
-	map <F2> :NERDTreeToggle<CR>
+	"map <F2> :NERDTreeToggle<CR>
 	map <leader>nt :NERDTreeToggle<CR>
 	" }}}
 	" Tagbar {{{
