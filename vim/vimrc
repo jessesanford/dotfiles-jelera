@@ -874,7 +874,7 @@ set foldtext=FoldText()
 		map <leader>h2 yypVr-o
 		" }}}
 		" Copy, Cut, Paste and Blockwise Visual Selection {{{
-		
+
 		"Use system clipboard
 		set clipboard=unnamed
 
@@ -1200,7 +1200,7 @@ iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius
 	" }}}
 	" JSlint.vim {{{
 	" Use Node.js for JavaScript interpretation
-	"let $JS_CMD='node'
+	let $JS_CMD='node'
 
 	if has("gui_running")
 		let g:JSLintHighlightErrorLine = 1
