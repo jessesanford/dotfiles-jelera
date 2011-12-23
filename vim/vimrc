@@ -1200,7 +1200,7 @@ iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius
 	" }}}
 	" JSlint.vim {{{
 	" Use Node.js for JavaScript interpretation
-	let $JS_CMD='node'
+	"let $JS_CMD='node'
 
 	if has("gui_running")
 		let g:JSLintHighlightErrorLine = 1
