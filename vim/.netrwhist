@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/jose/sync/dotfiles/dot.fonts'
-let g:netrw_dirhist_2='/home/jose/.mutt'
-let g:netrw_dirhist_3='/Users/jessesanford/workspace/mactech-db'
-let g:netrw_dirhist_4='/Users/jessesanford/workspace/BigClawServer/branches/mobage-west-branch'
-let g:netrw_dirhist_5='/Users/jessesanford/workspace/mactech-db'
-let g:netrw_dirhist_6='/Users/jessesanford/workspace/beanstalktest/node_modules/beanstalk_client/lib'
-let g:netrw_dirhist_7='/Users/jessesanford/workspace/beanstalktest/node_modules'
-let g:netrw_dirhist_8='/Users/jessesanford/dotfiles'
-let g:netrw_dirhist_9='/Users/jessesanford/workspace/ngCore-Scheduler/strategies/local'
+let g:netrw_dirhist_cnt =0
