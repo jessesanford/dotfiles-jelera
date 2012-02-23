@@ -40,7 +40,7 @@ exe "set path=".expand("$PATH")
 
 syntax on
 
-filetype plugin indent on
+""filetype plugin indent on
 set nobackup
 set nowritebackup
 set noswapfile
@@ -362,7 +362,7 @@ if exists('+lines')
 	set lines=45
 endif
 if exists('+columns')
-	set columns=137
+	set columns=87
 endif
 if exists('+breakindent')
 	set breakindent
@@ -401,7 +401,7 @@ set cindent
 set smartindent
 set wrap
 set textwidth=79
-set formatoptions=croqwanl1
+""set formatoptions=croqwanl1
 set ignorecase
 set linebreak
 
@@ -879,16 +879,16 @@ set foldtext=FoldText()
 		set clipboard=unnamed
 
 		" Use CTRL-Q to do what CTRL-V used to do, Blockwise Visual Selection
-		noremap <C-Q> <C-V>
+		 noremap <C-Q> <C-V>
 
 		"CTRL-X is cut
 		vnoremap <C-X> "+x
 
 		"CTRL-C is copy
-		vnoremap <C-C> "+y
+		" vnoremap <C-C> "+y
 
 		" Smart Paste CTRL-V from the system's clipboard and indents code automatically
-		nnoremap <C-V> "+p
+		"nnoremap <C-V> "+p
 		" nnoremap <C-V> "+P=']
 		"inoremap <C-V> <C-o>"+P<C-o>=']
 
