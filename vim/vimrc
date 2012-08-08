@@ -362,7 +362,7 @@ if exists('+lines')
 	set lines=45
 endif
 if exists('+columns')
-	set columns=137
+	set columns=87
 endif
 if exists('+breakindent')
 	set breakindent

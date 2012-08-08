@@ -119,5 +119,6 @@ echo -ne "${txtgrn}$HOSTNAME ${txtred}uptime is ${txtcyn} \t ";uptime | awk /'up
 # echo -ne "${bldcyn}";upinfo;echo ""
 echo -e "${bldgrn}";cal 
 
+# Source the rvm files
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
  . ~/.nvm/nvm.sh

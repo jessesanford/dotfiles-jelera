@@ -1,4 +1,1 @@
-# Add to the original path
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
- . ~/.nvm/nvm.sh
 source ~/.bashrc
