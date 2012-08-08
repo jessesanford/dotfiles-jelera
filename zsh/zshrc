@@ -1,5 +1,9 @@
 #Customize your path variable
+<<<<<<< HEAD
 export PATH=$HOME/vert.x-1.2.3.final/bin:$HOME/android-sdk-macosx/platform-tools:$HOME/android-sdk-macosx/tools:$PATH:/opt/local/bin:$PATH
+=======
+export PATH=$HOME/.npm/coffee-script/1.2.0/package/bin:$HOME/android-sdk-mac_x86/platform-tools:$HOME/android-sdk-mac_x86/tools:$PATH
+>>>>>>> 27381d5345ba147a2d4df500aa8c7a0bdb36109e
 
 #location of your oh-my-zsh installation
 export ZSH=$HOME/dotfiles/zsh/oh-my-zsh
@@ -24,13 +28,19 @@ plugins=(git svn vi-mode osx)
 
 
 # Customize to your needs...
-#This will intern include all oh-my-zsh/lib and oh-my-zsh/custom files
+# This will intern include all ~/dotfiles/oh-my-zsh/lib and ~/oh-my-zsh/custom 
+# files. This includes the ~/dotfiles/oh-my-zsh/custom/aliases.zsh
 source $ZSH/oh-my-zsh.sh
 
 # The following brings in bash customizations
 source ~/dotfiles/bash/env
 source ~/dotfiles/bash/aliases
 source ~/dotfiles/bash/shellscripts
+
+#set virtualenv home directory
+export PROJECT_HOME=~/workspace
+#now load virtualenvwrapper
+source /usr/local/bin/virtualenvwrapper.sh
 
 # Set Vi-like binding
 #bindkey -v          
