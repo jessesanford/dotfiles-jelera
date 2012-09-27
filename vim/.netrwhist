@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/Users/jessesanford/workspace/DragonCraft-Scheduler/node_modules/ngcore-scheduler/strategies/beanstalk/node_modules/beanstalk_worker'
 let g:netrw_dirhist_2='/Users/jessesanford/workspace/namecheck/app'
 let g:netrw_dirhist_3='/Users/jessesanford/.virtualenvs'
+let g:netrw_dirhist_4='/Users/jessesanford/workspace/dynamo/lib/dynamo/reloader'

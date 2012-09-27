@@ -1,9 +1,5 @@
 #Customize your path variable
-<<<<<<< HEAD
-export PATH=$HOME/vert.x-1.2.3.final/bin:$HOME/android-sdk-macosx/platform-tools:$HOME/android-sdk-macosx/tools:$PATH:/opt/local/bin:$PATH
-=======
-export PATH=$HOME/.npm/coffee-script/1.2.0/package/bin:$HOME/android-sdk-mac_x86/platform-tools:$HOME/android-sdk-mac_x86/tools:$PATH
->>>>>>> 27381d5345ba147a2d4df500aa8c7a0bdb36109e
+export PATH=$$HOME/.npm/coffee-script/1.2.0/package/bin:HOME/vert.x-1.2.3.final/bin:$HOME/android-sdk-macosx/platform-tools:$HOME/android-sdk-macosx/tools:$PATH:/opt/local/bin:$PATH
 
 #location of your oh-my-zsh installation
 export ZSH=$HOME/dotfiles/zsh/oh-my-zsh
@@ -61,9 +57,11 @@ echo ""
 echo "$fg[red] *** System Message ***"
 echo "$fg_bold[green]`cat /etc/motd`"
 echo ""
+
 # RVM integration
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-rvm use 1.9.3-p194@rails3
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
 #install autojump shortcut
 if [ -f `brew --prefix`/etc/autojump.zsh ]; then

@@ -4,6 +4,9 @@ export EDITOR="vim"
 export LESS="-R"
 export GREP_COLOR="1;33"
 
+# fix virtualenv python location
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+
 # Setup Amazon EC2 Command-Line Tools
 
 export EC2_HOME=$HOME/.ec2
@@ -21,8 +24,8 @@ export SCALA_HOME=$HOME/scala-2.9.2
 export PATH=$PATH:$SCALA_HOME/bin
 
 # ruby
-export RUBY_HOME=`rvm info homes | grep 'ruby:' | awk -F '"' '{print $2}'`
-export JRUBY_HOME=`rvm info jruby homes | grep 'ruby:' | awk -F '"' '{print $2}'`
+#export RUBY_HOME=`rvm info homes | grep 'ruby:' | awk -F '"' '{print $2}'`
+#export JRUBY_HOME=`rvm info jruby homes | grep 'ruby:' | awk -F '"' '{print $2}'`
 
 # vertx
 export VERTX_HOME=$HOME/vert.x-1.2.3.final
